@@ -1,0 +1,91 @@
+name: rok
+description: rok-客户端
+
+
+version: 2.0.2+4
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  provider: 4.0.4 #状态管理 google推荐
+  dio: 3.0.9 #网络请求库
+  json_annotation: 3.0.1 #json解析
+  flutter_screenutil: 1.1.0 #屏幕适配f
+  flutter_easyrefresh: ^2.1.1 #刷新组件
+  pull_to_refresh: 1.5.8 #刷新组件
+  url_launcher: ^5.1.3 #打电话
+
+  event_bus: 1.1.1 #一个使用Dart流进行解耦应用程序的简单事件总线的库。
+
+  shared_preferences: 0.5.3 # 用于读写简单键值对的Flutter插件。包装iOS上的NSUserDefaults和Android上的SharedPreferences。
+  connectivity: ^0.4.8+6     #网络状态监听
+  flutter_swiper: 1.1.6  #轮播
+  marquee_flutter: ^0.1.4 #跑马灯效果
+  flutter_countdown_timer: ^1.1.0 #倒计时
+  scroll_to_index: ^1.0.6
+
+  #  image_gallery_saver: 1.2.2  #保存图片
+  #  path_provider: 1.6.5 #获取路径
+  permission_handler: ^3.0.1 #权限管理
+  fluttertoast: 4.0.0 #toast提示
+  flutter_custom_dialog: ^1.0.4 #各种弹窗，掘金教程https://juejin.im/post/5d85b4a06fb9a06af238aef9
+
+  intl: ^0.16.1 # 时间格式转换
+  cached_network_image: ^2.1.0+1 #Flutter库来加载和缓存网络图像。也可以与占位符和错误小部件一起使用。
+  flutter_easyloading: ^1.1.3
+
+  webview_flutter: ^0.3.22+1
+  badges: ^1.1.1 #小红点
+  fluwx: ^2.1.0  #微信sdk
+  dio_log : ^1.3.3
+  flutter_geetest_plugin:
+    git:
+      ref: 0.1.1
+      url: https://github.com/hotdog45/flutter_geetest_plugin.git
+
+  #  flutter_app_upgrade: ^1.0.2
+  launch_review: ^2.0.0
+  #  flutter_spinkit: "^4.1.2"
+  #  device_info: ^0.4.2+4
+  package_info: ^0.4.1
+
+  umeng_analytics_plugin: ^1.0.3 #友盟统计
+
+
+    ############# 备用 #################f
+    # flutter_mobx: ^0.3.0+1
+    # pull_to_refresh: ^1.5.7 #刷新
+
+    # image_picker: ^0.6.5
+    #  multi_image_picker: ^4.6.7
+  #  gallery_saver: ^2.0.1
+
+  #  flutter_slidable: ^0.5.3 #侧滑删除
+  #  location: ^2.3.5 #处理Android和iOS上的位置。它还提供位置更改时的回调。
+  #  device_info: ^0.4.0+2 #提供有关设备（品牌，型号等）的详细信息，以及应用程序正在运行的Android或iOS版本。
+  #  cupertino_icons: ^0.1.2
+  #  flutter_svg: ^0.10.1 #svg
+  #  flutter_spinkit: ^3.1.0 #加载动画。支持多种常用效果，非常酷炫。
+  #  flutter_cache_manager: ^1.1.0 #管理你的app下载到本地的文件缓存。它使用缓存控制HTTP报头有效地检索文件。
+
+  #  #alipay_me: ^1.0.0  #支付宝插件，支持登录、支付。android还支持本地计算签名。
+  #  location_permissions: '^2.0.0' #定位权限
+
+dev_dependencies:
+  json_serializable: ^3.3.0
+  build_runner: ^1.6.4
+  flutter_test:
+    sdk: flutter
+
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - static/images/
