@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/page/quotes_details_page.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 
 import 'common/webview_page.dart';
@@ -48,7 +49,7 @@ class _TestPageState extends State<TestPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0)),
                     onPressed: () {
-
+                      NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
                     },
                   )),
               Container(

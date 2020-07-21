@@ -5,17 +5,19 @@ import 'package:rok/common/style/style.dart';
 class YPAppBar {
   final String title;
   final bool hasBackBtn;
+  final bool centerTitle;
   final List<Widget> actions;
+  final Widget titleWidget;
 
-  YPAppBar(this.title,{ this.hasBackBtn = true, this.actions});
+  YPAppBar(this.title,{ this.hasBackBtn = true,this.centerTitle = true, this.titleWidget, this.actions});
 
   PreferredSizeWidget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
       brightness: Brightness.light,
-      centerTitle: true,
-      title:  Text(
+      centerTitle: centerTitle,
+      title: titleWidget ??  Text(
         title,
         style: TextStyle(color: kAppTextColor, fontSize: 17),
       ),

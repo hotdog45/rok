@@ -55,6 +55,7 @@ dependencies:
   package_info: ^0.4.1
 
   umeng_analytics_plugin: ^1.0.3 #友盟统计
+  web_socket_channel: ^1.1.0 #socket
 
 
     ############# 备用 #################f

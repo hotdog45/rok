@@ -1,4 +1,5 @@
 
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +39,16 @@ num kAppFontSize(num size) {
 }
 
 
-
+Color randomColor() {
+  var random = new Random();
+  int r = random.nextInt(255);
+  int g = random.nextInt(255);
+  int b = random.nextInt(255);
+  print(r);
+  print(g);
+  print(b);
+  return Color.fromARGB(255, r, g, b);
+}
 
 String defaultImage = 'static/images/yp_default_img.png';
 
