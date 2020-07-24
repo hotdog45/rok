@@ -3,7 +3,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:launch_review/launch_review.dart';
+import 'package:r_upgrade/r_upgrade.dart';
 import 'package:rok/common/dao/dao_result.dart';
 import 'package:rok/common/dao/ypxs_gateway_dao.dart';
 import 'package:rok/common/model/home/app_upgrade.dart';
@@ -45,6 +47,23 @@ class DialogUtils {
             ],
           );
         });
+  }
+
+  hotfix() async{
+    int id = await RUpgrade.upgrade(
+        'https://raw.githubusercontent.com/rhymelph/r_upgrade/master/apk/app-release.apk',
+        fileName: 'app-release.apk',isAutoRequestInstall: false);
+
+//    int id = await RUpgrade.getLastUpgradedId();
+    bool isSuccess = await RUpgrade.install(id);
+    if (isSuccess) {
+      NavigatorUtils.showToast("热更新成功，3s后退出应用，请重新进入");
+      Future.delayed(Duration(seconds: 3)).then((_){
+        SystemNavigator.pop(animated: true);
+      });
+    }else{
+      NavigatorUtils.showToast("热更新失败，请等待更新包下载完成");
+    }
   }
 
    Future reqCheckAppUpgrade(context, updateCallBack,{bool isMine = false}) async {
