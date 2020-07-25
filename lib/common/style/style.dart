@@ -39,6 +39,7 @@ num kAppFontSize(num size) {
 }
 
 
+
 Color randomColor() {
   var random = new Random();
   int r = random.nextInt(255);
@@ -51,6 +52,20 @@ Color randomColor() {
 }
 
 String defaultImage = 'static/images/yp_default_img.png';
+
+double fontSize8 = 8;
+double fontSize10 = 10;
+double fontSize12 = 12;
+double fontSize14 = 14;
+double fontSize16 = 16;
+double fontSize18 = 18;
+double fontSize20 = 20;
+double fontSize30 = 30;
+
+
+
+
+
 
 
 class YPICons {
