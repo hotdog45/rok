@@ -1,0 +1,26 @@
+#中文
+title:
+  home: "首页"
+  quotes: "行情"
+  transaction: "交易"
+  assets: "资产"
+  mine: "我的"
+
+label:
+  price: "价格"
+  language: "语言"
+
+toast:
+  networkError: "网络错误~"
+
+
+button:
+  deposit: "入金"
+  withdrawal: "出金"
+
+
+#内嵌变量  int 类型
+clicked:
+  times-0: "你点击了 {times} 次!"
+  times-1: "你点击了 {time} 次!"
+  times-2: "你点击了 {times} 次!"

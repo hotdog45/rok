@@ -76,13 +76,7 @@ class AppInitUtils {
             iconTheme: IconThemeData(color: Colors.black)));
   }
 
-  final FlutterI18nDelegate flutterI18nDelegate = FlutterI18nDelegate(
-    translationLoader: FileTranslationLoader(
-        useCountryCode: false,
-        fallbackFile: 'en',
-        basePath: 'assets/i18n',
-        forcedLocale: Locale('zh')),
-  );
+
 
 
 }

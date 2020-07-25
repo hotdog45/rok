@@ -1,11 +1,13 @@
-
 import 'dart:math';
 
+import 'package:dio_log/overlay_draggable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:launch_review/launch_review.dart';
+import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/test/i18nPage.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 
 import 'common/webview_page.dart';
@@ -23,52 +25,106 @@ class _TestPageState extends State<TestPage> {
     return Scaffold(
       appBar: YPAppBar("测试列表").build(context),
       body: Container(
-          child:
-          ListView(
-            children: <Widget>[
-              Container(
-                  margin: EdgeInsets.only(left: 50, top: 20, right: 50),
-                  height: 46,
-                  width: double.infinity,
-                  child: FlatButton(
-                    color: getRandomColor(),
-                    child: Text("webView测试"),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0)),
-                    onPressed: ()  {
-                      NavigatorUtils.navigatorRouter(context, WebViewPage(url: "https://www.baidu.com"));
-                    },
-                  )),
-              Container(
-                  margin: EdgeInsets.only(left: 50, top: 20, right: 50),
-                  height: 46,
-                  width: double.infinity,
-                  child: FlatButton(
-                    color: getRandomColor(),
-                    child: Text("行情详情"),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0)),
-                    onPressed: () {
-                      NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
-                    },
-                  )),
-              Container(
-                  margin: EdgeInsets.only(left: 50, top: 20, right: 50),
-                  height: 46,
-                  width: double.infinity,
-                  child: FlatButton(
-                    color: getRandomColor(),
-                    child: Text("配置环境"),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0)),
-                    onPressed: () {
+          child: ListView(
+        children: <Widget>[
+          Container(
+              margin: EdgeInsets.only(left: 50, top: 20, right: 50),
+              height: 46,
+              width: double.infinity,
+              child: FlatButton(
+                color: getRandomColor(),
+                child: Text("webView测试"),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () {
+                  NavigatorUtils.navigatorRouter(
+                      context, WebViewPage(url: "https://www.baidu.com"));
+                },
+              )),
+          Container(
+              margin: EdgeInsets.only(left: 50, top: 20, right: 50),
+              height: 46,
+              width: double.infinity,
+              child: FlatButton(
+                color: getRandomColor(),
+                child: Text("国际化"),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () {
+                  NavigatorUtils.navigatorRouter(context, MyHomePage());
+                },
+              )),
+          Container(
+              margin: EdgeInsets.only(left: 50, top: 20, right: 50),
+              height: 46,
+              width: double.infinity,
+              child: FlatButton(
+                color: getRandomColor(),
+                child: Text("切换成英语"),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () {
+                  setState(() {
+                    I18nUtils.refresh(context, LanguageEnum.English);
+                  });
+                },
+              )),
+          Container(
+              margin: EdgeInsets.only(left: 50, top: 20, right: 50),
+              height: 46,
+              width: double.infinity,
+              child: FlatButton(
+                color: getRandomColor(),
+                child: Text("切换成汉语"),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () {
+                  setState(() {
+                    I18nUtils.refresh(context, LanguageEnum.China);
+                  });
+                },
+              )),
+          Container(
+              margin: EdgeInsets.only(left: 50, top: 20, right: 50),
+              height: 46,
+              width: double.infinity,
+              child: FlatButton(
+                color: getRandomColor(),
+                child: Text("行情详情"),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () {
+                  NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
+                },
+              )),
+          Container(
+              margin: EdgeInsets.only(left: 50, top: 20, right: 50),
+              height: 46,
+              width: double.infinity,
+              child: FlatButton(
+                color: getRandomColor(),
+                child: Text("切换环境"),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () {
 //                      NavigatorUtils.navigatorRouter(context, ConfigPage());
-                    },
-                  )),
-
-            ],
-          )
-      ),
+                },
+              )),
+          Container(
+              margin: EdgeInsets.only(left: 50, top: 20, right: 50),
+              height: 46,
+              width: double.infinity,
+              child: FlatButton(
+                color: getRandomColor(),
+                child: Text("打开抓包请求"),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () {
+                  showDebugBtn(context);
+                },
+              )),
+        ],
+      )),
     );
   }
 

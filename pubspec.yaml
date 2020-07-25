@@ -62,25 +62,6 @@ dependencies:
 
   flutter_i18n: ^0.18.0
 
-    ############# 备用 #################f
-    # flutter_mobx: ^0.3.0+1
-    # pull_to_refresh: ^1.5.7 #刷新
-
-    # image_picker: ^0.6.5
-    #  multi_image_picker: ^4.6.7
-  #  gallery_saver: ^2.0.1
-
-  #  flutter_slidable: ^0.5.3 #侧滑删除
-  #  location: ^2.3.5 #处理Android和iOS上的位置。它还提供位置更改时的回调。
-  #  device_info: ^0.4.0+2 #提供有关设备（品牌，型号等）的详细信息，以及应用程序正在运行的Android或iOS版本。
-  #  cupertino_icons: ^0.1.2
-  #  flutter_svg: ^0.10.1 #svg
-  #  flutter_spinkit: ^3.1.0 #加载动画。支持多种常用效果，非常酷炫。
-  #  flutter_cache_manager: ^1.1.0 #管理你的app下载到本地的文件缓存。它使用缓存控制HTTP报头有效地检索文件。
-
-  #  #alipay_me: ^1.0.0  #支付宝插件，支持登录、支付。android还支持本地计算签名。
-  #  location_permissions: '^2.0.0' #定位权限
-
 dev_dependencies:
   json_serializable: ^3.3.0
   build_runner: ^1.6.4
@@ -91,7 +72,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
   assets:
     - static/images/
     - assets/i18n/

@@ -1,6 +1,6 @@
 
 class Config {
-  static const PAGE_SIZE = 50;
+  static const PAGE_SIZE = 20;
   static const DEBUG = true;
 
   static final String ERR_MSG1 = "系统错误~";
@@ -11,10 +11,7 @@ class Config {
   static const KEY_API_HOST = KEY_API_HOST_TEST;
 
   static const KEY_API_HOST_RELEASE = "4";
-  static const KEY_API_HOST_PRE = "3";
   static const KEY_API_HOST_TEST = "2";
-  static const KEY_API_HOST_DEV = "1";
-  static const KEY_API_HOST_SIT = "0";
 
   static const KEY_API_NUM = "api_num";
   static const TOKEN_KEY = "token";

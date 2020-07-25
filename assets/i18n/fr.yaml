@@ -1,0 +1,28 @@
+#法语
+
+title:
+  home: "home"
+  quotes: "quotes"
+  transaction: "transaction"
+  assets: "assets"
+  mine: "mine"
+
+
+label:
+  price: "price"
+  language: "language"
+
+toast:
+  networkError: "networkError"
+
+
+button:
+  deposit: "deposit"
+  withdrawal: "withdrawal"
+
+
+#内嵌变量  int 类型
+clicked:
+  times-0: "You clicked {times} times!"
+  times-1: "You clicked {time} time!"
+  times-2: "You clicked {times} times!"

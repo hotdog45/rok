@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:dio_log/overlay_draggable_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rok/common/config/config.dart';
 import 'package:rok/common/event/index.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 
 import '../assets_page.dart';
@@ -47,6 +49,7 @@ class _MainPageState extends State<MainPage> {
       currentIndex = event.indexSel;
       setState(() {});
     });
+    showDebugBtn(context);
 
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(initConnectivity);
@@ -96,14 +99,14 @@ class _MainPageState extends State<MainPage> {
   List<BottomNavigationBarItem> _getBottomList() {
     List<BottomNavigationBarItem> bottomTabs = [
       _getBottomNavigationBarItem(
-          "tab_home_unSel.png", "tab_home_sel.png", "首页"),
+          "tab_home_unSel.png", "tab_home_sel.png", I18nUtils.translate(context, "title.home")),
       _getBottomNavigationBarItem(
-          "tab_category_unSel.png", "tab_category_sel.png", "行情"),
+          "tab_category_unSel.png", "tab_category_sel.png", I18nUtils.translate(context, "title.quotes")),
 
       _getBottomNavigationBarItem(
-          "tab_order_unSel.png", "tab_order_sel.png", "交易"),
+          "tab_order_unSel.png", "tab_order_sel.png", I18nUtils.translate(context, "title.transaction")),
       _getBottomNavigationBarItem(
-          "tab_mine_unSel.png", "tab_mine_sel.png", "资产"),
+          "tab_mine_unSel.png", "tab_mine_sel.png", I18nUtils.translate(context, "title.assets")),
     ];
 
     return bottomTabs;

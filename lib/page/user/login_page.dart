@@ -14,6 +14,8 @@ import 'package:rok/common/unils/local_storage.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/common/webview_page.dart';
 
+import '../test_page.dart';
+
 
 class LoginPage extends StatefulWidget {
   static final String sName = "login";
@@ -94,8 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                             radius: 0.0,
                             onTap: () {
                               if (Config.DEBUG) {
-//                                NavigatorUtils.navigatorRouter(
-//                                    context, ConfigPage());
+                                NavigatorUtils.navigatorRouter(context, TestPage());
+
                               }
                             },
                             child: Text(
@@ -369,8 +371,8 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() async {
 
-    reqUserRegister();
-//    NavigatorUtils.goHome(context);
+//    reqUserRegister();
+    NavigatorUtils.goHome(context);
     return;
     if (userController.text.length != 11) {
       NavigatorUtils.showToast("手机号码格式不对");
