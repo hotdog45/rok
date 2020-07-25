@@ -56,6 +56,9 @@ dependencies:
 
   umeng_analytics_plugin: ^1.0.3 #友盟统计
   web_socket_channel: ^1.1.0 #socket
+  r_upgrade: ^0.3.1 #更新,增量更新,热修复
+#  r_scan: ^0.1.4+1 #扫码
+  flutter_l10n: ^0.1.3   #国际化
 
 
     ############# 备用 #################f
