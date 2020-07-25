@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert' as convert;
-import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_geetest_plugin/flutter_geetest_plugin.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/config/config.dart';
-import 'package:rok/common/dao/dao_result.dart';
-import 'package:rok/common/dao/ypxs_gateway_dao.dart';
+import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/local_storage.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
@@ -38,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     getMobile();
   }
@@ -370,7 +369,8 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() async {
 
-    NavigatorUtils.goHome(context);
+    reqUserRegister();
+//    NavigatorUtils.goHome(context);
     return;
     if (userController.text.length != 11) {
       NavigatorUtils.showToast("手机号码格式不对");

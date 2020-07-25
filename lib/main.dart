@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'common/unils/app_init_utils.dart';
 import 'page/common/welcome_page.dart';
-
 void main() {
   appInitUtils.initEasyLoading();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 //    appInitUtils.initFluwx();
 //    appInitUtils.initUmeng();
+    WidgetsFlutterBinding.ensureInitialized();
   }
 
   @override
@@ -31,6 +32,11 @@ class _MyAppState extends State<MyApp> {
         routes: appInitUtils.appRoutes(),
         debugShowCheckedModeBanner: !kReleaseMode,
         theme: appInitUtils.initThemeData(),
+        localizationsDelegates: [
+          appInitUtils.flutterI18nDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
         initialRoute: WelcomePage.sName);
   }
 }

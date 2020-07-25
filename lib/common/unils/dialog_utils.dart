@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:r_upgrade/r_upgrade.dart';
-import 'package:rok/common/dao/dao_result.dart';
-import 'package:rok/common/dao/ypxs_gateway_dao.dart';
 import 'package:rok/common/model/home/app_upgrade.dart';
 
 import 'navigator_utils.dart';
@@ -67,8 +65,9 @@ class DialogUtils {
   }
 
    Future reqCheckAppUpgrade(context, updateCallBack,{bool isMine = false}) async {
-    DataResult result = await YpGatewayDao.getCheckAppUpgrade();
-    if (result.success) {
+//    var result = await getCheckAppUpgrade();
+     var result;
+    if (result) {
       AppUpgrade appUpgrade = result.data;
       if (appUpgrade.status == 2) {
         dialogUtils.showAppUpdateDialog(

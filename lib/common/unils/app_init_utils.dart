@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_i18n/loaders/file_translation_loader.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:rok/page/common/main_page.dart';
 import 'package:rok/page/common/welcome_page.dart';
@@ -73,4 +75,14 @@ class AppInitUtils {
             color: Colors.white,
             iconTheme: IconThemeData(color: Colors.black)));
   }
+
+  final FlutterI18nDelegate flutterI18nDelegate = FlutterI18nDelegate(
+    translationLoader: FileTranslationLoader(
+        useCountryCode: false,
+        fallbackFile: 'en',
+        basePath: 'assets/i18n',
+        forcedLocale: Locale('zh')),
+  );
+
+
 }
