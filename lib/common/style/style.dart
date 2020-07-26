@@ -18,7 +18,7 @@ Color kAppTextColor = Color(0xFF474245);
 //二级文字
 Color kAppSubTextColor = Color(0xFF969696);
 //三级级文字
-Color kAppSub2TextColor = Color(0xFF08B96);
+Color kAppSub2TextColor = Color(0xFFaaaaaa);
 
 //品牌页面标记
 Color kAppBrandBgColor = Color(0xfff5b90b);

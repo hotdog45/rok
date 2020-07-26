@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
-import 'package:rok/widget/kline/kchart/utils/date_format_util.dart';
+import 'package:rok/page/quotes_details_page.dart';
 /**
  * Copyright (C), 2015-2020, 谊品生鲜
  * FileName: quotes_item_widget
@@ -14,7 +14,6 @@ import 'package:rok/widget/kline/kchart/utils/date_format_util.dart';
  */
 
 class QuotesItemWidget extends StatefulWidget {
-
   final Color color;
 
   const QuotesItemWidget({Key key, this.color}) : super(key: key);
@@ -23,17 +22,15 @@ class QuotesItemWidget extends StatefulWidget {
   _QuotesItemWidgetState createState() => _QuotesItemWidgetState();
 }
 
-class _QuotesItemWidgetState extends State<QuotesItemWidget>
-{
+class _QuotesItemWidgetState extends State<QuotesItemWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        NavigatorUtils.showToast("点击了行情");
-
+        NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
       },
       child: Container(
-        height: 66,
+        height: 65,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
