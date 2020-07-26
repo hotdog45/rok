@@ -17,10 +17,18 @@ Color kAppPriceColor = Color(0xFFff4400);
 Color kAppTextColor = Color(0xFF474245);
 //二级文字
 Color kAppSubTextColor = Color(0xFF969696);
+//三级级文字
+Color kAppSub2TextColor = Color(0xFF08B96);
+
 //品牌页面标记
 Color kAppBrandBgColor = Color(0xfff5b90b);
 //白色
 Color kAppWhiteColor = Color(0xFFFFFFFF);
+
+
+//绿色
+Color kGreenColor = Color(0xFF2ECC71);
+Color kSubGreenColor = Color(0xFF5F5E3);
 
 //支付
 Color kAppPayColor = Color(0xFF777777);

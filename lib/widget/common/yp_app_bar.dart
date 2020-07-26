@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/common/unils/i18n_utils.dart';
 
 class YPAppBar {
   final String title;
@@ -15,10 +16,10 @@ class YPAppBar {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      brightness: Brightness.light,
+      brightness: Brightness.dark,
       centerTitle: centerTitle,
       title: titleWidget ??  Text(
-        title,
+         I18nUtils.translate(context,title),
         style: TextStyle(color: kAppTextColor, fontSize: 17),
       ),
       automaticallyImplyLeading: hasBackBtn,

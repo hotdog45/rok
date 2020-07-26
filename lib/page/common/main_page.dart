@@ -4,11 +4,13 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio_log/overlay_draggable_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rok/common/config/config.dart';
 import 'package:rok/common/event/index.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/page/user/mine_page.dart';
 
 import '../assets_page.dart';
 import '../home_page.dart';
@@ -31,7 +33,8 @@ class _MainPageState extends State<MainPage> {
     HomePage(),
     QuotesListPage(),
     TransactionPage(),
-    AssetsPage()
+    AssetsPage(),
+    MinePage(),
   ];
 
   int currentIndex = 0;
@@ -53,6 +56,7 @@ class _MainPageState extends State<MainPage> {
 
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(initConnectivity);
+
   }
 
   @override
@@ -107,6 +111,8 @@ class _MainPageState extends State<MainPage> {
           "tab_order_unSel.png", "tab_order_sel.png", I18nUtils.translate(context, "title.transaction")),
       _getBottomNavigationBarItem(
           "tab_mine_unSel.png", "tab_mine_sel.png", I18nUtils.translate(context, "title.assets")),
+      _getBottomNavigationBarItem(
+          "tab_mine_unSel.png", "tab_mine_sel.png", I18nUtils.translate(context, "title.mine")),
     ];
 
     return bottomTabs;

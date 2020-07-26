@@ -14,7 +14,7 @@ class _MinePageState extends State<MinePage> {
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
 
     return Scaffold(
-      appBar: YPAppBar("我的").build(context),
+      appBar: YPAppBar("title.mine",hasBackBtn: false).build(context),
       body: Center(child: Text("我的")),
     );
   }

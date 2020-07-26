@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 
 
-/**
- * Token拦截器
- */
+/// Token拦截器
 class ResponseInterceptors extends InterceptorsWrapper {
 
   @override
