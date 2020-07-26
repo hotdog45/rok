@@ -40,6 +40,12 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
               widget.color,
             ],
           ),
+          borderRadius: BorderRadius.circular(6),
+          boxShadow: [BoxShadow(
+              color: kShadowColor,
+              blurRadius: 10.0
+          )]
+
         ),
         margin: EdgeInsets.only(bottom: 15),
         child: Row(

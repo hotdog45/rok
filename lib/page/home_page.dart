@@ -68,7 +68,11 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
                 height: 45,
                 decoration: BoxDecoration(
                   color: kAppWhiteColor,
-                  borderRadius: BorderRadius.circular(6)
+                  borderRadius: BorderRadius.circular(6),
+                    boxShadow: [BoxShadow(
+                        color: kShadowColor,
+                        blurRadius: 10.0
+                    )]
                 ),
                 margin: EdgeInsets.all(10),
                 child: Row(children: <Widget>[
@@ -247,7 +251,7 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
   int _countdownNum = 7759;
 
   void reGetCountdown() {
-    if (_countdownTimer != null) {
+    if (_countdownTimer != null ||_countdownNum<0) {
       return;
     }
     _countdownTimer = Timer.periodic(Duration(seconds: 3), (timer) {

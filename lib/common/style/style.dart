@@ -20,6 +20,8 @@ Color kAppSubTextColor = Color(0xFF969696);
 //三级级文字
 Color kAppSub2TextColor = Color(0xFFaaaaaa);
 
+//阴影
+Color kShadowColor = Color(0xFFD5DBDB);
 //品牌页面标记
 Color kAppBrandBgColor = Color(0xfff5b90b);
 //白色
