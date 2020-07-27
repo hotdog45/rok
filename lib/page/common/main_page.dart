@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
     HomePage(),
     QuotesListPage(),
     TransactionPage(),
-    AssetsPage(),
+//    AssetsPage(),
     MinePage(),
   ];
 
@@ -109,8 +109,8 @@ class _MainPageState extends State<MainPage> {
 
       _getBottomNavigationBarItem(
           "tab_order_unSel.png", "tab_order_sel.png", I18nUtils.translate(context, "title.transaction")),
-      _getBottomNavigationBarItem(
-          "tab_mine_unSel.png", "tab_mine_sel.png", I18nUtils.translate(context, "title.assets")),
+//      _getBottomNavigationBarItem(
+//          "tab_mine_unSel.png", "tab_mine_sel.png", I18nUtils.translate(context, "title.assets")),
       _getBottomNavigationBarItem(
           "tab_mine_unSel.png", "tab_mine_sel.png", I18nUtils.translate(context, "title.mine")),
     ];
