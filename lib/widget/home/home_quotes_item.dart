@@ -14,10 +14,39 @@ import 'package:rok/page/quotes_details_page.dart';
  * 作者姓名 修改时间 版本号 描述
  */
 
+class HomeQuotesList extends StatefulWidget {
+  final Color color;
+
+  const HomeQuotesList({Key key, this.color:Colors.white}) : super(key: key);
+
+  @override
+  _HomeQuotesListState createState() => _HomeQuotesListState();
+}
+
+class _HomeQuotesListState extends State<HomeQuotesList> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: kAppWhiteColor,
+      height: 140,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, index) {
+          return HomeQuotesItem(
+              color:widget.color);
+        },
+        itemCount: 7,
+      ),
+    );
+  }
+}
+
+
+
 class HomeQuotesItem extends StatelessWidget {
   final Color color;
 
-  const HomeQuotesItem({Key key, this.color}) : super(key: key);
+  const HomeQuotesItem({Key key, this.color:Colors.white}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,19 +79,18 @@ class HomeQuotesItem extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(top: 5, bottom: 6),
                 child: Text(
-                  "49.5056",
+                  "9649.50",
                   style: TextStyle(
-                      fontSize: fontSize20,
-                      fontWeight: FontWeight.bold,
+                      fontSize: fontSize18,
+                      fontWeight: FontWeight.w600,
                       color: kGreenColor),
                 ),
               ),
               Expanded(
                 child: Text(
-                  "49.5056",
+                  "9.05%",
                   style: TextStyle(
                       fontSize: fontSize14,
-                      fontWeight: FontWeight.bold,
                       color: kGreenColor),
                 ),
               ),
@@ -73,7 +101,7 @@ class HomeQuotesItem extends StatelessWidget {
                     color: kGreenColor, borderRadius: BorderRadius.circular(3)),
                 alignment: Alignment.center,
                 child: Text(
-                  "49.5056",
+                  "≈¥56522.222",
                   style: TextStyle(fontSize: fontSize14, color: kAppWhiteColor),
                 ),
               ),

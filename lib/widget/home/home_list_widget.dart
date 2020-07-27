@@ -26,7 +26,7 @@ class _HomeListWidgetState extends State<HomeListWidget>
       child: Column(
         children: <Widget>[
           _tabBar(),
-          Container(width: double.infinity, height: 80*4.0, child: _tabBarView())
+          Container(width: double.infinity, height: 80.0*4 + 20, child: _tabBarView())
         ],
       ),
     );
