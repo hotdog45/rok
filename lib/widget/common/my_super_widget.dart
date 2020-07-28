@@ -71,7 +71,7 @@ class MySuperWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: bgColor,
           border: hasBorder
-              ? Border.all(color: borderColor, width: width)
+              ? Border.all(color: borderColor, width: borderWidth)
               : null, // 边色与边宽度
           borderRadius: BorderRadius.all(Radius.circular(radius)),
         ),

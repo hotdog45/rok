@@ -23,7 +23,12 @@ Color kShadowColor = Color(0xFFD5DBDB);
 Color kAppWhiteColor = Color(0xFFFFFFFF);
 
 //绿色
-Color kGreenColor = Color(0xFF2ECC71);
+Color kGreenColor = Color(0xFF02BD99);
+Color kGreenSubColor = Color(0xFFF1F8F8);
+//红色
+Color kRedColor = Color(0xFFD70C6A);
+
+Color kRedSubColor = Color(0xFFFCF6F8);
 
 //我的 背景色
 Color kMineBgColor = Color(0xFFF4F9FF);
@@ -62,5 +67,3 @@ double fontSizeMiddle = 16.0;
 double fontSizeNormal = 18.0;
 double fontSizeBig = 22.0;
 double fontSizeLager = 30.0;
-
-
