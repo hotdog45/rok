@@ -25,6 +25,12 @@ Color kAppWhiteColor = Color(0xFFFFFFFF);
 //绿色
 Color kGreenColor = Color(0xFF2ECC71);
 
+//我的 背景色
+Color kMineBgColor = Color(0xFFF4F9FF);
+
+//我的 背景色2
+Color kMineBgColor1 = Color(0xFFE7EEFE);
+
 Color kAppColor(String hex) {
 // 如果传入的十六进制颜色值不符合要求，返回默认值
   if (hex == null ||

@@ -23,8 +23,7 @@ class _AssetsPageState extends State<AssetsPage> {
         height: ScreenUtil.screenHeight,
         width: ScreenUtil.screenWidthDp,
         decoration: BoxDecoration(
-          gradient:
-              LinearGradient(colors: [Color(0xffCD53E1), Color(0xff421299)]),
+          gradient: LinearGradient(colors: [Color(0xffCD53E1), Color(0xff421299)]),
 
         ),
         child: Column(
