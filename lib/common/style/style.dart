@@ -1,9 +1,7 @@
-
 import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 //主题色
 Color kAppThemeColor = Color(0xFFa14EFF);
@@ -19,21 +17,14 @@ Color kAppTextColor = Color(0xFF474245);
 Color kAppSubTextColor = Color(0xFF969696);
 //三级级文字
 Color kAppSub2TextColor = Color(0xFFaaaaaa);
-
 //阴影
 Color kShadowColor = Color(0xFFD5DBDB);
-//品牌页面标记
-Color kAppBrandBgColor = Color(0xfff5b90b);
 //白色
 Color kAppWhiteColor = Color(0xFFFFFFFF);
 
-
 //绿色
 Color kGreenColor = Color(0xFF2ECC71);
-Color kSubGreenColor = Color(0xFF5F5E3);
 
-//支付
-Color kAppPayColor = Color(0xFF777777);
 Color kAppColor(String hex) {
 // 如果传入的十六进制颜色值不符合要求，返回默认值
   if (hex == null ||
@@ -48,8 +39,6 @@ num kAppFontSize(num size) {
   return ScreenUtil().setWidth(size);
 }
 
-
-
 Color randomColor() {
   var random = new Random();
   int r = random.nextInt(255);
@@ -63,22 +52,12 @@ Color randomColor() {
 
 String defaultImage = 'static/images/yp_default_img.png';
 
-double fontSize8 = 8;
-double fontSize10 = 10;
-double fontSize12 = 12;
-double fontSize14 = 14;
-double fontSize16 = 16;
-double fontSize18 = 18;
-double fontSize20 = 20;
-double fontSize30 = 30;
+/// 字体大小
+double fontSizeMin = 12.0;
+double fontSizeSmall = 14.0;
+double fontSizeMiddle = 16.0;
+double fontSizeNormal = 18.0;
+double fontSizeBig = 22.0;
+double fontSizeLager = 30.0;
 
-
-
-
-
-
-
-class YPICons {
-  static const String DEFAULT_USER_ICON = 'static/images/yp_default_img.png';
-}
 

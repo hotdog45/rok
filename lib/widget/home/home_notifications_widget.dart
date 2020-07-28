@@ -37,7 +37,7 @@ class HomeNotifWidget extends StatelessWidget {
                   child: Text(
                     "跨日交易上线公告",
                     style:
-                        TextStyle(fontSize: fontSize14, color: kAppTextColor),
+                        TextStyle(fontSize: fontSizeSmall, color: kAppTextColor),
                   ),
                 );
               },

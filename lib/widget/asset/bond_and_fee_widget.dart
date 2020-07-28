@@ -28,7 +28,7 @@ class _BondAndFeeWidgetState extends State<BondAndFeeWidget> {
            child: Text(
              "持仓占用保证金",
              style:
-             TextStyle(fontSize: fontSize18, color: kAppTextColor, fontWeight: FontWeight.bold),
+             TextStyle(fontSize: fontSizeNormal, color: kAppTextColor, fontWeight: FontWeight.bold),
            ),
          ),
        ),
@@ -41,7 +41,7 @@ class _BondAndFeeWidgetState extends State<BondAndFeeWidget> {
            child: Text(
              "88888888.000000",
              style:
-             TextStyle(fontSize: fontSize16, color: kAppTextColor,fontWeight: FontWeight.bold),
+             TextStyle(fontSize: fontSizeMiddle, color: kAppTextColor,fontWeight: FontWeight.bold),
            ),
          ),
          Container(
@@ -50,7 +50,7 @@ class _BondAndFeeWidgetState extends State<BondAndFeeWidget> {
            child: Text(
              "≈0.00000000(CYN)",
              style:
-             TextStyle(fontSize: fontSize12, color: kAppTextColor),
+             TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
            ),
          )
        ],)

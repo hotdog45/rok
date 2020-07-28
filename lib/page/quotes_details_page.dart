@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/roundUnderlineTabIndicator.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 import 'package:rok/widget/kline/kchart/entity/depth_entity.dart';
@@ -212,31 +213,11 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
               ],
             ),
           ),
-          _tabBar(),
+          MyTabBar(mController:mController,tabTitles:tabTitles),
           Container(width: double.infinity, height: 450, child: _tabBarView())
         ],
       ),
     );
-  }
-
-  Widget _tabBar() {
-    return TabBar(
-        //控制器
-        controller: mController,
-        //设置tab文字得类型
-        labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-        //设置tab选中得颜色
-        labelColor: Colors.black,
-        //设置tab未选中得颜色
-        unselectedLabelColor: Colors.black45,
-        indicator: RoundUnderlineTabIndicator(
-            borderSide: BorderSide(
-          width: 3,
-          color: kAppThemeColor,
-        )),
-        tabs: tabTitles.map((item) {
-          return Tab(text: item);
-        }).toList());
   }
 
   Widget _tabBarView() {

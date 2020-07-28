@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/roundUnderlineTabIndicator.dart';
 import 'package:rok/widget/quotes/quotes_item_widget.dart';
 /**
@@ -25,28 +26,14 @@ class _HomeListWidgetState extends State<HomeListWidget>
     return Container(
       child: Column(
         children: <Widget>[
-          _tabBar(),
-          Container(width: double.infinity, height: 80.0*4 + 20, child: _tabBarView())
+          MyTabBar(mController: mController, tabTitles: tabTitles),
+          Container(
+              width: double.infinity,
+              height: 80.0 * 4 + 20,
+              child: _tabBarView())
         ],
       ),
     );
-  }
-
-  Widget _tabBar() {
-    return TabBar(
-        controller: mController,
-        labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-        labelColor: Colors.black,
-        //设置tab未选中得颜色
-        unselectedLabelColor: Colors.black45,
-        indicator: RoundUnderlineTabIndicator(
-            borderSide: BorderSide(
-          width: 3,
-          color: kAppThemeColor,
-        )),
-        tabs: tabTitles.map((item) {
-          return Tab(text: item);
-        }).toList());
   }
 
   @override

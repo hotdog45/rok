@@ -54,7 +54,7 @@ class _HomeProfitLossWidgetState extends State<HomeProfitLossWidget> {
                 ),
                 child: Text(
                   "入金",
-                  style: TextStyle(fontSize: fontSize18, color: kAppWhiteColor),
+                  style: TextStyle(fontSize: fontSizeNormal, color: kAppWhiteColor),
                 ),
               ),
               Container(
@@ -71,7 +71,7 @@ class _HomeProfitLossWidgetState extends State<HomeProfitLossWidget> {
                 ),
                 child: Text(
                   "出金",
-                  style: TextStyle(fontSize: fontSize18, color: kAppWhiteColor),
+                  style: TextStyle(fontSize: fontSizeNormal, color: kAppWhiteColor),
                 ),
               ),
             ],
@@ -87,11 +87,11 @@ class _HomeProfitLossWidgetState extends State<HomeProfitLossWidget> {
       children: <Widget>[
         Text(
           title,
-          style: TextStyle(fontSize: fontSize14, color: kAppWhiteColor),
+          style: TextStyle(fontSize: fontSizeSmall, color: kAppWhiteColor),
         ),
         Text(
           price,
-          style: TextStyle(fontSize: fontSize14, color: kAppWhiteColor),
+          style: TextStyle(fontSize: fontSizeSmall, color: kAppWhiteColor),
         ),
       ],
     );

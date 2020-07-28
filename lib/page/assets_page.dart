@@ -38,7 +38,7 @@ class _AssetsPageState extends State<AssetsPage> {
                       margin: EdgeInsets.only(top: 50, left: 20),
                       child: Text(
                         "浮动盈亏(USDT)",
-                        style: TextStyle(fontSize: fontSize16, color:kAppWhiteColor),
+                        style: TextStyle(fontSize: fontSizeMiddle, color:kAppWhiteColor),
                       ),
                     ),
                     Container(
@@ -46,7 +46,7 @@ class _AssetsPageState extends State<AssetsPage> {
                       width: ScreenUtil.screenWidthDp - 140,
                       child: Text(
                         "88888888.000000",
-                        style: TextStyle(fontSize: fontSize30, color: kAppWhiteColor),
+                        style: TextStyle(fontSize: fontSizeLager, color: kAppWhiteColor),
                       ),
                     ),
                     Container(
@@ -54,7 +54,7 @@ class _AssetsPageState extends State<AssetsPage> {
                       margin: EdgeInsets.only(left: 20, top: 5),
                       child: Text(
                         "≈0.00000000",
-                        style: TextStyle(fontSize: fontSize16, color: kAppWhiteColor),
+                        style: TextStyle(fontSize: fontSizeMiddle, color: kAppWhiteColor),
                       ),
                     )
                   ],
@@ -70,14 +70,14 @@ class _AssetsPageState extends State<AssetsPage> {
                       margin: EdgeInsets.only(top: 41),
                       child: Text(
                         "入金",
-                        style: TextStyle(fontSize: fontSize18, color: kAppThemeColor),
+                        style: TextStyle(fontSize: fontSizeNormal, color: kAppThemeColor),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 18),
                       child: Text(
                         "出金",
-                        style: TextStyle(fontSize: fontSize18, color: kAppWhiteColor),
+                        style: TextStyle(fontSize: fontSizeNormal, color: kAppWhiteColor),
                       ),
                     )
                   ],

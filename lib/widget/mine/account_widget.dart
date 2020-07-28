@@ -23,7 +23,7 @@ class _AccountWidgetState extends State<AccountWidget> {
             margin: EdgeInsets.only(top: 50, ),
             child: Text(
               "请登录",
-              style: TextStyle(fontSize: fontSize16, color:kAppTextColor,fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: fontSizeMiddle, color:kAppTextColor,fontWeight: FontWeight.bold),
             ),
           ),
           Container(
@@ -31,7 +31,7 @@ class _AccountWidgetState extends State<AccountWidget> {
             margin: EdgeInsets.only(top: 5, ),
             child: Text(
               "欢迎来到TOC",
-              style: TextStyle(fontSize: fontSize12, color:kAppTextColor ),
+              style: TextStyle(fontSize: fontSizeMin, color:kAppTextColor ),
             ),
           ),
 

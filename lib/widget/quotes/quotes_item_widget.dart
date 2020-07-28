@@ -69,14 +69,14 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
                   Text(
                     "BTC",
                     style: TextStyle(
-                        fontSize: fontSize18,
+                        fontSize: fontSizeNormal,
                         fontWeight: FontWeight.bold,
                         color: kAppTextColor),
                   ),
                   Text(
                     "USDT",
                     style: TextStyle(
-                        fontSize: fontSize14, color: kAppSub2TextColor),
+                        fontSize: fontSizeSmall, color: kAppSub2TextColor),
                   ),
                 ],
               ),
@@ -90,14 +90,14 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
                   Text(
                     "49.5056",
                     style: TextStyle(
-                        fontSize: fontSize16,
+                        fontSize: fontSizeMiddle,
                         fontWeight: FontWeight.bold,
                         color: kGreenColor),
                   ),
                   Text(
                     "≈¥2345.22",
                     style: TextStyle(
-                        fontSize: fontSize14, color: kAppSubTextColor),
+                        fontSize: fontSizeSmall, color: kAppSubTextColor),
                   ),
                 ],
               ),
@@ -108,7 +108,7 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
               child: Text(
                 "+4.77%",
                 style: TextStyle(
-                    fontSize: fontSize18,
+                    fontSize: fontSizeNormal,
                     fontWeight: FontWeight.w500,
                     color: kGreenColor),
               ),

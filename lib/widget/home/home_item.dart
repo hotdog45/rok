@@ -35,7 +35,7 @@ class HomeItemWidget extends StatelessWidget {
             Text(
               name,
               style:
-              TextStyle(fontSize: fontSize14, color: kAppTextColor),
+              TextStyle(fontSize: fontSizeSmall, color: kAppTextColor),
             ),
           ],
         ),

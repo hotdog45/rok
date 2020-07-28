@@ -72,7 +72,7 @@ class HomeQuotesItem extends StatelessWidget {
               Text(
                 "BTC/USDT",
                 style: TextStyle(
-                    fontSize: fontSize18,
+                    fontSize: fontSizeNormal,
                     fontWeight: FontWeight.bold,
                     color: kAppTextColor),
               ),
@@ -81,7 +81,7 @@ class HomeQuotesItem extends StatelessWidget {
                 child: Text(
                   "9649.50",
                   style: TextStyle(
-                      fontSize: fontSize18,
+                      fontSize: fontSizeNormal,
                       fontWeight: FontWeight.w600,
                       color: kGreenColor),
                 ),
@@ -90,7 +90,7 @@ class HomeQuotesItem extends StatelessWidget {
                 child: Text(
                   "9.05%",
                   style: TextStyle(
-                      fontSize: fontSize14,
+                      fontSize: fontSizeSmall,
                       color: kGreenColor),
                 ),
               ),
@@ -102,7 +102,7 @@ class HomeQuotesItem extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   "≈¥56522.222",
-                  style: TextStyle(fontSize: fontSize14, color: kAppWhiteColor),
+                  style: TextStyle(fontSize: fontSizeSmall, color: kAppWhiteColor),
                 ),
               ),
             ],
