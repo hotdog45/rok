@@ -73,10 +73,11 @@ class _TransactionPageState extends State<TransactionPage> with SingleTickerProv
 
   Widget _tabBar() {
     return TabBar(
+//        isScrollable:true,
       //控制器
         controller: mController,
         //设置tab文字得类型
-        labelStyle: TextStyle(fontSize: fontSize16, fontWeight: FontWeight.bold),
+        labelStyle: TextStyle(fontSize: fontSize14, fontWeight: FontWeight.bold),
         //设置tab选中得颜色
         labelColor: Colors.black,
         //设置tab未选中得颜色
