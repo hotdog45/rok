@@ -1,7 +1,5 @@
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
-import 'package:rok/widget/common/yp_app_bar.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:rok/widget/mine/account_widget.dart';
 
 class MinePage extends StatefulWidget {
   @override
@@ -11,12 +9,9 @@ class MinePage extends StatefulWidget {
 class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
+    return Column(children: <Widget>[
+      AccountWidget(),
 
-    return Scaffold(
-      appBar: YPAppBar("title.mine",hasBackBtn: false).build(context),
-      body: Center(child: Text("我的")),
-    );
+    ],);
   }
 }
-
