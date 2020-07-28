@@ -44,9 +44,6 @@ Color randomColor() {
   int r = random.nextInt(255);
   int g = random.nextInt(255);
   int b = random.nextInt(255);
-  print(r);
-  print(g);
-  print(b);
   return Color.fromARGB(255, r, g, b);
 }
 
