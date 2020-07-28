@@ -7,6 +7,7 @@ import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/roundUnderlineTabIndicator.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
+import 'package:rok/widget/transaction/transaction_widget.dart';
 
 class TransactionPage extends StatefulWidget {
   @override
@@ -67,7 +68,7 @@ class _TransactionPageState extends State<TransactionPage>
               ),
             ),
             MyTabBar(mController: mController, tabTitles: tabTitles),
-            Container(width: double.infinity, height: 450, child: _tabBarView())
+            Container(width: double.infinity, height: 1450, child: _tabBarView())
           ],
         ),
       ),
@@ -80,16 +81,7 @@ class _TransactionPageState extends State<TransactionPage>
       children: tabTitles.asMap().keys.map((index) {
         switch (index) {
           case 0:
-            return Container(
-              color: randomColor(),
-              child: Center(
-                child: Text(index.toString(),
-                    style: TextStyle(
-                        fontSize: fontSizeMiddle,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-              ),
-            );
+            return TransactionWidget();
           case 1:
             return Column(
               children: <Widget>[
