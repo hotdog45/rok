@@ -214,6 +214,10 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           _getMarketItem("3949.33", "2332.22k", false, 0.3),
           _getMarketItem("3949.33", "2332.22k", false, 0.6),
 
+          
+
+
+
 
           _getMarketItem("3949.33", "2332.22k", true, 0),
           _getMarketItem("3949.33", "2332.22k", true, 0.9),
