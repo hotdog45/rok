@@ -30,6 +30,11 @@ Color kRedColor = Color(0xFFD70C6A);
 
 Color kRedSubColor = Color(0xFFFCF6F8);
 
+
+Color kSubBtnColor = Color(0xFFEDF3FF);
+
+
+
 //我的 背景色
 Color kMineBgColor = Color(0xFFF4F9FF);
 

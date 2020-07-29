@@ -4,7 +4,10 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/widget/common/my_slider.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
+import 'package:rok/widget/common/my_tab_bar.dart';
+import 'package:rok/widget/common/round_slider_track_shape.dart';
 /**
  * Copyright (C), 2015-2020, 谊品生鲜
  * FileName: transaction_widget
@@ -21,20 +24,39 @@ class TransactionWidget extends StatefulWidget {
   _TransactionWidgetState createState() => _TransactionWidgetState();
 }
 
-class _TransactionWidgetState extends State<TransactionWidget> {
+class _TransactionWidgetState extends State<TransactionWidget> with SingleTickerProviderStateMixin {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    mController = TabController(
+      length: tabTitles.length,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    mController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 500,
-      color: Colors.grey,
+      color: kAppBcgColor,
       child: Column(
         children: <Widget>[
           Container(
+            height: 440,
+            margin: EdgeInsets.only(bottom: 10),
             child: Row(
               children: <Widget>[_leftWidget(), _rightWidget()],
             ),
           ),
-          _listWidget()
+          MyTabBar(mController:mController,tabTitles:tabTitles),
+          Container(width: double.infinity, height: 450, child: _tabBarView())
         ],
       ),
     );
@@ -43,8 +65,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
   _leftWidget() {
     return Container(
       color: Colors.white,
-      width: ScreenUtil.screenWidthDp / 2,
-      height: 430,
+      width: _leftWidth,
       padding: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
@@ -71,7 +92,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                 fontWeight: FontWeight.bold,
                 fontSize: fontSizeMiddle,
                 radius: 4,
-                bgColor: kAppColor("#EDF3FF"),
+                bgColor: kSubBtnColor,
                 height: 40,
                 onTap: () {
                   NavigatorUtils.showToast("平仓");
@@ -133,30 +154,13 @@ class _TransactionWidgetState extends State<TransactionWidget> {
               ],
             ),
           ),
-          _getTextFieldAndBtn(controller, "价格", "USDT", "限价"),
+          _getTextFieldAndBtn(controller, "价格", "USDT", "限价", hasMargin: true),
           _getTextFieldAndBtn(controller1, "数量", "手", "手数"),
-          Container(
-            height: 30,
-            child: Slider(
-                value: _value,
-                min: 0,
-                max: 100,
-                divisions: 4,
-                label: '${_value}%',
-                activeColor: kAppThemeColor,
-                inactiveColor: kAppSub2TextColor,
-                onChangeStart: (value) {
-                  print('开始滑动:$value');
-                },
-                onChangeEnd: (value) {
-                  print('滑动结束:$value');
-                },
-                onChanged: (value) {
-                  setState(() {
-                    _value = value;
-                  });
-                }),
-          ),
+          MySlider(value: _value,onChanged: (v){
+            setState(() {
+              _value = v;
+            });
+          },),
           Container(
             height: 20,
             child: Row(
@@ -199,11 +203,13 @@ class _TransactionWidgetState extends State<TransactionWidget> {
     );
   }
 
+  double _rightWidth = ScreenUtil.screenWidthDp * 0.4;
+  double _leftWidth = ScreenUtil.screenWidthDp * 0.6;
+
   _rightWidget() {
     return Container(
       color: Colors.white,
-      width: ScreenUtil.screenWidthDp / 2,
-      height: 430,
+      width: _rightWidth,
       child: Column(
         children: <Widget>[
           _getTextItem("价格", "数量(手)"),
@@ -213,30 +219,87 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           _getMarketItem("3949.33", "2332.22k", false, 0.9),
           _getMarketItem("3949.33", "2332.22k", false, 0.3),
           _getMarketItem("3949.33", "2332.22k", false, 0.6),
-
-          
-
-
-
-
+          RichText(
+            text: TextSpan(children: [
+              TextSpan(
+                  text: "75.9998",
+                  style: TextStyle(
+                      color: kGreenColor,
+                      fontSize: fontSizeMiddle,
+                      fontWeight: FontWeight.w500)),
+              TextSpan(
+                  text: "≈¥527.816",
+                  style: TextStyle(
+                      color: kAppTextColor,
+                      fontSize: fontSizeMin,
+                      fontWeight: FontWeight.w500)),
+            ]),
+          ),
+          RichText(
+            text: TextSpan(children: [
+              TextSpan(
+                  text: "最新指数",
+                  style: TextStyle(
+                      color: kAppSubTextColor, fontSize: fontSizeMin)),
+              TextSpan(
+                  text: "75.9002",
+                  style: TextStyle(
+                      color: kAppTextColor,
+                      fontSize: fontSizeMin,
+                      fontWeight: FontWeight.w500)),
+            ]),
+          ),
           _getMarketItem("3949.33", "2332.22k", true, 0),
           _getMarketItem("3949.33", "2332.22k", true, 0.9),
           _getMarketItem("3949.33", "2332.22k", true, 0.6),
           _getMarketItem("3949.33", "2332.22k", true, 0.4),
           _getMarketItem("3949.33", "2332.22k", true, 0.3),
           _getMarketItem("3949.33", "2332.22k", true, 0.1),
-
+          Container(
+            height: 25,
+            child: Row(
+              children: <Widget>[
+                _getPercentageWidget("4位", callBack: () {}, isSel: true),
+                _getPercentageWidget("3位", callBack: () {}, isSel: false),
+              ],
+            ),
+          )
         ],
       ),
     );
   }
 
-  _listWidget() {
-    return Container(
-      height: 450,
-      color: Colors.deepOrangeAccent,
+//  _listWidget() {
+//    return Container(
+//      height: 450,
+//      color: Colors.deepOrangeAccent,
+//      child: ,
+//    );
+//  }
+  Widget _tabBarView() {
+    return TabBarView(
+      controller: mController,
+      children: tabTitles.map((item) {
+        return Container(
+          color: randomColor(),
+          child: Center(
+            child: Text(item,
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white)),
+          ),
+        );
+      }).toList(),
     );
   }
+
+  TabController mController;
+  List<String> tabTitles = [
+    "持仓",
+    "普通委托",
+    "计划委托",
+  ];
 
   double _value = 0;
 
@@ -259,16 +322,16 @@ class _TransactionWidgetState extends State<TransactionWidget> {
 
   _getMarketItem(title, desc, isGreen, num) {
     return Container(
-        width: ScreenUtil.screenWidthDp / 2,
-        height: 30,
+        width: _rightWidth,
+        height: 27,
         child: Stack(
           children: <Widget>[
             Row(
               children: <Widget>[
                 Expanded(child: Container()),
                 Container(
-                  color: isGreen ?kGreenSubColor:kRedSubColor,
-                  width: ScreenUtil.screenWidthDp / 2 * num,
+                  color: isGreen ? kGreenSubColor : kRedSubColor,
+                  width: _rightWidth * num,
                 ),
               ],
             ),
@@ -292,43 +355,42 @@ class _TransactionWidgetState extends State<TransactionWidget> {
         ));
   }
 
-  _getPercentageWidget(num, {last = false}) {
+  _getPercentageWidget(num, {last = false, callBack, isSel = false}) {
     return Expanded(
       child: MySuperWidget(
         text: num,
         textColor: kAppTextColor,
         fontSize: fontSizeMin,
-        borderColor: kAppSub2TextColor,
+        borderColor: isSel ? kSubBtnColor : kAppSub2TextColor,
         borderWidth: 0.5,
+        bgColor: isSel ? kSubBtnColor : kAppClearColor,
         radius: 2,
         margin: EdgeInsets.only(right: last ? 0 : 10),
         hasBorder: true,
-        onTap: () {
-          NavigatorUtils.showToast("杠杆");
-        },
+        onTap: callBack,
       ),
     );
   }
 
-  _getTextFieldAndBtn(controller, hintText, sku, title) {
+  _getTextFieldAndBtn(controller, hintText, sku, title, {hasMargin = false}) {
     return Container(
       height: 45,
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: hasMargin ? 14 : 0),
       child: Row(
         children: <Widget>[
           Container(
-            width: ScreenUtil.screenWidthDp / 3,
+            width: _leftWidth - 80,
             decoration: BoxDecoration(
                 border: Border.all(color: kAppSub2TextColor, width: 0.5),
                 borderRadius: BorderRadius.circular(2)),
             alignment: Alignment.center,
-            padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            padding: EdgeInsets.only(bottom: 10, left: 10, right: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Container(
-                  width: ScreenUtil.screenWidthDp / 3 - 90,
+                  width: _leftWidth - 140,
                   height: 30,
                   margin: EdgeInsets.only(bottom: 10),
                   child: TextField(
@@ -353,7 +415,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                 Text(
                   sku,
                   style:
-                      TextStyle(color: kAppTextColor, fontSize: fontSizeMiddle),
+                      TextStyle(color: kAppTextColor, fontSize: fontSizeSmall),
                 )
               ],
             ),
