@@ -6,6 +6,7 @@ title:
   contract: "合约"
   assets: "资产"
   mine: "我的"
+  recharge: "充值"
 
 label:
   price: "价格"
@@ -18,6 +19,7 @@ toast:
 button:
   deposit: "入金"
   withdrawal: "出金"
+
 
 
 #内嵌变量  int 类型
