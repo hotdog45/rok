@@ -15,7 +15,7 @@ Color kAppPriceColor = Color(0xFFff4400);
 Color kAppTextColor = Color(0xFF474245);
 //二级文字
 Color kAppSubTextColor = Color(0xFF969696);
-//三级级文字
+//三级文字
 Color kAppSub2TextColor = Color(0xFFaaaaaa);
 //阴影
 Color kShadowColor = Color(0xFFD5DBDB);
@@ -29,6 +29,11 @@ Color kGreenSubColor = Color(0xFFF1F8F8);
 Color kRedColor = Color(0xFFD70C6A);
 
 Color kRedSubColor = Color(0xFFFCF6F8);
+
+
+Color kSubBtnColor = Color(0xFFEDF3FF);
+
+
 
 //我的 背景色
 Color kMineBgColor = Color(0xFFF4F9FF);
