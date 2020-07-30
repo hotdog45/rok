@@ -66,6 +66,7 @@ Color randomColor() {
 String defaultImage = 'static/images/yp_default_img.png';
 
 /// 字体大小
+double fontSizeMicro = 10.0;
 double fontSizeMin = 12.0;
 double fontSizeSmall = 14.0;
 double fontSizeMiddle = 16.0;

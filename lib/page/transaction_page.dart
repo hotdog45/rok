@@ -7,6 +7,7 @@ import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/roundUnderlineTabIndicator.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
+import 'package:rok/widget/transaction/position_list_widget.dart';
 import 'package:rok/widget/transaction/transaction_widget.dart';
 
 class TransactionPage extends StatefulWidget {
@@ -83,20 +84,11 @@ class _TransactionPageState extends State<TransactionPage>
           case 0:
             return TransactionWidget();
           case 1:
-            return Column(
-              children: <Widget>[
-                MySuperWidget(text: "测试",height: 100,width: 50,bgColor: Colors.indigoAccent,onTap: (){
-                  NavigatorUtils.showToast("222222");
-                },),
-                MySuperWidget(text: "测试",height: 100,width: 70,bgColor: Colors.indigoAccent,onTap: (){
-                  NavigatorUtils.showToast("222222");
-                },),
-                MySuperWidget(text: "测试",),
-                MySuperWidget(height: 100,width: 90,bgColor: Colors.indigoAccent,onTap: (){
-                  NavigatorUtils.showToast("222222");
-                },child: Icon(FlutterIcons.heart_ent,size: 99,),),
-              ],
-            );
+            return PositionListWidget();
+          case 2:
+            return PositionListWidget();
+          case 3:
+            return PositionListWidget();
           default:
             return Container();
         }

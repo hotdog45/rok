@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rok/common/style/style.dart';
 
 class MySuperWidget extends StatelessWidget {
   final double width;
@@ -9,6 +10,8 @@ class MySuperWidget extends StatelessWidget {
   final Color borderColor;
   final double borderWidth;
   final bool hasBorder;
+  final bool hasShadow;
+
   final double radius;
 
   final GestureTapCallback onTap;
@@ -31,8 +34,9 @@ class MySuperWidget extends StatelessWidget {
       this.height,
       this.bgColor: Colors.transparent,
       this.borderColor: Colors.transparent,
-      this.borderWidth:0.5,
+      this.borderWidth: 0.5,
       this.hasBorder: false,
+      this.hasShadow: false,
       this.radius: 0,
       this.onTap,
       this.onLongPress,
@@ -69,12 +73,14 @@ class MySuperWidget extends StatelessWidget {
             : child,
         alignment: alignment,
         decoration: BoxDecoration(
-          color: bgColor,
-          border: hasBorder
-              ? Border.all(color: borderColor, width: borderWidth)
-              : null, // 边色与边宽度
-          borderRadius: BorderRadius.all(Radius.circular(radius)),
-        ),
+            color: bgColor,
+            border: hasBorder
+                ? Border.all(color: borderColor, width: borderWidth)
+                : null, // 边色与边宽度
+            borderRadius: BorderRadius.all(Radius.circular(radius)),
+            boxShadow: hasShadow
+                ? [BoxShadow(color: kShadowColor, blurRadius: 10.0)]
+                : []),
       ),
     );
   }
