@@ -24,8 +24,8 @@ class TransactionWidget extends StatefulWidget {
   _TransactionWidgetState createState() => _TransactionWidgetState();
 }
 
-class _TransactionWidgetState extends State<TransactionWidget> with SingleTickerProviderStateMixin {
-
+class _TransactionWidgetState extends State<TransactionWidget>
+    with SingleTickerProviderStateMixin {
   @override
   void initState() {
     // TODO: implement initState
@@ -41,10 +41,10 @@ class _TransactionWidgetState extends State<TransactionWidget> with SingleTicker
     super.dispose();
     mController.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
       color: kAppBcgColor,
       child: Column(
         children: <Widget>[
@@ -55,7 +55,7 @@ class _TransactionWidgetState extends State<TransactionWidget> with SingleTicker
               children: <Widget>[_leftWidget(), _rightWidget()],
             ),
           ),
-          MyTabBar(mController:mController,tabTitles:tabTitles),
+          MyTabBar(mController: mController, tabTitles: tabTitles),
           Container(width: double.infinity, height: 450, child: _tabBarView())
         ],
       ),
@@ -156,11 +156,14 @@ class _TransactionWidgetState extends State<TransactionWidget> with SingleTicker
           ),
           _getTextFieldAndBtn(controller, "价格", "USDT", "限价", hasMargin: true),
           _getTextFieldAndBtn(controller1, "数量", "手", "手数"),
-          MySlider(value: _value,onChanged: (v){
-            setState(() {
-              _value = v;
-            });
-          },),
+          MySlider(
+            value: _value,
+            onChanged: (v) {
+              setState(() {
+                _value = v;
+              });
+            },
+          ),
           Container(
             height: 20,
             child: Row(
@@ -269,27 +272,27 @@ class _TransactionWidgetState extends State<TransactionWidget> with SingleTicker
     );
   }
 
-//  _listWidget() {
-//    return Container(
-//      height: 450,
-//      color: Colors.deepOrangeAccent,
-//      child: ,
-//    );
-//  }
   Widget _tabBarView() {
     return TabBarView(
       controller: mController,
-      children: tabTitles.map((item) {
-        return Container(
-          color: randomColor(),
-          child: Center(
-            child: Text(item,
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white)),
-          ),
-        );
+      children: tabTitles.asMap().keys.map((index) {
+        switch (index) {
+          case 0:
+            return Container(
+              color: randomColor(),
+              child: Center(
+                child: Text(index.toString(),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white)),
+              ),
+            );
+          case 1:
+            return Container();
+          default:
+            return Container();
+        }
       }).toList(),
     );
   }
@@ -355,6 +358,7 @@ class _TransactionWidgetState extends State<TransactionWidget> with SingleTicker
         ));
   }
 
+  //百分比
   _getPercentageWidget(num, {last = false, callBack, isSel = false}) {
     return Expanded(
       child: MySuperWidget(
@@ -372,7 +376,8 @@ class _TransactionWidgetState extends State<TransactionWidget> with SingleTicker
     );
   }
 
-  _getTextFieldAndBtn(controller, hintText, sku, title, {hasMargin = false}) {
+  _getTextFieldAndBtn(controller, hintText, sku, title,
+      {hasMargin = false, onChanged}) {
     return Container(
       height: 45,
       margin: EdgeInsets.only(bottom: hasMargin ? 14 : 0),
@@ -395,16 +400,15 @@ class _TransactionWidgetState extends State<TransactionWidget> with SingleTicker
                   margin: EdgeInsets.only(bottom: 10),
                   child: TextField(
                     controller: controller,
-                    maxLines: 1, //最大行数
+                    maxLines: 1,
+                    //最大行数
                     decoration: InputDecoration.collapsed(hintText: hintText),
                     style: TextStyle(
                         fontSize: fontSizeMiddle,
                         color: kAppTextColor,
-                        fontWeight: FontWeight.bold), //输入文本的样式
-                    onChanged: (text) {
-                      //内容改变的回调
-                      print('change $text');
-                    },
+                        fontWeight: FontWeight.bold),
+                    //输入文本的样式
+                    onChanged: onChanged,
                     onSubmitted: (text) {
                       //内容提交(按回车)的回调
                       print('submit $text');
