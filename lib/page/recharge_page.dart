@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
+import 'package:rok/widget/recharge/recharging_deal_widget.dart';
 
 class RechargePage extends StatefulWidget {
   @override
@@ -111,8 +112,8 @@ class _RechargePageState extends State<RechargePage> {
                   child: Text("重要提示：\n*最小订单进入额20USDT\n*最大转入金额7000USTD\n*如金每天只能五次\n*到账时间10-30分钟，可24小时入金\n*付款账户必需为实名认证人开户\n*OTC服务由独立第三方平台提供"
                   ),
                 ),
-
               ),
+                RechargingDealWidget(),
               ],
             ),
           ),

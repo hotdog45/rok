@@ -31,7 +31,7 @@ class MySuperWidget extends StatelessWidget {
       this.height,
       this.bgColor: Colors.transparent,
       this.borderColor: Colors.transparent,
-      this.borderWidth,
+      this.borderWidth:0.5,
       this.hasBorder: false,
       this.radius: 0,
       this.onTap,
