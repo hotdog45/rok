@@ -41,6 +41,9 @@ Color kMineBgColor = Color(0xFFF4F9FF);
 //我的 背景色2
 Color kMineBgColor1 = Color(0xFFE7EEFE);
 
+Color kKeyButton = Color(0xFFEFEBF9);
+
+
 Color kAppColor(String hex) {
 // 如果传入的十六进制颜色值不符合要求，返回默认值
   if (hex == null ||
