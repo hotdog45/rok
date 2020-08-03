@@ -9,6 +9,7 @@ import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/assets_page.dart';
 import 'package:rok/page/quotes_details_page.dart';
 import 'package:rok/page/recharge_page.dart';
+import 'package:rok/page/withdrawal_page.dart';
 
 class AssetsWidget extends StatefulWidget {
   @override
@@ -108,15 +109,21 @@ class _AssetsWidgetState extends State<AssetsWidget> {
                     FlutterIcons.account_circle_outline_mco,
                     size: 20,
                   )),
-              Container(
-                  margin: EdgeInsets.only(top: 20, left: 5, right: 50),
-                  child: Text(//出金
-                    I18nUtils.translate(context, "button.withdrawal"),
-                    style: TextStyle(
-                      fontSize: fontSizeMiddle,
-                      color: kAppTextColor,
-                    ),
-                  )),
+              InkWell(
+                child: Container(
+                    margin: EdgeInsets.only(top: 20, left: 5, right: 50),
+                    child: Text(//出金
+                      I18nUtils.translate(context, "button.withdrawal"),
+                      style: TextStyle(
+                        fontSize: fontSizeMiddle,
+                        color: kAppTextColor,
+                      ),
+                    )),
+
+                onTap: (){
+                  NavigatorUtils.navigatorRouter(context, WithdrawalPage());
+                },
+              ),
             ],
           )
         ],

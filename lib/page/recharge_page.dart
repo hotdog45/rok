@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
+import 'package:rok/widget/recharge/purchase_widget.dart';
 import 'package:rok/widget/recharge/recharging_deal_widget.dart';
 
 class RechargePage extends StatefulWidget {
@@ -58,6 +59,8 @@ class _RechargePageState extends State<RechargePage> {
                     ],
                   ),
                 ),
+
+                PurchaseWidget(),
                 Container(
                   height: 50,
                   margin: EdgeInsets.only(left: 20, right: 20, top: 10),
