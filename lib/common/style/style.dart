@@ -21,6 +21,8 @@ Color kAppSub2TextColor = Color(0xFFaaaaaa);
 Color kShadowColor = Color(0xFFD5DBDB);
 //白色
 Color kAppWhiteColor = Color(0xFFFFFFFF);
+//白色
+Color kAppBlackColor = Color(0xFF000000);
 
 //绿色
 Color kGreenColor = Color(0xFF02BD99);

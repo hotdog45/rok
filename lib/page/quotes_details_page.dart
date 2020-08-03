@@ -16,7 +16,12 @@ import 'package:rok/widget/kline/kchart/utils/data_util.dart';
 import 'package:rok/widget/kline/kline_data_controller.dart';
 import 'package:rok/widget/kline/kline_vertical_widget.dart';
 import 'package:rok/widget/kline/network/httptool.dart';
+import 'package:rok/widget/quotes/entrust_widget.dart';
+import 'package:rok/widget/quotes/instructions_widget.dart';
+import 'package:rok/widget/quotes/make_a_bargain_widget.dart';
 import 'dart:convert';
+
+import 'package:rok/widget/transaction/transaction_widget.dart';
 
 class QuotesDetailsPage extends StatefulWidget {
   @override
@@ -214,7 +219,7 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
             ),
           ),
           MyTabBar(mController:mController,tabTitles:tabTitles),
-          Container(width: double.infinity, height: 450, child: _tabBarView())
+          Container(width: double.infinity, height: 800, child: _tabBarView())
         ],
       ),
     );
@@ -223,17 +228,17 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
   Widget _tabBarView() {
     return TabBarView(
       controller: mController,
-      children: tabTitles.map((item) {
-        return Container(
-          color: randomColor(),
-          child: Center(
-            child: Text(item,
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white)),
-          ),
-        );
+      children: tabTitles.asMap().keys.map((index) {
+        switch (index) {
+          case 0:
+            return EntrustWidget();
+          case 1:
+            return MakeABargainWidget();
+          case 2:
+            return InstructionsWidget();
+          default:
+            return Container();
+        }
       }).toList(),
     );
   }
@@ -242,6 +247,6 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
   List<String> tabTitles = [
     "委托 entrust",
     "成交 knockdown",
-    "规则 rule",
+    "说明 Instructions",
   ];
 }
