@@ -108,7 +108,7 @@ class _MainPageState extends State<MainPage> {
           "tab_category_unSel.png", "tab_category_sel.png", I18nUtils.translate(context, "title.quotes")),
 
       _getBottomNavigationBarItem(
-          "tab_order_unSel.png", "tab_order_sel.png", I18nUtils.translate(context, "title.transaction")),
+          "tab_order_unSel.png", "tab_order_sel.png", I18nUtils.translate(context, "title.contract")),
 //      _getBottomNavigationBarItem(
 //          "tab_mine_unSel.png", "tab_mine_sel.png", I18nUtils.translate(context, "title.assets")),
       _getBottomNavigationBarItem(

@@ -21,6 +21,8 @@ Color kAppSub2TextColor = Color(0xFFaaaaaa);
 Color kShadowColor = Color(0xFFD5DBDB);
 //白色
 Color kAppWhiteColor = Color(0xFFFFFFFF);
+//白色
+Color kAppBlackColor = Color(0xFF000000);
 
 //绿色
 Color kGreenColor = Color(0xFF02BD99);
@@ -69,6 +71,7 @@ Color randomColor() {
 String defaultImage = 'static/images/yp_default_img.png';
 
 /// 字体大小
+double fontSizeMicro = 10.0;
 double fontSizeMin = 12.0;
 double fontSizeSmall = 14.0;
 double fontSizeMiddle = 16.0;

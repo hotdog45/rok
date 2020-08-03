@@ -8,6 +8,8 @@ import 'package:rok/widget/common/my_slider.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/round_slider_track_shape.dart';
+
+import 'position_list_widget.dart';
 /**
  * Copyright (C), 2015-2020, 谊品生鲜
  * FileName: transaction_widget
@@ -278,24 +280,22 @@ class _TransactionWidgetState extends State<TransactionWidget>
       children: tabTitles.asMap().keys.map((index) {
         switch (index) {
           case 0:
-            return Container(
-              color: randomColor(),
-              child: Center(
-                child: Text(index.toString(),
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-              ),
-            );
+            return PositionListWidget();
           case 1:
-            return Container();
+            return PositionListWidget();
           default:
-            return Container();
+            return PositionListWidget();
         }
       }).toList(),
     );
   }
+
+
+
+
+
+
+
 
   TabController mController;
   List<String> tabTitles = [

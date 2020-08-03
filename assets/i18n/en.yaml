@@ -1,10 +1,11 @@
 #英语
 title:
-  home: "home"
-  quotes: "quotes"
-  transaction: "transaction"
-  assets: "assets"
-  mine: "mine"
+  home: "Home"
+  quotes: "Quotes"
+  transaction: "Transaction"
+  contract: "Contract"
+  assets: "Assets"
+  mine: "Mine"
 
 
 label:
