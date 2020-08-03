@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 
@@ -81,7 +82,7 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                 borderColor: kAppTextColor,
                 text: "1000",
                 padding:
-                    EdgeInsets.only(left: 18, right: 18, top: 8, bottom: 8),
+                    EdgeInsets.only(left: 10, right:10, top: 8, bottom: 8),
                 radius: 4,
               ),
               MySuperWidget(
@@ -90,7 +91,7 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                 borderColor: kAppTextColor,
                 text: "2000",
                 padding:
-                EdgeInsets.only(left: 18, right: 18, top: 8, bottom: 8),
+                EdgeInsets.only(left: 10, right:10, top: 8, bottom: 8),
                 radius: 4,
               ),
               MySuperWidget(
@@ -99,7 +100,7 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                 borderColor: kAppTextColor,
                 text: "5000",
                 padding:
-                EdgeInsets.only(left: 18, right: 18, top: 8, bottom: 8),
+                EdgeInsets.only(left: 10, right:10, top: 8, bottom: 8),
                 radius: 4,
               ),    MySuperWidget(
                 margin: EdgeInsets.only(left: 10),
@@ -107,7 +108,7 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                 borderColor: kAppTextColor,
                 text: "10000",
                 padding:
-                EdgeInsets.only(left: 18, right: 18, top: 8, bottom: 8),
+                EdgeInsets.only(left: 10, right:10, top: 8, bottom: 8),
                 radius: 4,
               ),
 
@@ -126,7 +127,7 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                 borderColor: kAppTextColor,
               ),
 
-              _getTextFieldAndBtn(controller, "金额" ),
+              _getTextFieldAndBtn(controller1, "金额" ),
               MySuperWidget(
                 height: 40,
                 width: 50,
@@ -158,6 +159,8 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
 
 
   final controller = TextEditingController();
+  final controller1 = TextEditingController();
+
   _getTextFieldAndBtn(controller, hintText,
       {hasMargin = false, onChanged}) {
     return Container(
@@ -180,9 +183,11 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Container(
-                  width: 140,
+                  width: 196,
                   height: 30,
+
 //                  margin: EdgeInsets.only(bottom: 10),
+                 padding: EdgeInsets.only(bottom: 10,left: 10),
                   child: TextField(
                     controller: controller,
                     maxLines: 1,
@@ -197,6 +202,7 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                     onSubmitted: (text) {
                       //内容提交(按回车)的回调
                       print('submit $text');
+                      Fluttertoast.showToast(msg: 'submit $text');
                     },
                     enabled: true, //是否禁用
                   ),
