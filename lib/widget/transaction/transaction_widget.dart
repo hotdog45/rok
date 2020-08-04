@@ -4,6 +4,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/widget/common/custom_action_sheet.dart';
 import 'package:rok/widget/common/my_slider.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
@@ -28,6 +29,14 @@ class TransactionWidget extends StatefulWidget {
 
 class _TransactionWidgetState extends State<TransactionWidget>
     with SingleTickerProviderStateMixin {
+  var priceType = 0;
+
+  final priceTypeMap = {
+    0: "限价",
+    1: "市价",
+    2: "计划委托",
+  };
+
   @override
   void initState() {
     // TODO: implement initState
@@ -111,7 +120,7 @@ class _TransactionWidgetState extends State<TransactionWidget>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "限价 ",
+                        priceTypeMap[priceType] + " ",
                         style: TextStyle(
                             color: kAppTextColor, fontSize: fontSizeSmall),
                       ),
@@ -126,7 +135,15 @@ class _TransactionWidgetState extends State<TransactionWidget>
                   fontWeight: FontWeight.bold,
                   fontSize: fontSizeMiddle,
                   onTap: () {
-                    NavigatorUtils.showToast("限价");
+                    CustomActionSheet.show(context, priceTypeMap.values.toList(),
+                        cancel: "取消",
+                        title: "提示",
+                        sel: priceTypeMap[priceType], callBack: (e) {
+                      priceTypeMap.forEach((key, value) {
+                        if (value == e) priceType = key as int;
+                        setState(() {});
+                      });
+                    });
                   },
                 ),
                 Expanded(child: Container()),
@@ -289,13 +306,6 @@ class _TransactionWidgetState extends State<TransactionWidget>
       }).toList(),
     );
   }
-
-
-
-
-
-
-
 
   TabController mController;
   List<String> tabTitles = [

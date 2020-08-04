@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
-import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
-import 'package:rok/widget/common/roundUnderlineTabIndicator.dart';
+import 'package:rok/widget/common/pop_up_menu.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 import 'package:rok/widget/transaction/position_list_widget.dart';
 import 'package:rok/widget/transaction/transaction_widget.dart';
@@ -60,16 +59,19 @@ class _TransactionPageState extends State<TransactionPage>
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Container(
+                  MySuperWidget(
                     child: Icon(FlutterIcons.sound_mix_ent),
-                    margin: EdgeInsets.only(right: 10),
+                    onTap: () {
+
+                    },
                   ),
-                  Icon(FlutterIcons.more_horiz_mdi),
+                  MyPopupMenuBtn(),
                 ],
               ),
             ),
             MyTabBar(mController: mController, tabTitles: tabTitles),
-            Container(width: double.infinity, height: 1450, child: _tabBarView())
+            Container(
+                width: double.infinity, height: 1450, child: _tabBarView())
           ],
         ),
       ),
