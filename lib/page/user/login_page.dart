@@ -301,7 +301,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 NavigatorUtils.navigatorRouter(context, RegisterPage());
               }),
-  
+
         ],
       ),
     );

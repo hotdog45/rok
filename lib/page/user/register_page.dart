@@ -122,7 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 3, top: 40),
+              margin: EdgeInsets.only( top: 40),
               child: Text(
                 "《niu COIN 用户协议》",
                 style:
@@ -130,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 3, top: 40),
+              margin: EdgeInsets.only(top: 40),
               child: Text(
                 "和",
                 style:
@@ -138,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 3, top: 40),
+              margin: EdgeInsets.only( top: 40),
               child: Text(
                 "《法律声明》",
                 style:
