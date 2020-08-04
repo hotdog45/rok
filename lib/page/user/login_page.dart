@@ -301,11 +301,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 NavigatorUtils.navigatorRouter(context, RegisterPage());
               }),
-          SizedBox(
-            child: Image.asset(Config.KEY_IMAGE_PATH + "icon_right.png"),
-            width: 13,
-            height: 24,
-          ),
+  
         ],
       ),
     );
