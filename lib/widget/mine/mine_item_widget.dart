@@ -6,8 +6,9 @@ import 'package:rok/common/style/style.dart';
 class MineItemWidget extends StatefulWidget {
   final String theme;
   final int type;
+  final String rightAction ;
 
-  const MineItemWidget({Key key, this.theme, this.type}) : super(key: key);
+  const MineItemWidget({Key key, this.theme, this.type, this.rightAction}) : super(key: key);
 
   @override
   _MineItemWidgetState createState() => _MineItemWidgetState();
@@ -37,6 +38,14 @@ class _MineItemWidgetState extends State<MineItemWidget> {
                       fontSize: fontSizeSmall,
                       color: kAppTextColor,
                     ),
+                  ),
+                ),
+
+                Text(
+                 null== widget.rightAction?"":widget.rightAction+"   ",
+                  style: TextStyle(
+                    fontSize: fontSizeSmall,
+                    color: kAppSubTextColor,
                   ),
                 ),
                 Container(

@@ -19,7 +19,11 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController registerController = new TextEditingController();
-
+  final TextEditingController smsController = new TextEditingController();
+  final TextEditingController regPasswordController = new TextEditingController();
+  String _getPhoneCode = "获取验证码";
+  int _countdownNum = 59;
+  bool _isClickCode = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,8 +103,115 @@ class _RegisterPageState extends State<RegisterPage> {
             margin: EdgeInsets.only(left: 20,right: 20),
           ),
 
+          Container(
+            margin: EdgeInsets.only(left: 20,right: 20,top: 30),
+            child: Stack(
+              children: <Widget>[
+                TextField(
+                  controller: smsController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                    hintText: '请输入验证码',
+                    hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
+                    border: InputBorder.none,
+                  ),
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(11),
+                    WhitelistingTextInputFormatter.digitsOnly
+                  ],
+                  onChanged: (v) {
+//                      _setBtnState();
+                  },
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 15, color: kAppTextColor),
+                ),
+                Positioned(
+                    top: 15,
+                    right: 0,
+                    child: InkWell(
+                      highlightColor: Colors.transparent,
+                      radius: 0.0,
+                      child: Container(
+                        width: 80,
+                        child: Text(
+                          _getPhoneCode,
+                          textAlign: _countdownNum == 59
+                              ? TextAlign.center
+                              : TextAlign.right,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: (_countdownNum == 59 && _isClickCode)
+                                  ? kAppThemeColor
+                                  : kAppColor("#c3c3c3")),
+                        ),
+                      ),
+//                        onTap: getPreProcess,
+                    )),
+                Positioned(
+                    top: 12,
+                    right: 88,
+                    bottom: 12,
+                    child: Container(
+                      color: kAppColor("#E7E7E7"),
+                      width: 0.5,
+                    )),
+                Positioned(
+                    top: 0,
+                    right: 90,
+                    bottom: 0,
+                    child: InkWell(
+                      onTap: () {
+//                          userController.value = TextEditingValue(text: "");
+//                          _setBtnState();
+                      },
+                      child: Container(
+                        width: ScreenUtil().setWidth(56),
+                        height: ScreenUtil().setWidth(56),
+                        padding: EdgeInsets.all(ScreenUtil().setWidth(15)),
+                        child: Image.asset(
+                            "static/images/icon_close.png"), //AssetImage('static/images/close_circle.png')
+                      ),
+                    ))
+              ],
+            ),
+          ),
+          Container(
+            color: kAppColor("#E7E7E7"),
+            height: 0.5,
+
+            margin: EdgeInsets.only(left: 20,right: 20),
+          ),
 
 
+          Container(
+            margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+            child: TextField(
+              controller: regPasswordController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                hintText: '请输入密码',
+                hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
+                border: InputBorder.none,
+              ),
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(6),
+                WhitelistingTextInputFormatter.digitsOnly
+              ],
+              onChanged: (v) {
+//              _setBtnState();
+              },
+              style: TextStyle(fontSize: 15, color: kAppTextColor),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Container(
+            color: kAppColor("#E7E7E7"),
+            height: 0.5,
+
+            margin: EdgeInsets.only(left: 20,right: 20),
+          ),
           Row(children: <Widget>[
             Container(
               margin: EdgeInsets.only(left: 20, top: 40),
@@ -160,7 +271,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(
-                  "下一步",
+                  "注册",
                   style: TextStyle(color: Colors.white, fontSize: kAppFontSize(28)),
                 )),
             onTap:(){
@@ -181,7 +292,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     highlightColor: Colors.transparent,
                     radius: 0.0,
                     child: Text(
-                      "马上注册",
+                      "马上登录",
                       style: TextStyle(color: kAppThemeColor, fontSize: 14),
                     ),
                     onTap: () {
