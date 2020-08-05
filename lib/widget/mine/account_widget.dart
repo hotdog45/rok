@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/page/user/login_page.dart';
 
 class AccountWidget extends StatefulWidget {
   @override
@@ -12,37 +15,61 @@ class _AccountWidgetState extends State<AccountWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(right: 10,top: 60,left: 20),
-          child: Icon(FlutterIcons.account_circle_outline_mco,size: 50,),
-        ),
-
-        Column(children: <Widget>[
-          Container(
-            width: 160,
-            margin: EdgeInsets.only(top: 50, ),
-            child: Text(
-              "请登录",
-              style: TextStyle(fontSize: fontSizeMiddle, color:kAppTextColor,fontWeight: FontWeight.bold),
+        InkWell(
+          child: Container(
+            margin: EdgeInsets.only(right: 10, top: 60, left: 20),
+            child: Icon(
+              FlutterIcons.account_circle_outline_mco,
+              size: 50,
             ),
           ),
-          Container(
-            width: 160,
-            margin: EdgeInsets.only(top: 5, ),
-            child: Text(
-              "欢迎来到TOC",
-              style: TextStyle(fontSize: fontSizeMin, color:kAppTextColor ),
-            ),
-          ),
-
-        ],),
-
-        Expanded(child: Container(),flex: 1,),
-        Container(
-          margin: EdgeInsets.only(right: 30,top: 30,left: 20),
-          child: Icon(FlutterIcons.setting_ant,size: 20,),
+          onTap: () {
+            NavigatorUtils.navigatorRouter(context, LoginPage());
+          },
         ),
-
+        InkWell(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  width: 160,
+                  margin: EdgeInsets.only(
+                    top: 50,
+                  ),
+                  child: Text(
+                    "请登录",
+                    style: TextStyle(
+                        fontSize: fontSizeMiddle,
+                        color: kAppTextColor,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  width: 160,
+                  margin: EdgeInsets.only(
+                    top: 5,
+                  ),
+                  child: Text(
+                    "欢迎来到TOC",
+                    style:
+                        TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                  ),
+                ),
+              ],
+            ),
+            onTap: () {
+              NavigatorUtils.navigatorRouter(context, LoginPage());
+            }),
+        Expanded(
+          child: Container(),
+          flex: 1,
+        ),
+        Container(
+          margin: EdgeInsets.only(right: 30, top: 30, left: 20),
+          child: Icon(
+            FlutterIcons.setting_ant,
+            size: 20,
+          ),
+        ),
       ],
     );
   }
