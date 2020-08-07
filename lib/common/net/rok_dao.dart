@@ -3,11 +3,14 @@ import 'package:rok/common/net/api.dart';
 
 
 //获取版本更新数据
-reqUserRegister() async {
+
+
+reqUserRegister(String phone, String smsCode,String password) async {
   return await httpManager.netFetch(getUserRegister, {
     "channelNo": "iii",
-    "password": "1222222222222",
-    "phone": "15829554591",
-    "smsCode": "2222"
+    "phone": phone,
+    "password": password,
+    "smsCode": smsCode
+
   });
 }

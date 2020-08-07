@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
+import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/page/safe_center_page.dart';
 
 class MineThirdPartWidget extends StatefulWidget {
   @override
@@ -21,7 +23,9 @@ class _MineThirdPartWidgetState extends State<MineThirdPartWidget> {
       ),
       child: Row(
         children: <Widget>[
-          Container(
+
+
+          InkWell(child:     Container(
             margin: EdgeInsets.only(left: 20),
             padding: EdgeInsets.all(10),
             child: Column(
@@ -40,7 +44,14 @@ class _MineThirdPartWidgetState extends State<MineThirdPartWidget> {
                 )
               ],
             ),
-          ),
+          ),onTap: (){
+            NavigatorUtils.navigatorRouter(context, SafeCenterPage());
+          },),
+
+
+
+
+
           Expanded(
             child: Container(
               padding: EdgeInsets.all(10),

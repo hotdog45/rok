@@ -13,9 +13,9 @@ import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/local_storage.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/common/webview_page.dart';
+import 'package:rok/page/user/register_page.dart';
 
 import '../test_page.dart';
-
 
 class LoginPage extends StatefulWidget {
   static final String sName = "login";
@@ -52,7 +52,8 @@ class _LoginPageState extends State<LoginPage> {
 
   void _setBtnState() {
     _isClickCode = userController.text.length == 11;
-    _isClickLogin = userController.text.length == 11 && pwController.text.length == 6;
+    _isClickLogin =
+        userController.text.length == 11 && pwController.text.length == 6;
 
     setState(() {});
   }
@@ -61,8 +62,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
     return MediaQuery(
-      data: MediaQuery.of(context)
-          .copyWith(textScaleFactor: 1),
+      data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
       child: FlutterEasyLoading(
         child: Scaffold(
             body: GestureDetector(
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                               margin: EdgeInsets.only(bottom: 50, top: 88),
                               width: 153,
                               child: Image.asset(
-                                  Config.KEY_IMAGE_PATH + "yipibao_logo.png")),
+                                  Config.KEY_IMAGE_PATH + "niu.png")),
                           _loginView(),
                           _loginBtn(),
                           _goCheckBtn(),
@@ -96,8 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                             radius: 0.0,
                             onTap: () {
                               if (Config.DEBUG) {
-                                NavigatorUtils.navigatorRouter(context, TestPage());
-
+                                NavigatorUtils.navigatorRouter(
+                                    context, TestPage());
                               }
                             },
                             child: Text(
@@ -118,6 +118,52 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 25),
         child: Column(children: <Widget>[
+          TextField(
+            controller: pwController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+              hintText: '请输入手机号',
+              hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
+              border: InputBorder.none,
+            ),
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(6),
+              WhitelistingTextInputFormatter.digitsOnly
+            ],
+            onChanged: (v) {
+              _setBtnState();
+            },
+            style: TextStyle(fontSize: 15, color: kAppTextColor),
+            textAlign: TextAlign.left,
+          ),
+          Container(
+            color: kAppColor("#E7E7E7"),
+            height: 0.5,
+          ),
+          TextField(
+            controller: pwController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+              hintText: '请输入密码',
+              hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
+              border: InputBorder.none,
+            ),
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(6),
+              WhitelistingTextInputFormatter.digitsOnly
+            ],
+            onChanged: (v) {
+              _setBtnState();
+            },
+            style: TextStyle(fontSize: 15, color: kAppTextColor),
+            textAlign: TextAlign.left,
+          ),
+          Container(
+            color: kAppColor("#E7E7E7"),
+            height: 0.5,
+          ),
           Stack(
             children: <Widget>[
               TextField(
@@ -125,16 +171,16 @@ class _LoginPageState extends State<LoginPage> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                  hintText: '请输入11位手机号',
-                  hintStyle:TextStyle(color: Color(0xffc3c3c3)), //修改颜色
+                  hintText: '请输入验证码',
+                  hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
                   border: InputBorder.none,
                 ),
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(11),
                   WhitelistingTextInputFormatter.digitsOnly
                 ],
-                onChanged: (v){
-                   _setBtnState();
+                onChanged: (v) {
+                  _setBtnState();
                 },
                 textAlign: TextAlign.left,
                 style: TextStyle(fontSize: 15, color: kAppTextColor),
@@ -149,7 +195,9 @@ class _LoginPageState extends State<LoginPage> {
                       width: 80,
                       child: Text(
                         _getPhoneCode,
-                        textAlign:_countdownNum == 59 ? TextAlign.center :  TextAlign.right,
+                        textAlign: _countdownNum == 59
+                            ? TextAlign.center
+                            : TextAlign.right,
                         style: TextStyle(
                             fontSize: 12,
                             color: (_countdownNum == 59 && _isClickCode)
@@ -172,8 +220,8 @@ class _LoginPageState extends State<LoginPage> {
                   right: 90,
                   bottom: 0,
                   child: InkWell(
-                    onTap: (){
-                      userController.value = TextEditingValue(text:"");
+                    onTap: () {
+                      userController.value = TextEditingValue(text: "");
                       _setBtnState();
                     },
                     child: Container(
@@ -190,29 +238,22 @@ class _LoginPageState extends State<LoginPage> {
             color: kAppColor("#E7E7E7"),
             height: 0.5,
           ),
-          TextField(
-            controller: pwController,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-              hintText: '请输入验证码登录',
-              hintStyle:TextStyle(color: Color(0xffc3c3c3)), //修改颜色
-              border: InputBorder.none,
-            ),
-            inputFormatters: [
-              LengthLimitingTextInputFormatter(6),
-              WhitelistingTextInputFormatter.digitsOnly
+
+
+          Row(
+            children: <Widget>[
+              Expanded(child: Container(),flex: 1,),
+              Container(
+                margin: EdgeInsets.only(right: 10,top: 10),
+                  child: Text(
+                "忘记密码?",
+                style: TextStyle(
+                  color: kAppThemeColor,
+                  fontSize: fontSizeSmall,
+                ),
+              )),
             ],
-            onChanged: (v){
-              _setBtnState();
-            },
-            style: TextStyle(fontSize: 15, color: kAppTextColor),
-            textAlign: TextAlign.left,
-          ),
-          Container(
-            color: kAppColor("#E7E7E7"),
-            height: 0.5,
-          ),
+          )
         ]));
   }
 
@@ -245,22 +286,22 @@ class _LoginPageState extends State<LoginPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
+          Text(
+            "没有账号？ ",
+            style: TextStyle(color: kAppSubTextColor, fontSize: 14),
+          ),
           InkWell(
               highlightColor: Colors.transparent,
               radius: 0.0,
               child: Text(
-                "谊批宝入驻申请 ",
-                style: TextStyle(color: kAppTextColor, fontSize: 14),
+                "马上注册",
+                style: TextStyle(color: kAppThemeColor, fontSize: 14),
               ),
               onTap: () {
 
-
+                NavigatorUtils.navigatorRouter(context, RegisterPage());
               }),
-          SizedBox(
-            child: Image.asset(Config.KEY_IMAGE_PATH + "icon_right.png"),
-            width: 13,
-            height: 24,
-          ),
+
         ],
       ),
     );
@@ -370,7 +411,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _login() async {
-
 //    reqUserRegister();
     NavigatorUtils.goHome(context);
     return;
@@ -399,7 +439,6 @@ class _LoginPageState extends State<LoginPage> {
 //      EasyLoading.dismiss();
 //    }
   }
-
 
   Future _getPersonalData() async {
 //    DataResult res = await YpGatewayDao.getloadPersonal();
