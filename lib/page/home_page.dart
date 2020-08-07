@@ -53,7 +53,6 @@ class _HomePageState extends State<HomePage>
         ColorTween(begin: Colors.white, end: Colors.white).animate(controller);
     controller.addListener(() {
       setState(() {});
-      print(animation.value);
     });
 
     reGetCountdown();

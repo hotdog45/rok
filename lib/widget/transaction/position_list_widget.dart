@@ -17,6 +17,8 @@ class PositionListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         itemBuilder: (BuildContext context, index) {
           return PositionItemWidget();
         },

@@ -67,7 +67,7 @@ class _TransactionWidgetState extends State<TransactionWidget>
             ),
           ),
           MyTabBar(mController: mController, tabTitles: tabTitles),
-          Container(width: double.infinity, height: 450, child: _tabBarView())
+          Container(width: double.infinity, height: 2050, child: _tabBarView())
         ],
       ),
     );
