@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/widget/common/my_drawer.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/pop_up_menu.dart';
@@ -46,24 +47,30 @@ class _TransactionPageState extends State<TransactionPage>
               padding: EdgeInsets.only(left: 15, right: 15),
               child: Row(
                 children: <Widget>[
-                  Icon(
-                    FlutterIcons.list_bullet_fou,
-                    color: kAppTextColor,
-                  ),
-                  Expanded(
-                    child: Text(
-                      "OTC-USDT 永续",
-                      style: TextStyle(
+                  MySuperWidget(
+                    child: Row(
+                      children: <Widget>[
+                        Icon(
+                          FlutterIcons.list_bullet_fou,
                           color: kAppTextColor,
-                          fontSize: fontSizeMiddle,
-                          fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "OTC-USDT 永续",
+                          style: TextStyle(
+                              color: kAppTextColor,
+                              fontSize: fontSizeMiddle,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
+                    onTap: () {
+                      Scaffold.of(context).openDrawer();
+                    },
                   ),
+                  Expanded(child: Container()),
                   MySuperWidget(
                     child: Icon(FlutterIcons.sound_mix_ent),
-                    onTap: () {
-
-                    },
+                    onTap: () {},
                   ),
                   MyPopupMenuBtn(),
                 ],
@@ -71,7 +78,7 @@ class _TransactionPageState extends State<TransactionPage>
             ),
             MyTabBar(mController: mController, tabTitles: tabTitles),
             Container(
-                width: double.infinity, height: 1450, child: _tabBarView())
+                width: double.infinity, height: 2650, child: _tabBarView())
           ],
         ),
       ),

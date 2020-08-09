@@ -11,6 +11,7 @@ import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/user/mine_page.dart';
+import 'package:rok/widget/common/my_drawer.dart';
 
 import '../assets_page.dart';
 import '../home_page.dart';
@@ -85,6 +86,7 @@ class _MainPageState extends State<MainPage> {
             children: tabBodies,
           ),
         ),
+        drawer: MyDrawer(),
         floatingActionButton: !Config.DEBUG
             ? Container()
             : InkWell(

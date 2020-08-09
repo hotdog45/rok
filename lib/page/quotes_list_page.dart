@@ -29,7 +29,7 @@ class _QuotesListPageState extends State<QuotesListPage>
         ColorTween(begin: Colors.white, end: Colors.white).animate(controller);
     controller.addListener(() {
       setState(() {});
-      print(animation.value);
+//      print(animation.value);
     });
   }
 

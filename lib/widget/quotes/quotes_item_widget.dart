@@ -16,7 +16,7 @@ import 'package:rok/page/quotes_details_page.dart';
 class QuotesItemWidget extends StatefulWidget {
   final Color color;
 
-  const QuotesItemWidget({Key key, this.color}) : super(key: key);
+  const QuotesItemWidget({Key key, this.color = Colors.white}) : super(key: key);
 
   @override
   _QuotesItemWidgetState createState() => _QuotesItemWidgetState();
