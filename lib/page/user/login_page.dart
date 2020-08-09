@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-              hintText: '请输入手机号',
+              hintText: '请输入手机号（18758586900）',
               hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
               border: InputBorder.none,
             ),
@@ -411,7 +411,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _login() async {
-//    reqUserRegister();
+    reqUserLogin("18758586900","123456");
     NavigatorUtils.goHome(context);
     return;
     if (userController.text.length != 11) {

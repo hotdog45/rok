@@ -7,7 +7,7 @@ const String getCheckAppUpgrade = "company.upgrade.checkAppUpgrade";
 ///   用户模块
 const String getUserRegister = "user/register";
 
-
+const String userLogin = "user/login";
 
 
 
