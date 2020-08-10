@@ -10,6 +10,7 @@ import 'package:rok/page/quotes_details_page.dart';
 import 'package:rok/test/i18nPage.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 
+import 'calculator_util_page.dart';
 import 'common/webview_page.dart';
 
 class TestPage extends StatefulWidget {
@@ -27,6 +28,19 @@ class _TestPageState extends State<TestPage> {
       body: Container(
           child: ListView(
         children: <Widget>[
+          Container(
+              margin: EdgeInsets.only(left: 50, top: 20, right: 50),
+              height: 46,
+              width: double.infinity,
+              child: FlatButton(
+                color: getRandomColor(),
+                child: Text("计算器"),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () {
+                  NavigatorUtils.navigatorRouter(context, CalculatorUtilPage());
+                },
+              )),
           Container(
               margin: EdgeInsets.only(left: 50, top: 20, right: 50),
               height: 46,

@@ -17,26 +17,29 @@ class MyTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: kAppWhiteColor,
-      child: TabBar(
-          isScrollable: isScrollable,
-          controller: mController,
-          //设置tab文字得类型
-          labelStyle:
+    return
+      Card(
+        child: Container(
+          color: kAppWhiteColor,
+          child: TabBar(
+              isScrollable: isScrollable,
+              controller: mController,
+              //设置tab文字得类型
+              labelStyle:
               TextStyle(fontSize: fontSizeSmall, fontWeight: FontWeight.bold),
-          //设置tab选中得颜色
-          labelColor: Colors.black,
-          //设置tab未选中得颜色
-          unselectedLabelColor: Colors.black45,
-          indicator: RoundUnderlineTabIndicator(
-              borderSide: BorderSide(
-            width: 3,
-            color: kAppThemeColor,
-          )),
-          tabs: tabTitles.map((item) {
-            return Tab(text: item);
-          }).toList()),
-    );
+              //设置tab选中得颜色
+              labelColor: Colors.black,
+              //设置tab未选中得颜色
+              unselectedLabelColor: Colors.black45,
+              indicator: RoundUnderlineTabIndicator(
+                  borderSide: BorderSide(
+                    width: 3,
+                    color: kAppThemeColor,
+                  )),
+              tabs: tabTitles.map((item) {
+                return Tab(text: item);
+              }).toList()),
+        ),
+      );
   }
 }

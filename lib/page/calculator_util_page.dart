@@ -10,14 +10,14 @@ class CalculatorUtilPage extends StatefulWidget {
   _CalculatorUtilPageState createState() => _CalculatorUtilPageState();
 }
 
-class _CalculatorUtilPageState extends State<CalculatorUtilPage> {
+class _CalculatorUtilPageState extends State<CalculatorUtilPage>  with SingleTickerProviderStateMixin{
   @override
   void initState() {
 
     super.initState();
     mController = TabController(
       length: tabTitles.length,
-
+      vsync: this,
     );
   }
 
@@ -32,7 +32,7 @@ class _CalculatorUtilPageState extends State<CalculatorUtilPage> {
     return ListView(children: <Widget>[
       MyTabBar(mController: mController, tabTitles: tabTitles),
       Container(
-          width: double.infinity, height: 1450, child: _tabBarView())
+          width: double.infinity, height: 300, child: _tabBarView())
     ],);
   }
 
