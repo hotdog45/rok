@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/page/calculator_util_page.dart';
 /**
  * Copyright (C), 2015-2020, 谊品生鲜
  * FileName: pop_up_menu
@@ -46,7 +47,7 @@ class _MyPopupMenuBtnState extends State<MyPopupMenuBtn> {
 
             break;
           case "合约计算器":
-
+            NavigatorUtils.navigatorRouter(context, CalculatorUtilPage());
             break;
           case "显示设置":
 

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:rok/widget/mine/mine_item_widget.dart';
 
 class TargetPriceCalculatorWidget extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class TargetPriceCalculatorWidget extends StatefulWidget {
 class _TargetPriceCalculatorWidgetState extends State<TargetPriceCalculatorWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(children: <Widget>[
+
+    ],);
   }
 }

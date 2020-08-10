@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/calculator/Liquidation_calculator.dart';
 import 'package:rok/widget/calculator/profile_calculator_widget.dart';
 import 'package:rok/widget/calculator/target_price_calculator_widget.dart';
@@ -29,11 +31,18 @@ class _CalculatorUtilPageState extends State<CalculatorUtilPage>  with SingleTic
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: <Widget>[
-      MyTabBar(mController: mController, tabTitles: tabTitles),
-      Container(
-          width: double.infinity, height: 300, child: _tabBarView())
-    ],);
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [kAppWhiteColor, kAppWhiteColor]),
+      ),
+      child: ListView(children: <Widget>[
+        MyTabBar(mController: mController, tabTitles: tabTitles),
+        Container(
+            width: double.infinity,
+            height: ScreenUtil.screenHeightDp,
+            child: _tabBarView())
+      ],),
+    );
   }
 
 
@@ -57,9 +66,8 @@ class _CalculatorUtilPageState extends State<CalculatorUtilPage>  with SingleTic
 
   TabController mController;
   List<String> tabTitles = [
-    "交易",
-    "持仓",
-    "委托",
-    "历史记录",
+    "收益计算",
+    "目标价格计算",
+    "强平价格",
   ];
 }
