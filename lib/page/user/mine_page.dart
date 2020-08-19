@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/mine/account_widget.dart';
 import 'package:rok/widget/mine/assets_widget.dart';
@@ -10,7 +11,17 @@ class MinePage extends StatefulWidget {
   _MinePageState createState() => _MinePageState();
 }
 
+
+
 class _MinePageState extends State<MinePage> {
+  @override
+  void initState() {
+    super.initState();
+    _getAvailableBalance();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -52,4 +63,13 @@ class _MinePageState extends State<MinePage> {
       ],
     );
   }
+
+
+
+  void _getAvailableBalance() async {
+    getAvailableBalance();
+    return;
+  }
+
+
 }

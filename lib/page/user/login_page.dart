@@ -413,38 +413,9 @@ class _LoginPageState extends State<LoginPage> {
     reqUserLogin("18758586900", "123456");
     NavigatorUtils.goHome(context);
     return;
-    if (userController.text.length != 11) {
-      NavigatorUtils.showToast("手机号码格式不对");
-      return;
-    }
-    if (pwController.text.length == 0) {
-      NavigatorUtils.showToast("请填写密码");
-      return;
-    }
-    EasyLoading.show();
 
-//    var result = await YpGatewayDao.getMobileLogin(
-//        userController.text, pwController.text);
-//    if (result.success && result.data.token.toString().isNotEmpty) {
-//      LocalStorage.save(Config.USER_TOKEN, result.data.token);
-//      LocalStorage.save(Config.USER_MOBILE, result.data.user.mobile);
-//      LocalStorage.save(Config.USER_NICKNAME, result.data.user.nickName);
-//      LocalStorage.save(Config.USER_AVATAR, result.data.user.avatar);
-//      LocalStorage.remove(Config.BEHAVIOR_CHALLENGE);
-//      LocalStorage.remove(Config.BEHAVIOR_VALIDATE);
-//      LocalStorage.remove(Config.BEHAVIOR_SEC_CODE);
-//    } else {
-//
-//      EasyLoading.dismiss();
-//    }
   }
 
-  Future _getPersonalData() async {
-//    DataResult res = await YpGatewayDao.getloadPersonal();
-//    if (res.success) {
-//      NavigatorUtils.showToast("登录成功");
-//    }
-  }
 
   @override
   void dispose() {

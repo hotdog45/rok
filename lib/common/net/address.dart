@@ -6,8 +6,36 @@ const String getCheckAppUpgrade = "company.upgrade.checkAppUpgrade";
 
 ///   用户模块
 const String getUserRegister = "user/register";
-
+//登录
 const String userLogin = "user/login";
+
+
+//个人认证
+const String userAuth = "user/auth/personal";
+
+//用户绑银行卡、支付宝、微信收款账户
+const String bindCard = "user/bind/card";
+
+//收款账号详情
+const String cardDetail= "user/card/detail";
+
+//修改密码
+const String changePassword= "user/change/password";
+
+//获取当前登录用户信息
+const String userCurrentInfo= "user/current";
+
+//获取用户当前盈亏
+const String userProfit= "user/profitloss";
+
+//重置登录密码
+const String passwordReset= "user/reset/password";
+
+//设置交易密码
+const String tradePassword = "user/setting/trade/password";
+
+
+
 
 ////////////////////////////////////////////////////////////////
 
