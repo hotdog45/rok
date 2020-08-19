@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:rok/common/style/style.dart';
 
@@ -10,7 +8,6 @@ class HomeIconWidget extends StatelessWidget {
   final String url;
 
   const HomeIconWidget({Key key, this.name, this.url}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {

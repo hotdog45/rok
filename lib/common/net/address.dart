@@ -9,23 +9,7 @@ const String getUserRegister = "user/register";
 
 const String userLogin = "user/login";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////////////////
-
-
-
 
 ///网关API
 const String BASE_URL_RELEASE = "https://apigw.ypshengxian.com/request"; //线上

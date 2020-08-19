@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:fluwx/fluwx.dart';
 
-
-
 class PayUtils {
   static wxPay(partnerId, prepayId, packageValue, nonceStr, timeStamp, sign) {
     payWithWeChat(
@@ -18,8 +16,4 @@ class PayUtils {
       print(data);
     });
   }
-
-
-
-
 }

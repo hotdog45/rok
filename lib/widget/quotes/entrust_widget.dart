@@ -5,16 +5,14 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/number_utils.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
-/**
- * Copyright (C), 2015-2020, 谊品生鲜
- * FileName: entrust_wiget
- * Author: lishunfeng
- * Date: 2020/8/1 3:24 PM
- * Description:
- * History:
- * <author> <time> <version> <desc>
- * 作者姓名 修改时间 版本号 描述
- */
+/// Copyright (C), 2015-2020, 谊品生鲜
+/// FileName: entrust_wiget
+/// Author: lishunfeng
+/// Date: 2020/8/1 3:24 PM
+/// Description:
+/// History:
+/// <author> <time> <version> <desc>
+/// 作者姓名 修改时间 版本号 描述
 
 class EntrustWidget extends StatefulWidget {
   @override
@@ -52,7 +50,6 @@ class _EntrustWidgetState extends State<EntrustWidget> {
           _getItem(),
           _getItem(),
           _getItem(),
-
         ],
       ),
     );
@@ -73,7 +70,7 @@ class _EntrustWidgetState extends State<EntrustWidget> {
   _getTitleWidget() {
     return Container(
       height: 30,
-      padding: EdgeInsets.only(left: 10,right: 10),
+      padding: EdgeInsets.only(left: 10, right: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -82,9 +79,7 @@ class _EntrustWidgetState extends State<EntrustWidget> {
               textColor: kAppSubTextColor,
               fontSize: fontSizeMin),
           MySuperWidget(
-              text: "价格",
-              textColor: kAppSubTextColor,
-              fontSize: fontSizeMin),
+              text: "价格", textColor: kAppSubTextColor, fontSize: fontSizeMin),
           MySuperWidget(
               text: "数量(手) 卖盘",
               textColor: kAppSubTextColor,
@@ -132,7 +127,6 @@ class _EntrustWidgetState extends State<EntrustWidget> {
                             color: kAppBlackColor,
                             fontSize: fontSizeSmall)),
                   ),
-
                   MySuperWidget(
                       text: price,
                       margin: EdgeInsets.only(right: 5),
@@ -169,7 +163,6 @@ class _EntrustWidgetState extends State<EntrustWidget> {
               height: 30,
               child: Row(
                 children: <Widget>[
-
                   MySuperWidget(
                       text: price,
                       margin: EdgeInsets.only(left: 5),

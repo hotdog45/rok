@@ -14,9 +14,7 @@ import 'interceptors/response_interceptor.dart';
 
 ///http请求
 class HttpManager {
-
-
-  Dio _dio = new Dio(); // 使用默认配置
+  Dio _dio = Dio(); // 使用默认配置
 
   HttpManager() {
     _dio.interceptors.add(HeaderInterceptors());
@@ -24,7 +22,6 @@ class HttpManager {
     _dio.interceptors.add(DioLogInterceptor());
     _dio.interceptors.add(ErrorInterceptors(_dio));
     _dio.interceptors.add(ResponseInterceptors());
-
   }
 
   ///发起网络请求
@@ -77,7 +74,7 @@ class HttpManager {
 
     Response response;
     try {
-      response = await _dio.request(getHostAddress(apiNum)+api,
+      response = await _dio.request(getHostAddress(apiNum) + api,
           data: body, options: Options(method: "post"));
     } on DioError catch (e) {
       return resultError(e);
@@ -89,4 +86,4 @@ class HttpManager {
   }
 }
 
-final HttpManager httpManager = new HttpManager();
+final HttpManager httpManager = HttpManager();

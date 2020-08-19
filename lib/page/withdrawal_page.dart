@@ -294,12 +294,12 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: 10,bottom: 5),
+                    padding: EdgeInsets.only(right: 10, bottom: 5),
                     child: Text(
-                  "全部卖出",
-                  style: TextStyle(
-                      color: kAppThemeColor, fontSize: fontSizeMiddle),
-                ))
+                      "全部卖出",
+                      style: TextStyle(
+                          color: kAppThemeColor, fontSize: fontSizeMiddle),
+                    ))
               ],
             ),
           ),

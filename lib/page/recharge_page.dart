@@ -59,7 +59,6 @@ class _RechargePageState extends State<RechargePage> {
                     ],
                   ),
                 ),
-
                 PurchaseWidget(),
                 Container(
                   height: 50,
@@ -107,15 +106,14 @@ class _RechargePageState extends State<RechargePage> {
                   fontWeight: FontWeight.bold,
                   margin: EdgeInsets.only(top: 10, left: 20, right: 20),
                 ),
-
-              Container(
-                width: ScreenUtil.screenWidthDp,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text("重要提示：\n*最小订单进入额20USDT\n*最大转入金额7000USTD\n*如金每天只能五次\n*到账时间10-30分钟，可24小时入金\n*付款账户必需为实名认证人开户\n*OTC服务由独立第三方平台提供"
+                Container(
+                  width: ScreenUtil.screenWidthDp,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                        "重要提示：\n*最小订单进入额20USDT\n*最大转入金额7000USTD\n*如金每天只能五次\n*到账时间10-30分钟，可24小时入金\n*付款账户必需为实名认证人开户\n*OTC服务由独立第三方平台提供"),
                   ),
                 ),
-              ),
                 RechargingDealWidget(),
               ],
             ),

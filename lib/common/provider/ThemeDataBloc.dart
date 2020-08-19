@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -18,9 +16,11 @@ class ThemeDataBloc {
   Stream<ThemeData> get stream => _stream;
 
   changeTheme() {
-    _themeData = _themeData == ThemeData.light()?ThemeData.dark():ThemeData.light();
+    _themeData =
+        _themeData == ThemeData.light() ? ThemeData.dark() : ThemeData.light();
     _streamController.sink.add(_themeData);
   }
+
   dispose() {
     _streamController.close();
   }

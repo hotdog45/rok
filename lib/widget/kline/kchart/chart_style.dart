@@ -7,8 +7,14 @@ class ChartColors {
   static const Color bgColor = Color(0xff06141D);
   static const Color kLineColor = Color(0xff4C86CD);
   static const Color gridColor = Color(0xff4c5c74);
-  static const List<Color> kLineShadowColor = [Color(0x554C86CD), Color(0x00000000)]; //k线阴影渐变
-  static const List<Color> kRectShadowColor = [Color(0xFF0E1925), Color(0xFF0E2034)]; //k线阴影渐变
+  static const List<Color> kLineShadowColor = [
+    Color(0x554C86CD),
+    Color(0x00000000)
+  ]; //k线阴影渐变
+  static const List<Color> kRectShadowColor = [
+    Color(0xFF0E1925),
+    Color(0xFF0E2034)
+  ]; //k线阴影渐变
   static const Color ma5Color = Color(0xffC9B885);
   static const Color ma10Color = Color(0xff6CB0A6);
   static const Color ma30Color = Color(0xff9979C6);
@@ -24,7 +30,7 @@ class ChartColors {
   static const Color dColor = Color(0xff6CB0A6);
   static const Color jColor = Color(0xff9979C6);
   static const Color rsiColor = Color(0xffC9B885);
-  
+
   static const Color wrColor = Color(0xffD2D2B4);
 
   static const Color yAxisTextColor = Color(0xff70839E); //右边y轴刻度
@@ -63,10 +69,10 @@ class ChartStyle {
   static const double canldeMargin = 3;
 
   //蜡烛默认宽度
-  static  double defaultcandleWidth = 8.5;
+  static double defaultcandleWidth = 8.5;
 
   //蜡烛宽度
-  static  double candleWidth = 8.5;
+  static double candleWidth = 8.5;
 
   //蜡烛中间线的宽度
   static const double candleLineWidth = 1.5;
@@ -86,26 +92,34 @@ class ChartStyle {
   //网格
   static const int gridRows = 3, gridColumns = 5;
 
-  static const double topPadding = 30.0, bottomDateHigh = 20.0, childPadding = 25.0;
+  static const double topPadding = 30.0,
+      bottomDateHigh = 20.0,
+      childPadding = 25.0;
 
   static const double defaultTextSize = 10.0;
 
   //k线右边价格坐标价格字体
   static TextStyle getRightTextStyle() {
-    return TextStyle(fontSize: ChartStyle.defaultTextSize,color: ChartColors.yAxisTextColor);
+    return TextStyle(
+        fontSize: ChartStyle.defaultTextSize,
+        color: ChartColors.yAxisTextColor);
   }
 
   //k线底部日期字体样式
   static TextStyle getDateTextStyle() {
-    return TextStyle(fontSize: ChartStyle.defaultTextSize,color: ChartColors.yAxisTextColor);
+    return TextStyle(
+        fontSize: ChartStyle.defaultTextSize,
+        color: ChartColors.yAxisTextColor);
   }
 
   //指标列表文字样式
   static TextStyle getIndicatorTextStyle({bool isSelect = false}) {
-    if(isSelect) {
-      return TextStyle(fontSize: 13, color: Color(0xffFFFFFF),fontWeight: FontWeight.bold);
+    if (isSelect) {
+      return TextStyle(
+          fontSize: 13, color: Color(0xffFFFFFF), fontWeight: FontWeight.bold);
     } else {
-      return TextStyle(fontSize: 13, color: Color(0xff3D536c),fontWeight: FontWeight.bold);
+      return TextStyle(
+          fontSize: 13, color: Color(0xff3D536c), fontWeight: FontWeight.bold);
     }
   }
 }

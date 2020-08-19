@@ -7,13 +7,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rok/page/common/main_page.dart';
 import 'package:rok/page/user/login_page.dart';
 
-
 //import 'package:flutter_boost/flutter_boost.dart';
 
-/**
- * 导航栏
- */
-
+/// 导航栏
 
 class NavigatorUtils {
   ///替换
@@ -39,8 +35,8 @@ class NavigatorUtils {
   static goMainPageByIndex(BuildContext context, int index) {
     Navigator.pushAndRemoveUntil(
         context,
-        new CupertinoPageRoute(
-            builder: (context) => pageContainer(context,MainPage(index))),
+        CupertinoPageRoute(
+            builder: (context) => pageContainer(context, MainPage(index))),
         (route) => false);
   }
 
@@ -48,8 +44,6 @@ class NavigatorUtils {
   static goLogin(BuildContext context) {
     Navigator.pushReplacementNamed(context, LoginPage.sName);
   }
-
-
 
   /// 提示框
   static showToast(msg) {
@@ -68,21 +62,24 @@ class NavigatorUtils {
   ///
   static pushAndPopPage(BuildContext context, Widget widget) {
     Navigator.pop(context);
-    return Navigator.push(context,
-        new CupertinoPageRoute(builder: (context) => pageContainer(context,widget)));
+    return Navigator.push(
+        context,
+        CupertinoPageRoute(
+            builder: (context) => pageContainer(context, widget)));
   }
 
   ///公共打开方式
   static navigatorRouter(BuildContext context, Widget widget) {
-    return Navigator.push(context,
-        new CupertinoPageRoute(builder: (context) => pageContainer(context,widget)));
+    return Navigator.push(
+        context,
+        CupertinoPageRoute(
+            builder: (context) => pageContainer(context, widget)));
   }
 
   ///Page页面的容器，做一次通用自定义
-  static Widget pageContainer(BuildContext context,widget) {
+  static Widget pageContainer(BuildContext context, widget) {
     return MediaQuery(
-        data: MediaQuery.of(context)
-            .copyWith(textScaleFactor: 1),
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
         child: widget);
   }
 

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/empty_page.dart';
 
-
 import 'base_view_model.dart';
 
 typedef Content = Widget Function(BuildContext context);
@@ -23,7 +22,7 @@ class MultiStateWidget extends StatefulWidget {
       this.state,
       this.emptyWidget,
       this.failWidget,
-        this.callback,
+      this.callback,
       this.loadingWidget})
       : super(key: key) {
     if (state == BaseState.CONTENT) {
@@ -32,11 +31,17 @@ class MultiStateWidget extends StatefulWidget {
       }
     }
     if (emptyWidget == null) {
-      emptyWidget = EmptyPage(EmptyPageEnum.noData,clickCallBack: callback,);
+      emptyWidget = EmptyPage(
+        EmptyPageEnum.noData,
+        clickCallBack: callback,
+      );
     }
 
     if (failWidget == null) {
-      failWidget = EmptyPage(EmptyPageEnum.noNet,clickCallBack: callback,);
+      failWidget = EmptyPage(
+        EmptyPageEnum.noNet,
+        clickCallBack: callback,
+      );
     }
 
     if (loadingWidget == null) {

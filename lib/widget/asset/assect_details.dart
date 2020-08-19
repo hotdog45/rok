@@ -28,8 +28,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     margin: EdgeInsets.only(top: 10, left: 20),
                     child: Text(
                       "总权益(USDT)",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   ),
                   Container(
@@ -37,8 +37,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     width: (ScreenUtil.screenWidthDp - 90) / 2,
                     child: Text(
                       "88888888.000000",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   ),
                   Container(
@@ -46,8 +46,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     width: (ScreenUtil.screenWidthDp - 90) / 2,
                     child: Text(
                       "≈0.00000000",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   )
                 ],
@@ -59,8 +59,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     margin: EdgeInsets.only(top: 10, left: 20),
                     child: Text(
                       "可用余额(USDT)",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   ),
                   Container(
@@ -68,8 +68,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     width: (ScreenUtil.screenWidthDp - 90) / 2,
                     child: Text(
                       "88888888.000000",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   ),
                   Container(
@@ -77,8 +77,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     margin: EdgeInsets.only(left: 20, top: 5),
                     child: Text(
                       "≈0.00000000",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   )
                 ],
@@ -107,8 +107,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     width: (ScreenUtil.screenWidthDp - 80) / 4,
                     child: Text(
                       "优惠券（10）",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   ),
                 ],
@@ -133,8 +133,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     width: (ScreenUtil.screenWidthDp - 80) / 4,
                     child: Text(
                       "提币地址",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   ),
                 ],
@@ -159,8 +159,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     width: (ScreenUtil.screenWidthDp - 80) / 4,
                     child: Text(
                       "出入金记录",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   ),
                 ],
@@ -185,8 +185,8 @@ class _AssectDetailsWidgetState extends State<AssectDetailsWidget> {
                     width: (ScreenUtil.screenWidthDp - 80) / 4,
                     child: Text(
                       "资金明细",
-                      style:
-                          TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      style: TextStyle(
+                          fontSize: fontSizeMin, color: kAppTextColor),
                     ),
                   ),
                 ],

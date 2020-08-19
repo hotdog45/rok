@@ -1,5 +1,4 @@
 mixin VolumeEntity {
-
   double open;
   double close;
   double vol;

@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 /// 网络图片加载
 class YPCachedNetworkImage extends StatelessWidget {
-
   final String image;
   final String placeholder;
   final BoxFit fit;
@@ -12,16 +11,27 @@ class YPCachedNetworkImage extends StatelessWidget {
   final bool isCompress;
   final double height;
 
-  const YPCachedNetworkImage({Key key, this.image,this.imageSize : 600,this.isCompress = true, this.placeholder, this.fit, this.width, this.height}) : super(key: key);
+  const YPCachedNetworkImage(
+      {Key key,
+      this.image,
+      this.imageSize = 600,
+      this.isCompress = true,
+      this.placeholder,
+      this.fit,
+      this.width,
+      this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     // 占位图
     Widget placeholderWidget;
-    if (placeholder != null && placeholder.isNotEmpty && 
-    width != null && width > 0 && 
-    height != null && height > 0) {
+    if (placeholder != null &&
+        placeholder.isNotEmpty &&
+        width != null &&
+        width > 0 &&
+        height != null &&
+        height > 0) {
       placeholderWidget = Image.asset(
         placeholder,
         fit: fit,
@@ -31,7 +41,7 @@ class YPCachedNetworkImage extends StatelessWidget {
     }
 
     return CachedNetworkImage(
-      imageUrl: getImageUrl(image,imageSize.toString()),
+      imageUrl: getImageUrl(image, imageSize.toString()),
       placeholder: (context, url) => placeholderWidget,
       fit: fit,
       width: width,
@@ -53,16 +63,19 @@ class YPCachedNetworkImage extends StatelessWidget {
 //      );
 //    }
   }
-  String getImageUrl(String path, String w ){
+
+  String getImageUrl(String path, String w) {
     if (path.isEmpty) return "";
     if (!isCompress) return path;
-    if (path.contains("resources.ypshengxian") || path.contains("test-oss.ypshengxian")) { //腾讯
+    if (path.contains("resources.ypshengxian") ||
+        path.contains("test-oss.ypshengxian")) {
+      //腾讯
       path = path + "?style=imageView2/1/w/+" + w + "/h/" + w + "/q/85";
 //            path = path+"?style=imageMogr2/format/webp%7CimageView2/1/w/+"+w+"/h/"+w+"/q/85";
-    } else if (path.contains("ss1.ypshengxian")) {//阿里云
+    } else if (path.contains("ss1.ypshengxian")) {
+      //阿里云
       path = path + "?x-oss-process=image/resize,w_" + w + ",h_" + w;
     }
     return path;
   }
-  
 }

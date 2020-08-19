@@ -31,37 +31,30 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
               ),
             ),
           ),
-
-
-
           Container(
             margin: EdgeInsets.only(left: 10),
-            child: Row(children: <Widget>[
-
-              MySuperWidget(
-                height: 40,
-                width: 50,
-                text: "-10",
-                bgColor: kKeyButton,
-                hasBorder: true,
-                borderColor: kAppTextColor,
-              ),
-
-             _getTextFieldAndBtn(controller, "数量" ),
-              MySuperWidget(
-                height: 40,
-                width: 50,
-                text: "+10",
-                bgColor: kKeyButton,
-                hasBorder: true,
-                borderColor: kAppTextColor,
-              ),
-
-
-            ],),
+            child: Row(
+              children: <Widget>[
+                MySuperWidget(
+                  height: 40,
+                  width: 50,
+                  text: "-10",
+                  bgColor: kKeyButton,
+                  hasBorder: true,
+                  borderColor: kAppTextColor,
+                ),
+                _getTextFieldAndBtn(controller, "数量"),
+                MySuperWidget(
+                  height: 40,
+                  width: 50,
+                  text: "+10",
+                  bgColor: kKeyButton,
+                  hasBorder: true,
+                  borderColor: kAppTextColor,
+                ),
+              ],
+            ),
           ),
-
-
           Container(
             margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
             width: ScreenUtil.screenWidthDp,
@@ -82,7 +75,7 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                 borderColor: kAppTextColor,
                 text: "1000",
                 padding:
-                    EdgeInsets.only(left: 10, right:10, top: 8, bottom: 8),
+                    EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
                 radius: 4,
               ),
               MySuperWidget(
@@ -91,7 +84,7 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                 borderColor: kAppTextColor,
                 text: "2000",
                 padding:
-                EdgeInsets.only(left: 10, right:10, top: 8, bottom: 8),
+                    EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
                 radius: 4,
               ),
               MySuperWidget(
@@ -100,45 +93,43 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                 borderColor: kAppTextColor,
                 text: "5000",
                 padding:
-                EdgeInsets.only(left: 10, right:10, top: 8, bottom: 8),
+                    EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
                 radius: 4,
-              ),    MySuperWidget(
+              ),
+              MySuperWidget(
                 margin: EdgeInsets.only(left: 10),
                 hasBorder: true,
                 borderColor: kAppTextColor,
                 text: "10000",
                 padding:
-                EdgeInsets.only(left: 10, right:10, top: 8, bottom: 8),
+                    EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
                 radius: 4,
               ),
-
             ],
           ),
           Container(
-            margin: EdgeInsets.only(left: 10,top: 20),
-            child: Row(children: <Widget>[
-
-              MySuperWidget(
-                height: 40,
-                width: 50,
-                text: "-100",
-                bgColor: kKeyButton,
-                hasBorder: true,
-                borderColor: kAppTextColor,
-              ),
-
-              _getTextFieldAndBtn(controller1, "金额" ),
-              MySuperWidget(
-                height: 40,
-                width: 50,
-                text: "+100",
-                bgColor: kKeyButton,
-                hasBorder: true,
-                borderColor: kAppTextColor,
-              ),
-
-
-            ],),
+            margin: EdgeInsets.only(left: 10, top: 20),
+            child: Row(
+              children: <Widget>[
+                MySuperWidget(
+                  height: 40,
+                  width: 50,
+                  text: "-100",
+                  bgColor: kKeyButton,
+                  hasBorder: true,
+                  borderColor: kAppTextColor,
+                ),
+                _getTextFieldAndBtn(controller1, "金额"),
+                MySuperWidget(
+                  height: 40,
+                  width: 50,
+                  text: "+100",
+                  bgColor: kKeyButton,
+                  hasBorder: true,
+                  borderColor: kAppTextColor,
+                ),
+              ],
+            ),
           ),
           Container(
             margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
@@ -157,22 +148,18 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
     );
   }
 
-
   final controller = TextEditingController();
   final controller1 = TextEditingController();
 
-  _getTextFieldAndBtn(controller, hintText,
-      {hasMargin = false, onChanged}) {
+  _getTextFieldAndBtn(controller, hintText, {hasMargin = false, onChanged}) {
     return Container(
-
       height: 40,
       width: 200,
       margin: EdgeInsets.only(bottom: hasMargin ? 14 : 0),
       child: Row(
         children: <Widget>[
           Container(
-
-            width:  197,
+            width: 197,
             decoration: BoxDecoration(
                 border: Border.all(color: kAppSubTextColor, width: 0.5),
                 borderRadius: BorderRadius.circular(2)),
@@ -187,7 +174,7 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                   height: 30,
 
 //                  margin: EdgeInsets.only(bottom: 10),
-                 padding: EdgeInsets.only(bottom: 10,left: 10),
+                  padding: EdgeInsets.only(bottom: 10, left: 10),
                   child: TextField(
                     controller: controller,
                     maxLines: 1,
@@ -207,14 +194,12 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                     enabled: true, //是否禁用
                   ),
                 ),
-
               ],
             ),
           ),
           Container(
             width: 3,
           ),
-
         ],
       ),
     );

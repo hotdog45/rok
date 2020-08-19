@@ -18,9 +18,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController registerController = new TextEditingController();
-  final TextEditingController smsController = new TextEditingController();
-  final TextEditingController regPasswordController = new TextEditingController();
+  final TextEditingController registerController = TextEditingController();
+  final TextEditingController smsController = TextEditingController();
+  final TextEditingController regPasswordController = TextEditingController();
   String _getPhoneCode = "获取验证码";
   int _countdownNum = 59;
   bool _isClickCode = false;
@@ -43,7 +43,6 @@ class _RegisterPageState extends State<RegisterPage> {
           Row(
             children: <Widget>[
               Container(
-
                 margin: EdgeInsets.only(left: 30, top: 40),
                 child: Text(
                   "+86",
@@ -51,10 +50,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       TextStyle(color: kAppTextColor, fontSize: fontSizeMiddle),
                 ),
               ),
-
               Container(
                 margin: EdgeInsets.only(left: 5, top: 40),
-
                 height: 20,
                 width: 12,
                 child: Image.asset(
@@ -62,49 +59,45 @@ class _RegisterPageState extends State<RegisterPage> {
                   scale: 0.5,
                 ),
               ),
-               Container(
+              Container(
                 color: kAppColor("#E7E7E7"),
                 width: 0.5,
-                 height: 30,
-                 margin: EdgeInsets.only(top: 40,left: 10),
+                height: 30,
+                margin: EdgeInsets.only(top: 40, left: 10),
               ),
               Container(
-
-               margin: EdgeInsets.only(left: 5, top:35),
-               width: 200,
-               height: 40,
-               child: TextField(
-                    controller: registerController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                      hintText: '请输入手机号',
-                      hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
-                      border: InputBorder.none,
-                    ),
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(11),
-                      WhitelistingTextInputFormatter.digitsOnly
-                    ],
-                    onChanged: (v) {
-                      //   _setBtnState();
-                    },
-                    style: TextStyle(fontSize: 15, color: kAppTextColor),
-                    textAlign: TextAlign.left,
+                margin: EdgeInsets.only(left: 5, top: 35),
+                width: 200,
+                height: 40,
+                child: TextField(
+                  controller: registerController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                    hintText: '请输入手机号',
+                    hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
+                    border: InputBorder.none,
                   ),
-             ),
-
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(11),
+                    WhitelistingTextInputFormatter.digitsOnly
+                  ],
+                  onChanged: (v) {
+                    //   _setBtnState();
+                  },
+                  style: TextStyle(fontSize: 15, color: kAppTextColor),
+                  textAlign: TextAlign.left,
+                ),
+              ),
             ],
           ),
           Container(
             color: kAppColor("#E7E7E7"),
             height: 0.5,
-
-            margin: EdgeInsets.only(left: 20,right: 20),
+            margin: EdgeInsets.only(left: 20, right: 20),
           ),
-
           Container(
-            margin: EdgeInsets.only(left: 20,right: 20,top: 30),
+            margin: EdgeInsets.only(left: 20, right: 20, top: 30),
             child: Stack(
               children: <Widget>[
                 TextField(
@@ -179,13 +172,10 @@ class _RegisterPageState extends State<RegisterPage> {
           Container(
             color: kAppColor("#E7E7E7"),
             height: 0.5,
-
-            margin: EdgeInsets.only(left: 20,right: 20),
+            margin: EdgeInsets.only(left: 20, right: 20),
           ),
-
-
           Container(
-            margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
             child: TextField(
               controller: regPasswordController,
               keyboardType: TextInputType.number,
@@ -209,55 +199,53 @@ class _RegisterPageState extends State<RegisterPage> {
           Container(
             color: kAppColor("#E7E7E7"),
             height: 0.5,
-
-            margin: EdgeInsets.only(left: 20,right: 20),
+            margin: EdgeInsets.only(left: 20, right: 20),
           ),
-          Row(children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(left: 20, top: 40),
-
-              height: 20,
-              width: 20,
-              child: Image.asset(
-                "static/images/yes_icon.png",
-                scale: 0.5,
+          Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(left: 20, top: 40),
+                height: 20,
+                width: 20,
+                child: Image.asset(
+                  "static/images/yes_icon.png",
+                  scale: 0.5,
+                ),
               ),
-            ),
-
-            Container(
-              margin: EdgeInsets.only(left: 5, top: 40),
-              child: Text(
-                "我已阅读并同意",
-                style:
-                TextStyle(color: kAppSub2TextColor, fontSize: fontSizeSmall),
+              Container(
+                margin: EdgeInsets.only(left: 5, top: 40),
+                child: Text(
+                  "我已阅读并同意",
+                  style: TextStyle(
+                      color: kAppSub2TextColor, fontSize: fontSizeSmall),
+                ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only( top: 40),
-              child: Text(
-                "《niu COIN 用户协议》",
-                style:
-                TextStyle(color: kAppThemeColor, fontSize: fontSizeSmall),
+              Container(
+                margin: EdgeInsets.only(top: 40),
+                child: Text(
+                  "《niu COIN 用户协议》",
+                  style:
+                      TextStyle(color: kAppThemeColor, fontSize: fontSizeSmall),
+                ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 40),
-              child: Text(
-                "和",
-                style:
-                TextStyle(color: kAppSub2TextColor, fontSize: fontSizeSmall),
+              Container(
+                margin: EdgeInsets.only(top: 40),
+                child: Text(
+                  "和",
+                  style: TextStyle(
+                      color: kAppSub2TextColor, fontSize: fontSizeSmall),
+                ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only( top: 40),
-              child: Text(
-                "《法律声明》",
-                style:
-                TextStyle(color: kAppThemeColor, fontSize: fontSizeSmall),
+              Container(
+                margin: EdgeInsets.only(top: 40),
+                child: Text(
+                  "《法律声明》",
+                  style:
+                      TextStyle(color: kAppThemeColor, fontSize: fontSizeSmall),
+                ),
               ),
-            ),
-          ],),
-
+            ],
+          ),
           InkWell(
             highlightColor: Colors.transparent,
             radius: 0.0,
@@ -267,20 +255,18 @@ class _RegisterPageState extends State<RegisterPage> {
                 width: double.infinity,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color:   kAppThemeColor ,
+                  color: kAppThemeColor,
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(
                   "注册",
-                  style: TextStyle(color: Colors.white, fontSize: kAppFontSize(28)),
+                  style: TextStyle(
+                      color: Colors.white, fontSize: kAppFontSize(28)),
                 )),
-            onTap:(){
-
-            },
+            onTap: () {},
           ),
-
           Container(
-            margin: EdgeInsets.only(top: 20,right: 20),
+            margin: EdgeInsets.only(top: 20, right: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
@@ -296,10 +282,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       style: TextStyle(color: kAppThemeColor, fontSize: 14),
                     ),
                     onTap: () {
-
                       NavigatorUtils.navigatorRouter(context, LoginPage());
                     }),
-
               ],
             ),
           ),

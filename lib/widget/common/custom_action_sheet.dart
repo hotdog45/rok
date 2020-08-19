@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-/**
- * Copyright (C), 2015-2020, 谊品生鲜
- * FileName: custom_action_sheet
- * Author: lishunfeng
- * Date: 2020/8/3 10:34 PM
- * Description:
- * History:
- * <author> <time> <version> <desc>
- * 作者姓名 修改时间 版本号 描述
- */
+/// Copyright (C), 2015-2020, 谊品生鲜
+/// FileName: custom_action_sheet
+/// Author: lishunfeng
+/// Date: 2020/8/3 10:34 PM
+/// Description:
+/// History:
+/// <author> <time> <version> <desc>
+/// 作者姓名 修改时间 版本号 描述
 
 import 'package:flutter/cupertino.dart';
 import 'package:rok/common/style/style.dart';

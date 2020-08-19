@@ -25,7 +25,6 @@ class _SafeCenterPageState extends State<SafeCenterPage> {
                 type: 7,
                 rightAction: "159****3544",
               )),
-
           MineItemWidget(
             theme: "邮箱验证",
             type: 8,
