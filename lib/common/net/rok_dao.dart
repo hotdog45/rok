@@ -23,7 +23,6 @@ reqUserLogin(String phone, /*String smsCode,*/String password) async {
 getAvailableBalance() async {
   String token = await LocalStorage.get(Config.USER_TOKEN) ?? "";
 
-  Fluttertoast.showToast(msg: token+"ds");
   return await httpManager.netFetch(userProfit, {
     "token": token,
   });

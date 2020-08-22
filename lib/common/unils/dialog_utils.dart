@@ -65,6 +65,7 @@ class DialogUtils {
 //  }
 
    Future reqCheckAppUpgrade(context, updateCallBack,{bool isMine = false}) async {
+
 //    var result = await getCheckAppUpgrade();
    return;
      var result;

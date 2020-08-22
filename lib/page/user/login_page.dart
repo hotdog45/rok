@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_geetest_plugin/flutter_geetest_plugin.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rok/common/config/config.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
@@ -411,7 +412,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _login() async {
+
+
     reqUserLogin("18758586900","123456");
+
+//     Fluttertoast.showToast(msg: await reqUserLogin("18758586900","123456"));
+    LocalStorage.save(Config.USER_TOKEN, await reqUserLogin("18758586900","123456"));
+    LocalStorage.save(Config.USER_MOBILE, await "18758586900");
     NavigatorUtils.goHome(context);
     return;
 
