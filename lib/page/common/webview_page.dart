@@ -6,7 +6,6 @@ import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-
 class WebViewPage extends StatefulWidget {
   static final String sName = "webView";
   final String url;

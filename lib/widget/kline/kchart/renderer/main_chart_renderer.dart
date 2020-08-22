@@ -9,7 +9,6 @@ import 'base_chart_renderer.dart';
 import '../state_enum.dart';
 
 class MainChartRenderer extends BaseChartRenderer<CandleEntity> {
-
   double _contentPadding = 20.0;
   bool isLine = false;
   MainState state;
@@ -27,7 +26,13 @@ class MainChartRenderer extends BaseChartRenderer<CandleEntity> {
     ..isAntiAlias = true;
 
   MainChartRenderer(Rect mainRect, double maxValue, double minValue,
-      double topPadding, bool isLine, double candleWidth, this.state) : super(chartRect: mainRect, maxValue: maxValue, minValue: minValue, topPadding: topPadding, candleWidth: candleWidth)  {
+      double topPadding, bool isLine, double candleWidth, this.state)
+      : super(
+            chartRect: mainRect,
+            maxValue: maxValue,
+            minValue: minValue,
+            topPadding: topPadding,
+            candleWidth: candleWidth) {
     this.isLine = isLine;
     //这样处理的好处，使蜡烛线不会触及到上下的网格线
     var diff = maxValue - minValue; //计算差
@@ -41,7 +46,8 @@ class MainChartRenderer extends BaseChartRenderer<CandleEntity> {
     }
   }
 
-  void drawChart(Canvas canvas, CandleEntity lastpoint, CandleEntity curpoint, double curX) {
+  void drawChart(Canvas canvas, CandleEntity lastpoint, CandleEntity curpoint,
+      double curX) {
     if (!isLine) drawCandle(canvas, curpoint, curX);
     if (lastpoint != null) {
       if (isLine) {
@@ -61,20 +67,47 @@ class MainChartRenderer extends BaseChartRenderer<CandleEntity> {
     var close = getY(curPoint.close);
     if (open > close) {
       chartPaint.color = ChartColors.upColor;
-      canvas.drawRect(Rect.fromLTRB(chartRect.width - curX - candleWidth, close,chartRect.width - curX, open),chartPaint);
-      canvas.drawRect(Rect.fromLTRB(chartRect.width - curX - candleWidth / 2 - ChartStyle.candleLineWidth / 2, high, chartRect.width -  curX - candleWidth / 2 +  ChartStyle.candleLineWidth / 2, low),
+      canvas.drawRect(
+          Rect.fromLTRB(chartRect.width - curX - candleWidth, close,
+              chartRect.width - curX, open),
+          chartPaint);
+      canvas.drawRect(
+          Rect.fromLTRB(
+              chartRect.width -
+                  curX -
+                  candleWidth / 2 -
+                  ChartStyle.candleLineWidth / 2,
+              high,
+              chartRect.width -
+                  curX -
+                  candleWidth / 2 +
+                  ChartStyle.candleLineWidth / 2,
+              low),
           chartPaint);
     } else {
       chartPaint.color = ChartColors.dnColor;
-      canvas.drawRect(Rect.fromLTRB(chartRect.width - curX - candleWidth, open,chartRect.width - curX, close), chartPaint);
       canvas.drawRect(
-          Rect.fromLTRB(chartRect.width -curX -candleWidth / 2 -ChartStyle.candleLineWidth / 2,high,
-              chartRect.width - curX - candleWidth / 2 + ChartStyle.candleLineWidth / 2, low),
+          Rect.fromLTRB(chartRect.width - curX - candleWidth, open,
+              chartRect.width - curX, close),
+          chartPaint);
+      canvas.drawRect(
+          Rect.fromLTRB(
+              chartRect.width -
+                  curX -
+                  candleWidth / 2 -
+                  ChartStyle.candleLineWidth / 2,
+              high,
+              chartRect.width -
+                  curX -
+                  candleWidth / 2 +
+                  ChartStyle.candleLineWidth / 2,
+              low),
           chartPaint);
     }
   }
 
-  void drawKLine(Canvas canvas, double lastPrice, double curPrice, double curX) {
+  void drawKLine(
+      Canvas canvas, double lastPrice, double curPrice, double curX) {
     double lastX = curX - candleWidth - ChartStyle.canldeMargin;
     double x1 = chartRect.width - lastX;
     double y1 = getY(lastPrice);
@@ -87,10 +120,10 @@ class MainChartRenderer extends BaseChartRenderer<CandleEntity> {
     linePath.reset();
 
     lineFillShader ??= LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        tileMode: TileMode.clamp,
-        colors: ChartColors.kLineShadowColor)
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            tileMode: TileMode.clamp,
+            colors: ChartColors.kLineShadowColor)
         .createShader(chartRect);
 
     lineFillPaint..shader = lineFillShader;
@@ -114,7 +147,7 @@ class MainChartRenderer extends BaseChartRenderer<CandleEntity> {
           text: "${NumberUtil.format(value)}",
           style: ChartStyle.getRightTextStyle());
       TextPainter textPainter =
-      TextPainter(text: span, textDirection: TextDirection.ltr);
+          TextPainter(text: span, textDirection: TextDirection.ltr);
       textPainter.layout();
       double y = 0;
       if (i == 0) {
@@ -144,11 +177,11 @@ class MainChartRenderer extends BaseChartRenderer<CandleEntity> {
       Offset endOffset = Offset(i * colomspace, chartRect.height + topPadding);
       canvas.drawLine(startOffset, endOffset, gridPaint);
     }
-
   }
 
   //画MA线
-  void drawMaLine(Canvas canvas, CandleEntity lastpoint, CandleEntity curPoint, double curX) {
+  void drawMaLine(Canvas canvas, CandleEntity lastpoint, CandleEntity curPoint,
+      double curX) {
     if (curPoint.MA5Price != 0) {
       drawLine(canvas, lastpoint.MA5Price, curPoint.MA5Price, curX,
           ChartColors.ma5Color);
@@ -166,45 +199,56 @@ class MainChartRenderer extends BaseChartRenderer<CandleEntity> {
 
   void drawTopText(Canvas canvas, CandleEntity curPoint) {
     List<TextSpan> list = List<TextSpan>();
-    if(state == MainState.MA) {
-      if(curPoint.MA5Price != 0) {
-        TextSpan spanMa5 = TextSpan(text: "MA5:${NumberUtil.format(curPoint.MA5Price)}    ", style: TextStyle(color: ChartColors.ma5Color,fontSize: 10));
+    if (state == MainState.MA) {
+      if (curPoint.MA5Price != 0) {
+        TextSpan spanMa5 = TextSpan(
+            text: "MA5:${NumberUtil.format(curPoint.MA5Price)}    ",
+            style: TextStyle(color: ChartColors.ma5Color, fontSize: 10));
         list.add(spanMa5);
       }
-      if(curPoint.MA10Price != 0) {
-        TextSpan spanMa10 = TextSpan(text: "MA10:${NumberUtil.format(curPoint.MA10Price)}    ", style: TextStyle(color: ChartColors.ma10Color,fontSize: 10));
+      if (curPoint.MA10Price != 0) {
+        TextSpan spanMa10 = TextSpan(
+            text: "MA10:${NumberUtil.format(curPoint.MA10Price)}    ",
+            style: TextStyle(color: ChartColors.ma10Color, fontSize: 10));
         list.add(spanMa10);
       }
-      if(curPoint.MA30Price != 0) {
-        TextSpan spanMa30 = TextSpan(text: "MA30:${NumberUtil.format(curPoint.MA30Price)}    ", style: TextStyle(color: ChartColors.ma30Color,fontSize: 10));
+      if (curPoint.MA30Price != 0) {
+        TextSpan spanMa30 = TextSpan(
+            text: "MA30:${NumberUtil.format(curPoint.MA30Price)}    ",
+            style: TextStyle(color: ChartColors.ma30Color, fontSize: 10));
         list.add(spanMa30);
       }
     } else {
-        if (curPoint.mb != 0) {
-          TextSpan span = TextSpan(text: "BOLL:${NumberUtil.format(curPoint.mb)}    ", style: TextStyle(color: ChartColors.ma5Color,fontSize: 10));
-          list.add(span);
-        }
-        if (curPoint.up != 0) {
-          TextSpan span = TextSpan(text: "UP:${NumberUtil.format(curPoint.up)}    ", style: TextStyle(color: ChartColors.ma10Color,fontSize: 10));
-          list.add(span);
-        }
-        if (curPoint.dn != 0) {
-          TextSpan span = TextSpan(text: "LB:${NumberUtil.format(curPoint.mb)}    ", style: TextStyle(color: ChartColors.ma30Color,fontSize: 10));
-          list.add(span);
-        }
+      if (curPoint.mb != 0) {
+        TextSpan span = TextSpan(
+            text: "BOLL:${NumberUtil.format(curPoint.mb)}    ",
+            style: TextStyle(color: ChartColors.ma5Color, fontSize: 10));
+        list.add(span);
+      }
+      if (curPoint.up != 0) {
+        TextSpan span = TextSpan(
+            text: "UP:${NumberUtil.format(curPoint.up)}    ",
+            style: TextStyle(color: ChartColors.ma10Color, fontSize: 10));
+        list.add(span);
+      }
+      if (curPoint.dn != 0) {
+        TextSpan span = TextSpan(
+            text: "LB:${NumberUtil.format(curPoint.mb)}    ",
+            style: TextStyle(color: ChartColors.ma30Color, fontSize: 10));
+        list.add(span);
+      }
     }
-    TextSpan span = TextSpan(
-      children: list
-    );
-    TextPainter tpMa5 = TextPainter(text: span, textDirection: TextDirection.ltr);
+    TextSpan span = TextSpan(children: list);
+    TextPainter tpMa5 =
+        TextPainter(text: span, textDirection: TextDirection.ltr);
     tpMa5.layout();
     double y = 6;
     tpMa5.paint(canvas, Offset(10, y));
-
   }
 
   //画boll线
-  void drawBoLL(Canvas canvas, CandleEntity lastpoint, CandleEntity curPoint, double curX) {
+  void drawBoLL(Canvas canvas, CandleEntity lastpoint, CandleEntity curPoint,
+      double curX) {
     if (curPoint.up != 0) {
       drawLine(canvas, lastpoint.up, curPoint.up, curX, ChartColors.ma5Color);
     }
@@ -215,6 +259,7 @@ class MainChartRenderer extends BaseChartRenderer<CandleEntity> {
       drawLine(canvas, lastpoint.dn, curPoint.dn, curX, ChartColors.ma30Color);
     }
   }
+
   //根据当前的价格计算出
   double getY(double value) => scaleY * (maxValue - value) + chartRect.top;
 }

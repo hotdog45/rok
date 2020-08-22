@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class BottomActionSheet {
-  static show(BuildContext context, List  data,
-      {String title: '标题', Function callBack(int)}) {
+  static show(BuildContext context, List data,
+      {String title = '标题', Function callBack(int)}) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -19,9 +19,9 @@ class BottomActionSheet {
                   Flexible(
                       child: Container(
                     margin: EdgeInsets.only(left: 10, right: 10),
-                    decoration: new BoxDecoration(
+                    decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: new BorderRadius.all(Radius.circular(14)),
+                      borderRadius: BorderRadius.all(Radius.circular(14)),
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -41,12 +41,12 @@ class BottomActionSheet {
                           itemBuilder: (context, index) {
                             return Column(
                               children: <Widget>[
-                                new ListTile(
+                                ListTile(
                                   onTap: () {
                                     Navigator.pop(context);
                                     callBack(index);
                                   },
-                                  title: new Text(
+                                  title: Text(
                                     data[index].name + data[index].phone,
                                     textAlign: TextAlign.center,
                                   ),
@@ -73,13 +73,13 @@ class BottomActionSheet {
                       width: double.infinity,
                       margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
                       alignment: Alignment.center,
-                      decoration: new BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: new BorderRadius.all(Radius.circular(14)),
+                        borderRadius: BorderRadius.all(Radius.circular(14)),
                       ),
                       child: Text('取消',
                           textAlign: TextAlign.center,
-                          style: new TextStyle(
+                          style: TextStyle(
                             fontSize: 17.0,
                           )),
                     ),

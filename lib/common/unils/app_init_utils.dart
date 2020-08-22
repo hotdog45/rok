@@ -12,14 +12,11 @@ import 'package:rok/page/user/login_page.dart';
 
 import 'package:umeng_analytics_plugin/umeng_analytics_plugin.dart';
 
-final AppInitUtils appInitUtils = new AppInitUtils();
+final AppInitUtils appInitUtils = AppInitUtils();
 
 class AppInitUtils {
 //移除用户数据
-  Future clearUserData() async {
-
-
-  }
+  Future clearUserData() async {}
 
   initFluwx() async {
     await registerWxApi(
@@ -36,11 +33,8 @@ class AppInitUtils {
       iosKey: '5f0430250cafb223330000a3',
     );
 
-    print('Umeng initialized:'+result.toString());
-
-
+    print('Umeng initialized:' + result.toString());
   }
-
 
   initEasyLoading() async {
     EasyLoading.instance
@@ -75,8 +69,4 @@ class AppInitUtils {
             color: Colors.white,
             iconTheme: IconThemeData(color: Colors.black)));
   }
-
-
-
-
 }

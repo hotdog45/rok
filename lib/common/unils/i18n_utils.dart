@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-/**
- * Copyright (C), 2015-2020, 谊品生鲜
- * FileName: i18n_utils
- * Author: lishunfeng
- * Date: 2020/7/25 8:29 PM
- * Description:
- * History:
- * <author> <time> <version> <desc>
- * 作者姓名 修改时间 版本号 描述
- */
+/// Copyright (C), 2015-2020, 谊品生鲜
+/// FileName: i18n_utils
+/// Author: lishunfeng
+/// Date: 2020/7/25 8:29 PM
+/// Description:
+/// History:
+/// <author> <time> <version> <desc>
+/// 作者姓名 修改时间 版本号 描述
 
 enum LanguageEnum { Arab, Japan, China, English, Korean, Spain, India, French }
 //阿拉伯 -日本 -中国 - 英语 -韩语 -西班牙 -印度 -法语

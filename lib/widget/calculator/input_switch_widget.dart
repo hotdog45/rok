@@ -8,7 +8,6 @@ class InputSwitchWidget extends StatefulWidget {
   final int type;
   const InputSwitchWidget({Key key, this.theme, this.type}) : super(key: key);
 
-
   @override
   _InputSwitchWidgetState createState() => _InputSwitchWidgetState();
 }
@@ -41,21 +40,17 @@ class _InputSwitchWidgetState extends State<InputSwitchWidget> {
                     ),
                   ),
                 ),
-
-
-               Container(
-                    color: kAppWhiteColor,
-                    width: 50,
-                    child: Switch(
-
-                        value: check,
-                        activeColor: Colors.blue,
-                        onChanged: (bool val) {
-                            this.setState(() {
-                              this.check = !this.check;
-                            });
-                    }),
-
+                Container(
+                  color: kAppWhiteColor,
+                  width: 50,
+                  child: Switch(
+                      value: check,
+                      activeColor: Colors.blue,
+                      onChanged: (bool val) {
+                        this.setState(() {
+                          this.check = !this.check;
+                        });
+                      }),
                 )
               ],
             ),
@@ -68,7 +63,6 @@ class _InputSwitchWidgetState extends State<InputSwitchWidget> {
         ],
       ),
     );
-
   }
 
 //  Switch 有以下常用属性：
@@ -81,6 +75,5 @@ class _InputSwitchWidgetState extends State<InputSwitchWidget> {
 //  inactiveTrackColor → Color - 非激活时横条的颜色。
 //  onChanged → ValueChanged - 改变时触发。
 //  value → bool - 切换按钮的值。
-
 
 }

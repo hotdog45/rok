@@ -1,4 +1,3 @@
-
 import 'package:rok/common/base/base_view_model.dart';
 
 class GoodsListViewModel extends BaseViewModel {

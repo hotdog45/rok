@@ -1,5 +1,3 @@
-
-
 ///错误编码
 class Code {
   ///网络错误
@@ -22,6 +20,4 @@ class Code {
 
   /// token 失效
   static const INVALID_TOKEN_ERROR = 50001;
-
-
 }

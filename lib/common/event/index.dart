@@ -1,6 +1,6 @@
 import 'package:event_bus/event_bus.dart';
 
-EventBus eventBus = new EventBus();
+EventBus eventBus = EventBus();
 
 class HttpErrorEvent {
   final int code;
@@ -36,35 +36,35 @@ class GetShopCartList {
   GetShopCartList();
 }
 
-
 //刷新分类列表
 class RefreshCategoryList {
   RefreshCategoryList();
 }
+
 //刷新订单列表
 class RefreshOrderList {
   RefreshOrderList();
 }
 
 //获取购物车
-class GetShopCartNum{
+class GetShopCartNum {
   final int num;
   GetShopCartNum(this.num);
 }
 
 //支付结果
-class GetPayResult{
+class GetPayResult {
   final int num;
   GetPayResult(this.num);
 }
 
 // 用户不存在
-class UserNoHave{
+class UserNoHave {
   UserNoHave();
 }
 
 // 无网络
-class NoNet{
+class NoNet {
   final bool notNet;
   NoNet(this.notNet);
 }

@@ -9,6 +9,7 @@ const String getUserRegister = "user/register";
 //登录
 const String userLogin = "user/login";
 
+
 //个人认证
 const String userAuth = "user/auth/personal";
 
@@ -37,9 +38,6 @@ const String tradePassword = "user/setting/trade/password";
 
 
 ////////////////////////////////////////////////////////////////
-
-
-
 
 ///网关API
 const String BASE_URL_RELEASE = "https://apigw.ypshengxian.com/request"; //线上

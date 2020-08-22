@@ -12,15 +12,12 @@ class MyBasicMessageChannel {
   static const String NATIVE_LOGIN_SUCCESS = "yp://native_login_success";
 
   ///-----------------------事件名称 end-------------------------------
-  
 
   // 接受消息
   static void handleBasicMessageChannel() {
     basicMessageChannel
         .setMessageHandler((String message) => Future<String>(() {
-
-      if (message.startsWith(NATIVE_LOGIN_SUCCESS)) {
-
+              if (message.startsWith(NATIVE_LOGIN_SUCCESS)) {
               } else {
                 return "收到Native的消息：接受成功";
               }
@@ -31,7 +28,7 @@ class MyBasicMessageChannel {
   static Future<String> sendMessage(msg) async {
     //发送消息
     var response = await basicMessageChannel.send(msg);
-   
+
     return response;
   }
 }

@@ -38,7 +38,7 @@ class _LiquidationCalculatorWidgetState
             child: InputAmountWidget(theme: "开仓价格", unit: "USDT"),
           ),
           InputAmountWidget(theme: "平仓数量", unit: "手"),
-          InputAmountWidget(theme: "合约余额", unit: "USDT"), 
+          InputAmountWidget(theme: "合约余额", unit: "USDT"),
           InkWell(
             child: Container(
                 margin: EdgeInsets.only(left: 20, top: 30, right: 20),

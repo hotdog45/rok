@@ -15,9 +15,9 @@ class InputAmountWidget extends StatefulWidget {
 }
 
 class _InputAmountWidgetState extends State<InputAmountWidget> {
-  final TextEditingController controller1 = new TextEditingController();
-  final TextEditingController controller2 = new TextEditingController();
-  final TextEditingController controller3 = new TextEditingController();
+  final TextEditingController controller1 = TextEditingController();
+  final TextEditingController controller2 = TextEditingController();
+  final TextEditingController controller3 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _InputAmountWidgetState extends State<InputAmountWidget> {
             child: Row(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(  right: 15),
+                  margin: EdgeInsets.only(right: 15),
                   child: Text(
                     widget.theme,
                     style: TextStyle(
@@ -47,30 +47,30 @@ class _InputAmountWidgetState extends State<InputAmountWidget> {
                   ),
                 ),
 
-               Container(
-                    width: 250,
-                    height: 40,
-                margin: EdgeInsets.only(bottom: 8),
-                    child: TextField(
-                      controller: controller1,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                        hintText: '请输入',
-                        hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
-                        border: InputBorder.none,
-                      ),
-                      inputFormatters: [
-//                    LengthLimitingTextInputFormatter(11),
-                        WhitelistingTextInputFormatter.digitsOnly
-                      ],
-                      onChanged: (v) {
-                        //   _setBtnState();
-                      },
-                      style: TextStyle(fontSize: 15, color: kAppTextColor),
-                      textAlign: TextAlign.right,
+                Container(
+                  width: 250,
+                  height: 40,
+                  margin: EdgeInsets.only(bottom: 8),
+                  child: TextField(
+                    controller: controller1,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                      hintText: '请输入',
+                      hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
+                      border: InputBorder.none,
                     ),
+                    inputFormatters: [
+//                    LengthLimitingTextInputFormatter(11),
+                      WhitelistingTextInputFormatter.digitsOnly
+                    ],
+                    onChanged: (v) {
+                      //   _setBtnState();
+                    },
+                    style: TextStyle(fontSize: 15, color: kAppTextColor),
+                    textAlign: TextAlign.right,
                   ),
+                ),
 
                 Text(
                   widget.unit,

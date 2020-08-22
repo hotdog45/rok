@@ -5,8 +5,6 @@ import 'package:rok/common/style/style.dart';
 
 import 'home_item.dart';
 
-
-
 class HomeBannerWidget extends StatelessWidget {
   final String name;
   final String url;

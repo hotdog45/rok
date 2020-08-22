@@ -3,7 +3,6 @@ import 'kchart/flutter_kchart.dart';
 import 'package:flutter/material.dart';
 
 class KLineDataController extends ChangeNotifier {
-
   List<KLineMainStateModel> mainStates;
   List<KLineSecondaryStateModel> secondaryStates;
 
@@ -15,7 +14,7 @@ class KLineDataController extends ChangeNotifier {
 
   MainState mainState;
 
-  SecondaryState  secondaryState;
+  SecondaryState secondaryState;
 
   bool isLine;
 
@@ -34,7 +33,6 @@ class KLineDataController extends ChangeNotifier {
     periodModel = KLinePeriodModel.defaultModel();
   }
 
-
   void changeMainState(MainState state) {
     mainState = state;
     notifyListeners();
@@ -45,18 +43,21 @@ class KLineDataController extends ChangeNotifier {
     notifyListeners();
   }
 
-
   void changePeriod(KLinePeriodModel periodModel) {
-    if(periodModel.name == this.periodModel.name) {
+    if (periodModel.name == this.periodModel.name) {
       return;
     }
     this.periodModel = periodModel;
-    if(periodModel.name == "分时") {
+    if (periodModel.name == "分时") {
       isLine = true;
     } else {
       isLine = false;
     }
-    if(this.flodPeriodItems.map((e) => e.name).toList().contains(periodModel.name)) {
+    if (this
+        .flodPeriodItems
+        .map((e) => e.name)
+        .toList()
+        .contains(periodModel.name)) {
       this.topPeriodItems.last.name = periodModel.name;
     } else {
       this.topPeriodItems.last.name = "更多";
@@ -64,23 +65,19 @@ class KLineDataController extends ChangeNotifier {
     changePeriodClick(periodModel);
     notifyListeners();
   }
-
 }
 
 class KLineDataWidgetController extends StatefulWidget {
-
-  const KLineDataWidgetController({
-    Key key,
-    @required this.child,
-    @required this.dataController
-  }) : super(key: key);
+  const KLineDataWidgetController(
+      {Key key, @required this.child, @required this.dataController})
+      : super(key: key);
 
   final Widget child;
   final KLineDataController dataController;
 
   static KLineDataController of(BuildContext context) {
     final _KLineControllerScope scope =
-    context.inheritFromWidgetOfExactType(_KLineControllerScope);
+        context.inheritFromWidgetOfExactType(_KLineControllerScope);
     return scope?.controller;
   }
 
@@ -89,11 +86,9 @@ class KLineDataWidgetController extends StatefulWidget {
     // TODO: implement createState
     return _KLineDataWidgetControllerState();
   }
-
 }
 
 class _KLineDataWidgetControllerState extends State<KLineDataWidgetController> {
-
   KLineDataController _controller;
 
   @override
@@ -106,10 +101,8 @@ class _KLineDataWidgetControllerState extends State<KLineDataWidgetController> {
 
   void _onController() {
     print("_onController");
-      setState(() {
-      });
+    setState(() {});
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -124,26 +117,18 @@ class _KLineDataWidgetControllerState extends State<KLineDataWidgetController> {
     _controller.removeListener(_onController);
     _controller.dispose();
     super.dispose();
-
   }
-
 }
 
-
-
-
 class _KLineControllerScope extends InheritedWidget {
-
   final KLineDataController controller;
 
-  _KLineControllerScope({Key key,this.controller,Widget child}) : super(key: key,child: child);
+  _KLineControllerScope({Key key, this.controller, Widget child})
+      : super(key: key, child: child);
 
   @override
   bool updateShouldNotify(_KLineControllerScope oldWidget) {
     // TODO: implement updateShouldNotify
-    return  true; //  controller != oldWidget.controller;
+    return true; //  controller != oldWidget.controller;
   }
-
-
 }
-

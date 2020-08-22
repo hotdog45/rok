@@ -8,9 +8,8 @@ import 'package:orientation/orientation.dart';
 
 import 'common/unils/app_init_utils.dart';
 import 'page/common/welcome_page.dart';
-void main() async{
 
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   OrientationPlugin.setPreferredOrientations(DeviceOrientation.values);
   OrientationPlugin.setEnabledSystemUIOverlays(SystemUiOverlay.values);
@@ -30,14 +29,10 @@ void main() async{
   runApp(MyApp(flutterI18nDelegate));
 }
 
-
-
 class MyApp extends StatelessWidget {
-
   final FlutterI18nDelegate flutterI18nDelegate;
 
   MyApp(this.flutterI18nDelegate);
-
 
   @override
   Widget build(BuildContext context) {

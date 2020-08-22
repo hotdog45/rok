@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
@@ -6,9 +5,10 @@ import 'package:rok/common/style/style.dart';
 class InputItemWidget extends StatefulWidget {
   final String theme;
   final int type;
-  final String rightAction ;
+  final String rightAction;
 
-  const InputItemWidget({Key key, this.theme, this.type, this.rightAction}) : super(key: key);
+  const InputItemWidget({Key key, this.theme, this.type, this.rightAction})
+      : super(key: key);
   @override
   _InputItemWidgetState createState() => _InputItemWidgetState();
 }
@@ -40,9 +40,8 @@ class _InputItemWidgetState extends State<InputItemWidget> {
                     ),
                   ),
                 ),
-
                 Text(
-                  null== widget.rightAction?"":widget.rightAction+"   ",
+                  null == widget.rightAction ? "" : widget.rightAction + "   ",
                   style: TextStyle(
                     decoration: TextDecoration.none,
                     fontSize: fontSizeSmall,

@@ -23,8 +23,8 @@ class _AssetsPageState extends State<AssetsPage> {
         height: ScreenUtil.screenHeight,
         width: ScreenUtil.screenWidthDp,
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [Color(0xffCD53E1), Color(0xff421299)]),
-
+          gradient:
+              LinearGradient(colors: [Color(0xffCD53E1), Color(0xff421299)]),
         ),
         child: Column(
           children: <Widget>[
@@ -37,7 +37,8 @@ class _AssetsPageState extends State<AssetsPage> {
                       margin: EdgeInsets.only(top: 50, left: 20),
                       child: Text(
                         "浮动盈亏(USDT)",
-                        style: TextStyle(fontSize: fontSizeMiddle, color:kAppWhiteColor),
+                        style: TextStyle(
+                            fontSize: fontSizeMiddle, color: kAppWhiteColor),
                       ),
                     ),
                     Container(
@@ -45,7 +46,8 @@ class _AssetsPageState extends State<AssetsPage> {
                       width: ScreenUtil.screenWidthDp - 140,
                       child: Text(
                         "88888888.000000",
-                        style: TextStyle(fontSize: fontSizeLager, color: kAppWhiteColor),
+                        style: TextStyle(
+                            fontSize: fontSizeLager, color: kAppWhiteColor),
                       ),
                     ),
                     Container(
@@ -53,7 +55,8 @@ class _AssetsPageState extends State<AssetsPage> {
                       margin: EdgeInsets.only(left: 20, top: 5),
                       child: Text(
                         "≈0.00000000",
-                        style: TextStyle(fontSize: fontSizeMiddle, color: kAppWhiteColor),
+                        style: TextStyle(
+                            fontSize: fontSizeMiddle, color: kAppWhiteColor),
                       ),
                     )
                   ],
@@ -65,42 +68,42 @@ class _AssetsPageState extends State<AssetsPage> {
                         color: kAppWhiteColor,
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      padding: EdgeInsets.only(top: 3,bottom: 3,left:28,right: 28),
+                      padding: EdgeInsets.only(
+                          top: 3, bottom: 3, left: 28, right: 28),
                       margin: EdgeInsets.only(top: 41),
                       child: Text(
                         "入金",
-                        style: TextStyle(fontSize: fontSizeNormal, color: kAppThemeColor),
+                        style: TextStyle(
+                            fontSize: fontSizeNormal, color: kAppThemeColor),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 18),
                       child: Text(
                         "出金",
-                        style: TextStyle(fontSize: fontSizeNormal, color: kAppWhiteColor),
+                        style: TextStyle(
+                            fontSize: fontSizeNormal, color: kAppWhiteColor),
                       ),
                     )
                   ],
-
                 ),
-
               ],
             ),
             AssectDetailsWidget(),
-            Stack(children: <Widget>[
-              Container(
-
-                color: kAppBcgColor,
-
-                child: Column(children: <Widget>[
-
-                  BondAndFeeWidget(),
-                  BondAndFeeWidget(),
-                  BondAndFeeWidget(),
-                ],),
-              )
-
-            ],)
-
+            Stack(
+              children: <Widget>[
+                Container(
+                  color: kAppBcgColor,
+                  child: Column(
+                    children: <Widget>[
+                      BondAndFeeWidget(),
+                      BondAndFeeWidget(),
+                      BondAndFeeWidget(),
+                    ],
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),

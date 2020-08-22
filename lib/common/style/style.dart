@@ -32,10 +32,7 @@ Color kRedColor = Color(0xFFD70C6A);
 
 Color kRedSubColor = Color(0xFFFCF6F8);
 
-
 Color kSubBtnColor = Color(0xFFEDF3FF);
-
-
 
 //我的 背景色
 Color kMineBgColor = Color(0xFFF4F9FF);
@@ -45,7 +42,6 @@ Color kMineBgColor1 = Color(0xFFE7EEFE);
 
 Color kKeyButton = Color(0xFFEFEBF9);
 
-
 Color kAppColor(String hex) {
 // 如果传入的十六进制颜色值不符合要求，返回默认值
   if (hex == null ||
@@ -53,7 +49,7 @@ Color kAppColor(String hex) {
       int.tryParse(hex.substring(1, 7), radix: 16) == null) {
     hex = '#ffffff';
   }
-  return new Color(int.parse(hex.substring(1, 7), radix: 16) + 0xFF000000);
+  return Color(int.parse(hex.substring(1, 7), radix: 16) + 0xFF000000);
 }
 
 num kAppFontSize(num size) {
@@ -61,7 +57,7 @@ num kAppFontSize(num size) {
 }
 
 Color randomColor() {
-  var random = new Random();
+  var random = Random();
   int r = random.nextInt(255);
   int g = random.nextInt(255);
   int b = random.nextInt(255);
