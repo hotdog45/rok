@@ -4,16 +4,14 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio_log/overlay_draggable_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:rok/common/config/config.dart';
 import 'package:rok/common/event/index.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/config/config.dart';
 import 'package:rok/page/user/mine_page.dart';
 import 'package:rok/widget/common/my_drawer.dart';
 
-import '../assets_page.dart';
 import '../home_page.dart';
 import '../quotes_list_page.dart';
 import '../test_page.dart';

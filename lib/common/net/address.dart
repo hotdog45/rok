@@ -1,4 +1,5 @@
-import 'package:rok/common/config/config.dart';
+
+import 'package:rok/config/config.dart';
 
 ///uri
 const String getCompanyHomeLoadHome = "company.home.loadHome";

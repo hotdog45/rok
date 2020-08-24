@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:rok/common/config/config.dart';
+import 'package:rok/common/constant/app_constant.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/local_storage.dart';
@@ -26,9 +26,9 @@ class _MinePageState extends State<MinePage> {
 
   _getUser() async {
 //    userName = await LocalStorage.get(Config.USER_TOKEN) ?? "";
-   String token = await LocalStorage.get(Config.USER_TOKEN);
+   String token = await LocalStorage.get(AppConstant.USER_TOKEN);
    if(null!=token&&token.length>1){
-     userName = await LocalStorage.get(Config.USER_MOBILE);
+     userName = await LocalStorage.get(AppConstant.USER_MOBILE);
      userName = userName.substring(0,3)+"****"+ userName.substring(7,11);
      setState(() {
 
