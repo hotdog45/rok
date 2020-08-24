@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/quotes_details_page.dart';
-/**
- * Copyright (C), 2015-2020, 谊品生鲜
- * FileName: quotes_item_widget
- * Author: lishunfeng
- * Date: 2020/7/26 3:55 PM
- * Description:
- * History:
- * <author> <time> <version> <desc>
- * 作者姓名 修改时间 版本号 描述
- */
+/// Copyright (C), 2015-2020, 谊品生鲜
+/// FileName: quotes_item_widget
+/// Author: lishunfeng
+/// Date: 2020/7/26 3:55 PM
+/// Description:
+/// History:
+/// <author> <time> <version> <desc>
+/// 作者姓名 修改时间 版本号 描述
 
 class QuotesItemWidget extends StatefulWidget {
   final Color color;
 
-  const QuotesItemWidget({Key key, this.color = Colors.white}) : super(key: key);
+  const QuotesItemWidget({Key key, this.color = Colors.white})
+      : super(key: key);
 
   @override
   _QuotesItemWidgetState createState() => _QuotesItemWidgetState();
@@ -32,21 +31,16 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
       child: Container(
         height: 65,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [
-              Colors.white,
-              widget.color,
-            ],
-          ),
-          borderRadius: BorderRadius.circular(6),
-          boxShadow: [BoxShadow(
-              color: kShadowColor,
-              blurRadius: 10.0
-          )]
-
-        ),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Colors.white,
+                widget.color,
+              ],
+            ),
+            borderRadius: BorderRadius.circular(6),
+            boxShadow: [BoxShadow(color: kShadowColor, blurRadius: 10.0)]),
         margin: EdgeInsets.only(bottom: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,

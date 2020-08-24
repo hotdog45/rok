@@ -11,16 +11,14 @@ import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/round_slider_track_shape.dart';
 
 import 'position_list_widget.dart';
-/**
- * Copyright (C), 2015-2020, 谊品生鲜
- * FileName: transaction_widget
- * Author: lishunfeng
- * Date: 2020/7/28 8:55 PM
- * Description:
- * History:
- * <author> <time> <version> <desc>
- * 作者姓名 修改时间 版本号 描述
- */
+/// Copyright (C), 2015-2020, 谊品生鲜
+/// FileName: transaction_widget
+/// Author: lishunfeng
+/// Date: 2020/7/28 8:55 PM
+/// Description:
+/// History:
+/// <author> <time> <version> <desc>
+/// 作者姓名 修改时间 版本号 描述
 
 class TransactionWidget extends StatefulWidget {
   @override
@@ -135,7 +133,8 @@ class _TransactionWidgetState extends State<TransactionWidget>
                   fontWeight: FontWeight.bold,
                   fontSize: fontSizeMiddle,
                   onTap: () {
-                    CustomActionSheet.show(context, priceTypeMap.values.toList(),
+                    CustomActionSheet.show(
+                        context, priceTypeMap.values.toList(),
                         cancel: "取消",
                         title: "提示",
                         sel: priceTypeMap[priceType], callBack: (e) {

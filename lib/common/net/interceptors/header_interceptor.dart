@@ -6,15 +6,12 @@ import 'package:package_info/package_info.dart';
 import 'package:rok/common/config/config.dart';
 import 'package:rok/common/unils/local_storage.dart';
 
-
 class HeaderInterceptors extends InterceptorsWrapper {
-
   static const CONTENT_TYPE_FORM = "application/json";
 
   @override
-  onRequest(RequestOptions options) async{
-
-    Map<String, dynamic> headers = new HashMap();
+  onRequest(RequestOptions options) async {
+    Map<String, dynamic> headers = HashMap();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String token = await LocalStorage.get(Config.USER_TOKEN) ?? "";
 

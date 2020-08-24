@@ -24,40 +24,9 @@ class _MineThirdPartWidgetState extends State<MineThirdPartWidget> {
       ),
       child: Row(
         children: <Widget>[
-
-
-          InkWell(child:     Container(
-            margin: EdgeInsets.only(left: 20),
-            padding: EdgeInsets.all(10),
-            child: Column(
-              children: <Widget>[
-                Image.asset(
-                  "static/images/safety.png",
-                  height: 55,
-                  width: 55,
-                ),
-                Text(
-                  "安全中心",
-                  style: TextStyle(
-                    fontSize: fontSizeMiddle,
-                    color: kAppTextColor,
-                  ),
-                )
-              ],
-            ),
-          ),onTap: (){
-            NavigatorUtils.navigatorRouter(context, SafeCenterPage());
-          },),
-
-
-
-
-
-          Expanded(
-
-
-
-            child: InkWell(child: Container(
+          InkWell(
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
               padding: EdgeInsets.all(10),
               child: Column(
                 children: <Widget>[
@@ -67,7 +36,7 @@ class _MineThirdPartWidgetState extends State<MineThirdPartWidget> {
                     width: 55,
                   ),
                   Text(
-                    "账单明细",
+                    "安全中心",
                     style: TextStyle(
                       fontSize: fontSizeMiddle,
                       color: kAppTextColor,
@@ -75,13 +44,37 @@ class _MineThirdPartWidgetState extends State<MineThirdPartWidget> {
                   )
                 ],
               ),
-            ),onTap: (){
-              NavigatorUtils.navigatorRouter(context, BillDetailListPage());
-
-            },),
+            ),
+            onTap: () {
+              NavigatorUtils.navigatorRouter(context, SafeCenterPage());
+            },
           ),
-
-
+          Expanded(
+            child: InkWell(
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: <Widget>[
+                    Image.asset(
+                      "static/images/safety.png",
+                      height: 55,
+                      width: 55,
+                    ),
+                    Text(
+                      "账单明细",
+                      style: TextStyle(
+                        fontSize: fontSizeMiddle,
+                        color: kAppTextColor,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              onTap: () {
+                NavigatorUtils.navigatorRouter(context, BillDetailListPage());
+              },
+            ),
+          ),
           Container(
             margin: EdgeInsets.only(right: 20),
             padding: EdgeInsets.all(10),

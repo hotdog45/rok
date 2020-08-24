@@ -6,7 +6,7 @@ import '../chart_style.dart';
 import '../utils/number_util.dart';
 import '../kchat_widget.dart';
 
-abstract class BaseChartRenderer<T>  {
+abstract class BaseChartRenderer<T> {
   double maxValue, minValue;
   double topPadding;
   Rect chartRect;
@@ -26,7 +26,12 @@ abstract class BaseChartRenderer<T>  {
     ..strokeWidth = 1.0
     ..color = Colors.red;
 
-  BaseChartRenderer({@required this.chartRect,this.maxValue,this.minValue,this.topPadding,this.candleWidth}) {
+  BaseChartRenderer(
+      {@required this.chartRect,
+      this.maxValue,
+      this.minValue,
+      this.topPadding,
+      this.candleWidth}) {
     scaleY = chartRect.height / (maxValue - minValue);
   }
 
@@ -50,11 +55,15 @@ abstract class BaseChartRenderer<T>  {
       ..style = PaintingStyle.fill
       ..isAntiAlias = true;
     paint.shader = shader;
-    canvas.drawRect(Rect.fromLTRB(chartRect.left, chartRect.top - topPadding, chartRect.right, chartRect.bottom), paint);
+    canvas.drawRect(
+        Rect.fromLTRB(chartRect.left, chartRect.top - topPadding,
+            chartRect.right, chartRect.bottom),
+        paint);
   }
 
   //划线公用方法
-  void drawLine(Canvas canvas, double lastprice, double curprice, double curX, Color color) {
+  void drawLine(Canvas canvas, double lastprice, double curprice, double curX,
+      Color color) {
     curX = curX + candleWidth / 2;
     double lastX = curX - candleWidth - ChartStyle.canldeMargin;
     double x1 = chartRect.width - lastX;
@@ -62,15 +71,17 @@ abstract class BaseChartRenderer<T>  {
     double x2 = chartRect.width - curX;
     double y2 = getY(curprice);
     chartPaint.color = color;
-    canvas.drawLine(Offset(x1, y1),Offset(x2, y2),chartPaint);
+    canvas.drawLine(Offset(x1, y1), Offset(x2, y2), chartPaint);
   }
+
   //根据当前的价格计算出
   double getY(double value) => scaleY * (maxValue - value) + chartRect.top;
 
   String format(double n) {
     return NumberUtil.format(n);
   }
-  TextStyle getTextStyle(Color color){
-    return TextStyle(fontSize: ChartStyle.defaultTextSize,color: color);
+
+  TextStyle getTextStyle(Color color) {
+    return TextStyle(fontSize: ChartStyle.defaultTextSize, color: color);
   }
 }

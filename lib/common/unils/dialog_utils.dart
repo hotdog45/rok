@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -10,14 +9,12 @@ import 'package:rok/common/model/home/app_upgrade.dart';
 
 import 'navigator_utils.dart';
 
-
-
 typedef updateCallBack = dynamic Function();
-final DialogUtils dialogUtils = new DialogUtils();
+final DialogUtils dialogUtils = DialogUtils();
 
 class DialogUtils {
-   void showAppUpdateDialog(
-      BuildContext context, upgradeInfo, newV,isForce, updateCallBack) {
+  void showAppUpdateDialog(
+      BuildContext context, upgradeInfo, newV, isForce, updateCallBack) {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -64,39 +61,38 @@ class DialogUtils {
 //    }
 //  }
 
-   Future reqCheckAppUpgrade(context, updateCallBack,{bool isMine = false}) async {
+  Future reqCheckAppUpgrade(context, updateCallBack,
+      {bool isMine = false}) async {
 //    var result = await getCheckAppUpgrade();
-   return;
-     var result;
+    return;
+    var result;
     if (result) {
       AppUpgrade appUpgrade = result.data;
       if (appUpgrade.status == 2) {
-        dialogUtils.showAppUpdateDialog(
-            context, appUpgrade.upgradeInfo,appUpgrade.version, false, updateCallBack);
+        dialogUtils.showAppUpdateDialog(context, appUpgrade.upgradeInfo,
+            appUpgrade.version, false, updateCallBack);
       } else if (appUpgrade.status == 3) {
-        dialogUtils.showAppUpdateDialog(
-            context, appUpgrade.upgradeInfo,appUpgrade.version, true, updateCallBack);
+        dialogUtils.showAppUpdateDialog(context, appUpgrade.upgradeInfo,
+            appUpgrade.version, true, updateCallBack);
       } else {
-        if(!isMine){
-          if (updateCallBack !=null){
+        if (!isMine) {
+          if (updateCallBack != null) {
             updateCallBack();
           }
-        }else{
+        } else {
           NavigatorUtils.showToast("已经是最新版本~");
         }
-
       }
     } else {
-      if(!isMine){
+      if (!isMine) {
         updateCallBack();
-      }else{
+      } else {
         NavigatorUtils.showToast("已经是最新版本~");
       }
     }
   }
 
-   Future<bool> showAlert(context,title,text,cancelTitle,sureTitle) {
-
+  Future<bool> showAlert(context, title, text, cancelTitle, sureTitle) {
     if (Platform.isIOS) {
       return showCupertinoDialog(
           context: context,
@@ -105,12 +101,18 @@ class DialogUtils {
               title: Text(title),
               content: Text(text),
               actions: <Widget>[
-                CupertinoDialogAction(child: Text(cancelTitle),onPressed: (){
-                  Navigator.of(context).pop(false);
-                },),
-                CupertinoDialogAction(child: Text(sureTitle),onPressed: (){
-                  Navigator.of(context).pop(true);
-                },),
+                CupertinoDialogAction(
+                  child: Text(cancelTitle),
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: Text(sureTitle),
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                ),
               ],
             );
           });

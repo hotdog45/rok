@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
-/**
- * Copyright (C), 2015-2020, 谊品生鲜
- * FileName: instructions_widget
- * Author: lishunfeng
- * Date: 2020/8/1 5:27 PM
- * Description:
- * History:
- * <author> <time> <version> <desc>
- * 作者姓名 修改时间 版本号 描述
- */
+/// Copyright (C), 2015-2020, 谊品生鲜
+/// FileName: instructions_widget
+/// Author: lishunfeng
+/// Date: 2020/8/1 5:27 PM
+/// Description:
+/// History:
+/// <author> <time> <version> <desc>
+/// 作者姓名 修改时间 版本号 描述
 
 class InstructionsWidget extends StatelessWidget {
   @override
@@ -36,12 +34,15 @@ class InstructionsWidget extends StatelessWidget {
           _getTitleWidget("可用杠杆数", "10%,10倍;5%,20倍;2%,50倍", true),
           _getTitleWidget("手续费率", "日内:单边万2.5\n跨日:单边万3.5", false),
           _getTitleWidget("最大止损比例", "85%", true),
-          _getTitleWidget("委托占用保证金", "买入:数量(手)*合约价值(手)*买入委托价格*保障金率\n卖出:数量(手)*合约价值(手)*卖出委托价格*保障金率", false),
-          _getTitleWidget("盈亏计算", "做多:数量(手)*合约价值(手)*(买一价-开仓价格) \n做空:数量(手)*合约价值(手)*(开仓价-卖一价) ", true),
+          _getTitleWidget(
+              "委托占用保证金",
+              "买入:数量(手)*合约价值(手)*买入委托价格*保障金率\n卖出:数量(手)*合约价值(手)*卖出委托价格*保障金率",
+              false),
+          _getTitleWidget(
+              "盈亏计算",
+              "做多:数量(手)*合约价值(手)*(买一价-开仓价格) \n做空:数量(手)*合约价值(手)*(开仓价-卖一价) ",
+              true),
           _getTitleWidget("强平条件", "浮动盈亏<=止损金额 \n浮动盈亏<=止盈金额", false),
-
-
-
         ],
       ),
     );
@@ -52,13 +53,13 @@ class InstructionsWidget extends StatelessWidget {
 
   _getTitleWidget(title, desc, isWhite) {
     return Container(
-      padding: EdgeInsets.only(left: 20,top: 10,bottom: 10),
+      padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
       color: isWhite ? kAppWhiteColor : kSubBtnColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           MySuperWidget(
-              width: _leftWidth -20,
+              width: _leftWidth - 20,
               alignment: Alignment.centerLeft,
               text: title,
               textColor: kAppSubTextColor,

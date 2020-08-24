@@ -5,16 +5,14 @@ import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/line_widget.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
-/**
- * Copyright (C), 2015-2020, 谊品生鲜
- * FileName: position_item_widget
- * Author: lishunfeng
- * Date: 2020/7/30 10:22 PM
- * Description:
- * History:
- * <author> <time> <version> <desc>
- * 作者姓名 修改时间 版本号 描述
- */
+/// Copyright (C), 2015-2020, 谊品生鲜
+/// FileName: position_item_widget
+/// Author: lishunfeng
+/// Date: 2020/7/30 10:22 PM
+/// Description:
+/// History:
+/// <author> <time> <version> <desc>
+/// 作者姓名 修改时间 版本号 描述
 
 class PositionItemWidget extends StatelessWidget {
   @override
@@ -125,7 +123,7 @@ class PositionItemWidget extends StatelessWidget {
           _getItemWidget("止盈", "50%(0.242335)"),
           _getItemWidget("开仓价位", "0.243490"),
           _getItemWidget("手续费", "0.2434 USDT"),
-          _getItemWidget("开仓时间", "2020/07/30 22:41:34",isMicro:true),
+          _getItemWidget("开仓时间", "2020/07/30 22:41:34", isMicro: true),
           Container(
             height: 35,
             child: Row(
@@ -150,7 +148,7 @@ class PositionItemWidget extends StatelessWidget {
           _getItemWidget("止损", "80%(0.245238)"),
           _getItemWidget("市价平仓", "0.24509"),
           _getItemWidget("抵扣", "0"),
-          _getItemWidget("清算时间", "2020/07/30 22:46:24",isMicro:true),
+          _getItemWidget("清算时间", "2020/07/30 22:46:24", isMicro: true),
           Container(
             height: 35,
             child: Row(
@@ -165,7 +163,7 @@ class PositionItemWidget extends StatelessWidget {
     );
   }
 
-  _getItemWidget(title, desc,{isMicro =false}) {
+  _getItemWidget(title, desc, {isMicro = false}) {
     return Container(
         margin: EdgeInsets.only(top: 10),
         child: Row(
@@ -176,7 +174,9 @@ class PositionItemWidget extends StatelessWidget {
                     TextStyle(color: kAppSubTextColor, fontSize: fontSizeMin)),
             Text(
               desc,
-              style: TextStyle(color: kAppTextColor, fontSize:isMicro ? fontSizeMicro : fontSizeMin),
+              style: TextStyle(
+                  color: kAppTextColor,
+                  fontSize: isMicro ? fontSizeMicro : fontSizeMin),
             ),
           ],
         ));

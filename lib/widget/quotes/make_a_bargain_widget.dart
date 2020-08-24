@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
-/**
- * Copyright (C), 2015-2020, 谊品生鲜
- * FileName: make_a_bargain_widget
- * Author: lishunfeng
- * Date: 2020/8/1 5:18 PM
- * Description:
- * History:
- * <author> <time> <version> <desc>
- * 作者姓名 修改时间 版本号 描述
- */
+/// Copyright (C), 2015-2020, 谊品生鲜
+/// FileName: make_a_bargain_widget
+/// Author: lishunfeng
+/// Date: 2020/8/1 5:18 PM
+/// Description:
+/// History:
+/// <author> <time> <version> <desc>
+/// 作者姓名 修改时间 版本号 描述
 
 class MakeABargainWidget extends StatefulWidget {
   @override

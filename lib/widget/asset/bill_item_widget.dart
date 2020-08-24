@@ -18,7 +18,7 @@ class _BillItemWidgetState extends State<BillItemWidget> {
       child: Column(
         children: <Widget>[
           Container(
-              margin: EdgeInsets.only(left: 10,top: 10),
+              margin: EdgeInsets.only(left: 10, top: 10),
               width: ScreenUtil.screenWidthDp,
               child: Text(
                 "开仓10000手BTC/USDT 冻结保证金",
@@ -32,7 +32,7 @@ class _BillItemWidgetState extends State<BillItemWidget> {
 
           Container(
               width: ScreenUtil.screenWidthDp,
-              margin: EdgeInsets.only(left: 10,top: 10,bottom: 10),
+              margin: EdgeInsets.only(left: 10, top: 10, bottom: 10),
               child: Text(
                 "-18996589.54680000USDT",
                 style: TextStyle(color: kGreenColor, fontSize: fontSizeMiddle),

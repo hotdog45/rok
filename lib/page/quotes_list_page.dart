@@ -16,12 +16,12 @@ class _QuotesListPageState extends State<QuotesListPage>
   Animation animation;
   Animation animation2;
 
-
   @override
   void initState() {
     super.initState();
     controller = AnimationController(
-        duration: Duration(milliseconds: 600), vsync: this); //AnimationController
+        duration: Duration(milliseconds: 600),
+        vsync: this); //AnimationController
 
     animation =
         ColorTween(begin: Colors.white, end: Colors.white).animate(controller);
@@ -53,12 +53,12 @@ class _QuotesListPageState extends State<QuotesListPage>
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
 
     return Scaffold(
-      appBar: YPAppBar( "title.quotes", hasBackBtn: false,actions: [
-      InkWell(
-      child: Icon(Icons.refresh),
-        onTap: () {
-          _onTapHandle2();
-        }),
+      appBar: YPAppBar("title.quotes", hasBackBtn: false, actions: [
+        InkWell(
+            child: Icon(Icons.refresh),
+            onTap: () {
+              _onTapHandle2();
+            }),
         InkWell(
             child: Icon(Icons.gavel),
             onTap: () {
@@ -70,14 +70,15 @@ class _QuotesListPageState extends State<QuotesListPage>
         child: MyRefresh(
           child: ListView.builder(
             itemBuilder: (BuildContext context, index) {
-
-              return QuotesItemWidget(color: index%2==0 ? animation.value:animation2.value);
+              return QuotesItemWidget(
+                  color: index % 2 == 0 ? animation.value : animation2.value);
             },
             itemCount: 7,
             padding: EdgeInsets.all(15),
           ),
           onRefresh: () {},
-        ),),
+        ),
+      ),
     );
   }
 }

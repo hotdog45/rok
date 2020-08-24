@@ -1,7 +1,4 @@
-
-
 import 'dart:async';
-
 
 class NativeDataBloc {
   StreamController<String> _streamController;
@@ -16,7 +13,6 @@ class NativeDataBloc {
 
   Stream<String> get stream => _stream;
   String get token => _token;
-
 
   setToken(token) {
     _streamController.sink.add(token);

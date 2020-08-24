@@ -5,7 +5,8 @@ import 'kline_data_controller.dart';
 class KlineIndicatorsWidget extends StatelessWidget {
   List<KLineMainStateModel> mainStates;
   List<KLineSecondaryStateModel> secondaryStates;
-  KlineIndicatorsWidget({this.mainStates, this.secondaryStates,this.hideClick});
+  KlineIndicatorsWidget(
+      {this.mainStates, this.secondaryStates, this.hideClick});
 
   VoidCallback hideClick;
 
@@ -16,7 +17,7 @@ class KlineIndicatorsWidget extends StatelessWidget {
       height: 100,
       margin: EdgeInsets.only(left: 5, right: 5),
       decoration: BoxDecoration(
-        color: ChartColors.bgColor,
+          color: ChartColors.bgColor,
           border: Border.all(color: ChartColors.gridColor, width: 0.5)),
       child: Column(
         children: <Widget>[
@@ -40,9 +41,10 @@ class KlineIndicatorsWidget extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: (){
+                      onTap: () {
                         hideClick();
-                        KLineDataWidgetController.of(context).changeMainState(mainStates[index].state);
+                        KLineDataWidgetController.of(context)
+                            .changeMainState(mainStates[index].state);
                       },
                       child: Container(
                         height: 30,
@@ -50,7 +52,9 @@ class KlineIndicatorsWidget extends StatelessWidget {
                         child: Center(
                           child: Text(mainStates[index].name,
                               style: ChartStyle.getIndicatorTextStyle(
-                                  isSelect: mainStates[index].state == KLineDataWidgetController.of(context).mainState)),
+                                  isSelect: mainStates[index].state ==
+                                      KLineDataWidgetController.of(context)
+                                          .mainState)),
                         ),
                       ),
                     );
@@ -62,11 +66,15 @@ class KlineIndicatorsWidget extends StatelessWidget {
               IconButton(
                   icon: Icon(
                     Icons.remove_red_eye,
-                    color: KLineDataWidgetController.of(context).mainState == MainState.NONE ? Color(0xff3D536c) : Color(0xffBBBBBB),
+                    color: KLineDataWidgetController.of(context).mainState ==
+                            MainState.NONE
+                        ? Color(0xff3D536c)
+                        : Color(0xffBBBBBB),
                   ),
-                  onPressed: (){
+                  onPressed: () {
                     hideClick();
-                    KLineDataWidgetController.of(context).changeMainState(MainState.NONE);
+                    KLineDataWidgetController.of(context)
+                        .changeMainState(MainState.NONE);
                   })
             ],
           ),
@@ -90,19 +98,22 @@ class KlineIndicatorsWidget extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: (){
+                      onTap: () {
                         hideClick();
-                      KLineDataWidgetController.of(context).changeSecondaryState(secondaryStates[index].state);
-                    },
-                    child: Container(
-                      height: 30,
-                      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                      child: Center(
-                        child: Text(secondaryStates[index].name,
-                            style: ChartStyle.getIndicatorTextStyle(
-                                isSelect: secondaryStates[index].state == KLineDataWidgetController.of(context).secondaryState)),
+                        KLineDataWidgetController.of(context)
+                            .changeSecondaryState(secondaryStates[index].state);
+                      },
+                      child: Container(
+                        height: 30,
+                        padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                        child: Center(
+                          child: Text(secondaryStates[index].name,
+                              style: ChartStyle.getIndicatorTextStyle(
+                                  isSelect: secondaryStates[index].state ==
+                                      KLineDataWidgetController.of(context)
+                                          .secondaryState)),
+                        ),
                       ),
-                    ),
                     );
                   },
                   itemCount: secondaryStates.length,
@@ -112,11 +123,16 @@ class KlineIndicatorsWidget extends StatelessWidget {
               IconButton(
                   icon: Icon(
                     Icons.remove_red_eye,
-                    color:KLineDataWidgetController.of(context).secondaryState == SecondaryState.NONE ? Color(0xff3D536c) : Color(0xffBBBBBB),
+                    color:
+                        KLineDataWidgetController.of(context).secondaryState ==
+                                SecondaryState.NONE
+                            ? Color(0xff3D536c)
+                            : Color(0xffBBBBBB),
                   ),
-                  onPressed: (){
+                  onPressed: () {
                     hideClick();
-                    KLineDataWidgetController.of(context).changeSecondaryState(SecondaryState.NONE);
+                    KLineDataWidgetController.of(context)
+                        .changeSecondaryState(SecondaryState.NONE);
                   })
             ],
           ),

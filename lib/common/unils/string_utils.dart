@@ -1,4 +1,3 @@
-
 class StringUtils {
   static String getPrice(int price) {
     if (price % 100 == 0) {
@@ -22,8 +21,7 @@ class StringUtils {
     return (price / 100.00).toStringAsFixed(2);
   }
 
-  static String subStr(String str,int num) {
+  static String subStr(String str, int num) {
     return str.length > num ? str.substring(0, num) : str;
   }
-
 }

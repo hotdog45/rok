@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -18,7 +16,6 @@ class CounterBloc {
   Stream<int> get stream => _stream;
   int get count => _count;
 
-
   setCounter(count) {
     _streamController.sink.add(count);
   }
@@ -27,6 +24,7 @@ class CounterBloc {
     _streamController.close();
   }
 }
+
 class KeyWordsBloc {
   StreamController<String> _streamController;
   Stream<String> _stream;
@@ -67,4 +65,3 @@ class ProviderModel extends ChangeNotifier {
     notifyListeners();
   }
 }
-

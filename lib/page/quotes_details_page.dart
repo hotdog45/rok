@@ -174,7 +174,8 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
                     icon: Icon(Icons.fullscreen, size: 30),
                     onPressed: () {
 //                      NavigatorUtils.showToast("全屏");
-                      OrientationPlugin.forceOrientation(DeviceOrientation.landscapeLeft);
+                      OrientationPlugin.forceOrientation(
+                          DeviceOrientation.landscapeLeft);
                     }),
                 IconButton(
                     highlightColor: Colors.transparent,
@@ -265,12 +266,14 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
             ],
           ),
         ),
-        !showDrawer ? Container() : MyDrawer(closeCallBack: (){
-          showDrawer=false;
-          setState(() {
-
-          });
-        },)
+        !showDrawer
+            ? Container()
+            : MyDrawer(
+                closeCallBack: () {
+                  showDrawer = false;
+                  setState(() {});
+                },
+              )
       ],
     );
   }

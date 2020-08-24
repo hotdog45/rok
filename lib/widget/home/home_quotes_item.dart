@@ -3,21 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/quotes_details_page.dart';
-/**
- * Copyright (C), 2015-2020, 谊品生鲜
- * FileName: home_quotes_item
- * Author: lishunfeng
- * Date: 2020/7/26 6:25 PM
- * Description:
- * History:
- * <author> <time> <version> <desc>
- * 作者姓名 修改时间 版本号 描述
- */
+/// Copyright (C), 2015-2020, 谊品生鲜
+/// FileName: home_quotes_item
+/// Author: lishunfeng
+/// Date: 2020/7/26 6:25 PM
+/// Description:
+/// History:
+/// <author> <time> <version> <desc>
+/// 作者姓名 修改时间 版本号 描述
 
 class HomeQuotesList extends StatefulWidget {
   final Color color;
 
-  const HomeQuotesList({Key key, this.color:Colors.white}) : super(key: key);
+  const HomeQuotesList({Key key, this.color = Colors.white}) : super(key: key);
 
   @override
   _HomeQuotesListState createState() => _HomeQuotesListState();
@@ -32,8 +30,7 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, index) {
-          return HomeQuotesItem(
-              color:widget.color);
+          return HomeQuotesItem(color: widget.color);
         },
         itemCount: 7,
       ),
@@ -41,12 +38,10 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
   }
 }
 
-
-
 class HomeQuotesItem extends StatelessWidget {
   final Color color;
 
-  const HomeQuotesItem({Key key, this.color:Colors.white}) : super(key: key);
+  const HomeQuotesItem({Key key, this.color = Colors.white}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -89,9 +84,7 @@ class HomeQuotesItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   "9.05%",
-                  style: TextStyle(
-                      fontSize: fontSizeSmall,
-                      color: kGreenColor),
+                  style: TextStyle(fontSize: fontSizeSmall, color: kGreenColor),
                 ),
               ),
               Container(
@@ -102,7 +95,8 @@ class HomeQuotesItem extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   "≈¥56522.222",
-                  style: TextStyle(fontSize: fontSizeSmall, color: kAppWhiteColor),
+                  style:
+                      TextStyle(fontSize: fontSizeSmall, color: kAppWhiteColor),
                 ),
               ),
             ],

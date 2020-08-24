@@ -17,7 +17,6 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-
   bool isOpen = false;
 
   @override
@@ -31,11 +30,10 @@ class _WelcomePageState extends State<WelcomePage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     Future.delayed(const Duration(seconds: 3), () {
-      if (!isOpen){
+      if (!isOpen) {
         initParams();
       }
     });
-
   }
 
   initParams() async {
@@ -60,5 +58,4 @@ class _WelcomePageState extends State<WelcomePage> {
       ),
     );
   }
-
 }

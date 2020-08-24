@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:rok/common/event/index.dart';
 import 'package:rok/common/style/style.dart';
 
-
-
 enum EmptyPageEnum { order, cart, noData, noNet, search, other }
 
 class EmptyPage extends StatefulWidget {
@@ -101,7 +99,6 @@ class _EmptyPageState extends State<EmptyPage> {
           _title = "还没有相关订单";
           _clickTitle = "去首页逛逛";
           _clickCallBack = goHome;
-
         }
         break;
       case EmptyPageEnum.cart:

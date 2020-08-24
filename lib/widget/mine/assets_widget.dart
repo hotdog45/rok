@@ -79,26 +79,21 @@ class _AssetsWidgetState extends State<AssetsWidget> {
                     FlutterIcons.account_circle_outline_mco,
                     size: 20,
                   )),
-
-          InkWell(
-            child:  Container(
-                margin: EdgeInsets.only(top: 20, left: 5),
-                child: Text(//入金
-                  I18nUtils.translate(context, "button.deposit"),
-                  style: TextStyle(
-                    fontSize: fontSizeMiddle,
-                    color: kAppTextColor,
-                  ),
-                )) ,
-            onTap: (){
-              NavigatorUtils.navigatorRouter(context, RechargePage());
-            },
-          ),
-
-
-
-
-
+              InkWell(
+                child: Container(
+                    margin: EdgeInsets.only(top: 20, left: 5),
+                    child: Text(
+                      //入金
+                      I18nUtils.translate(context, "button.deposit"),
+                      style: TextStyle(
+                        fontSize: fontSizeMiddle,
+                        color: kAppTextColor,
+                      ),
+                    )),
+                onTap: () {
+                  NavigatorUtils.navigatorRouter(context, RechargePage());
+                },
+              ),
               Expanded(
                 child: Container(),
                 flex: 1,
@@ -112,15 +107,15 @@ class _AssetsWidgetState extends State<AssetsWidget> {
               InkWell(
                 child: Container(
                     margin: EdgeInsets.only(top: 20, left: 5, right: 50),
-                    child: Text(//出金
+                    child: Text(
+                      //出金
                       I18nUtils.translate(context, "button.withdrawal"),
                       style: TextStyle(
                         fontSize: fontSizeMiddle,
                         color: kAppTextColor,
                       ),
                     )),
-
-                onTap: (){
+                onTap: () {
                   NavigatorUtils.navigatorRouter(context, WithdrawalPage());
                 },
               ),

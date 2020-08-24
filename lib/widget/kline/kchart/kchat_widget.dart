@@ -11,7 +11,6 @@ import 'utils/number_util.dart';
 import 'renderer/chat_painter.dart';
 import 'state_enum.dart';
 
-
 class KChartWidget extends StatefulWidget {
   final List<KLineEntity> datas;
   final MainState mainState;
@@ -21,18 +20,23 @@ class KChartWidget extends StatefulWidget {
   final double height;
   final double width;
 
-  KChartWidget(this.datas, {this.width,this.height,this.mainState = MainState.MA,this.volState = VolState.VOL, this.secondaryState = SecondaryState.MACD, this.isLine,int fractionDigits = 2}){
+  KChartWidget(this.datas,
+      {this.width,
+      this.height,
+      this.mainState = MainState.MA,
+      this.volState = VolState.VOL,
+      this.secondaryState = SecondaryState.MACD,
+      this.isLine,
+      int fractionDigits = 2}) {
     NumberUtil.fractionDigits = fractionDigits;
   }
 
   @override
   _KChartWidgetState createState() => _KChartWidgetState();
-
-
 }
 
-class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderStateMixin {
-
+class _KChartWidgetState extends State<KChartWidget>
+    with SingleTickerProviderStateMixin {
   bool isScale = false, isDrag = false, isLongPress = false;
   double scrollX = 0.0;
   double maxScroll = 0;
@@ -47,7 +51,7 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
     // TODO: implement initState
     super.initState();
     mInfoWindowStream = StreamController<InfoWindowEntity>();
-    scrollX = -(widget.width / 5) + ChartStyle.candleWidth / 2 ;
+    scrollX = -(widget.width / 5) + ChartStyle.candleWidth / 2;
   }
 
   @override
@@ -59,71 +63,64 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
 
   @override
   Widget build(BuildContext context) {
-
-    var dataLength =  widget.datas.length * (ChartStyle.candleWidth + ChartStyle.canldeMargin) - ChartStyle.canldeMargin;
-    if(dataLength > widget.width) {
+    var dataLength = widget.datas.length *
+            (ChartStyle.candleWidth + ChartStyle.canldeMargin) -
+        ChartStyle.canldeMargin;
+    if (dataLength > widget.width) {
       maxScroll = dataLength - widget.width;
     } else {
       maxScroll = -(widget.width - dataLength);
     }
-    var datsScroll =  widget.width - dataLength;
-    var normalminScroll =  -(widget.width / 5) + ChartStyle.candleWidth / 2;
+    var datsScroll = widget.width - dataLength;
+    var normalminScroll = -(widget.width / 5) + ChartStyle.candleWidth / 2;
     minScroll = min(normalminScroll, -datsScroll);
-
 
     scrollX = (scrollX).clamp(minScroll, maxScroll);
     print("maxScroll${maxScroll}");
     return ClipRRect(
-      child:  GestureDetector(
-        onHorizontalDragStart: (details){
+      child: GestureDetector(
+        onHorizontalDragStart: (details) {
           isDrag = true;
         },
-        onHorizontalDragEnd: (details){
+        onHorizontalDragEnd: (details) {
           isDrag = false;
         },
-        onHorizontalDragUpdate: (details){
+        onHorizontalDragUpdate: (details) {
           print("details.primaryDelta${details.primaryDelta}");
           setState(() {
-            scrollX = (details.primaryDelta + scrollX).clamp(minScroll, maxScroll);
+            scrollX =
+                (details.primaryDelta + scrollX).clamp(minScroll, maxScroll);
           });
         },
-        onScaleStart: (details){
+        onScaleStart: (details) {
           isScale = true;
         },
-        onScaleUpdate: (details){
+        onScaleUpdate: (details) {
           setState(() {
             scaleX = (scaleX * details.scale).clamp(0.5, 2.2);
             ChartStyle.candleWidth = ChartStyle.defaultcandleWidth * scaleX;
           });
         },
-        onScaleEnd: (details){
+        onScaleEnd: (details) {
           isScale = false;
         },
         onLongPressStart: (details) {
           isLongPress = true;
           selectX = details.localPosition.dx;
-          setState(() {
-
-          });
+          setState(() {});
         },
         onLongPressEnd: (details) {
           isLongPress = false;
-          setState(() {
-
-          });
+          setState(() {});
         },
         onLongPressMoveUpdate: (details) {
           selectX = details.localPosition.dx;
-          setState(() {
-
-          });
+          setState(() {});
         },
-
-
         child: Stack(
           children: <Widget>[
             CustomPaint(
-              size: Size(widget.width,double.infinity),
+              size: Size(widget.width, double.infinity),
               painter: ChartPainter(
                   datas: widget.datas.reversed.toList(),
                   scrollX: scrollX,
@@ -132,9 +129,8 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
                   selectX: selectX,
                   isLongPress: isLongPress,
                   sink: mInfoWindowStream.sink,
-                mainState: widget.mainState,
-                secondaryState: widget.secondaryState
-              ),
+                  mainState: widget.mainState,
+                  secondaryState: widget.secondaryState),
             ),
             _buildInfoDialog()
           ],
@@ -150,8 +146,10 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
     return StreamBuilder<InfoWindowEntity>(
         stream: mInfoWindowStream?.stream,
         builder: (context, snapshot) {
-          if (!isLongPress || widget.isLine == true || !snapshot.hasData || snapshot.data.kLineEntity == null)
-            return Container();
+          if (!isLongPress ||
+              widget.isLine == true ||
+              !snapshot.hasData ||
+              snapshot.data.kLineEntity == null) return Container();
           KLineEntity entity = snapshot.data.kLineEntity;
           double upDown = entity.close - entity.open;
           double upDownPercent = upDown / entity.open * 100;
@@ -166,16 +164,19 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
             NumberUtil.volFormat(entity.vol)
           ];
           return Align(
-            alignment: snapshot.data.isLeft ? Alignment.topLeft : Alignment.topRight,
+            alignment:
+                snapshot.data.isLeft ? Alignment.topLeft : Alignment.topRight,
             child: Container(
               margin: EdgeInsets.only(left: 10, right: 10, top: 25),
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 7),
               decoration: BoxDecoration(
                   color: ChartColors.markerBgColor,
-                  border: Border.all(color: ChartColors.markerBorderColor, width: 0.5)),
+                  border: Border.all(
+                      color: ChartColors.markerBorderColor, width: 0.5)),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: List.generate(infoNames.length, (i) => _buildItem(infos[i].toString(), infoNames[i])),
+                children: List.generate(infoNames.length,
+                    (i) => _buildItem(infos[i].toString(), infoNames[i])),
               ),
             ),
           );
@@ -191,23 +192,27 @@ class _KChartWidgetState extends State<KChartWidget>  with SingleTickerProviderS
     else
       color = Colors.white;
     return Container(
-      constraints: BoxConstraints(minWidth: 95, maxWidth: 110, maxHeight: 14.0, minHeight: 14.0),
+      constraints: BoxConstraints(
+          minWidth: 95, maxWidth: 110, maxHeight: 14.0, minHeight: 14.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text("$infoName", style: TextStyle(color: Colors.white, fontSize: ChartStyle.defaultTextSize)),
+          Text("$infoName",
+              style: TextStyle(
+                  color: Colors.white, fontSize: ChartStyle.defaultTextSize)),
           SizedBox(width: 5),
-          Text(info, style: TextStyle(color: color, fontSize: ChartStyle.defaultTextSize)),
+          Text(info,
+              style: TextStyle(
+                  color: color, fontSize: ChartStyle.defaultTextSize)),
         ],
       ),
     );
   }
 
   String getDate(int date) {
-    return dateFormat(DateTime.fromMillisecondsSinceEpoch(date * 1000), [yy, '-', mm, '-', dd, ' ', HH, ':', nn]);
+    return dateFormat(DateTime.fromMillisecondsSinceEpoch(date * 1000),
+        [yy, '-', mm, '-', dd, ' ', HH, ':', nn]);
   }
-
-
 }

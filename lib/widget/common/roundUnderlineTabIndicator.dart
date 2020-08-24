@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 const double _kTabHeight = 40.0;
 const double _kTextAndIconTabHeight = 72.0;
- 
+
 class RoundUnderlineTabIndicator extends Decoration {
   /// Create an underline style selected tab indicator.
   ///
@@ -9,19 +10,19 @@ class RoundUnderlineTabIndicator extends Decoration {
   const RoundUnderlineTabIndicator({
     this.borderSide = const BorderSide(width: 2.0, color: Colors.white),
     this.insets = EdgeInsets.zero,
-  }) : assert(borderSide != null),
+  })  : assert(borderSide != null),
         assert(insets != null);
- 
+
   /// The color and weight of the horizontal line drawn below the selected tab.
   final BorderSide borderSide;
- 
+
   /// Locates the selected tab's underline relative to the tab's boundary.
   ///
   /// The [TabBar.indicatorSize] property can be used to define the
   /// tab indicator's bounds in terms of its (centered) tab widget with
   /// [TabIndicatorSize.label], or the entire tab with [TabIndicatorSize.tab].
   final EdgeInsetsGeometry insets;
- 
+
   @override
   Decoration lerpFrom(Decoration a, double t) {
     if (a is UnderlineTabIndicator) {
@@ -32,7 +33,7 @@ class RoundUnderlineTabIndicator extends Decoration {
     }
     return super.lerpFrom(a, t);
   }
- 
+
   @override
   Decoration lerpTo(Decoration b, double t) {
     if (b is UnderlineTabIndicator) {
@@ -43,23 +44,23 @@ class RoundUnderlineTabIndicator extends Decoration {
     }
     return super.lerpTo(b, t);
   }
- 
+
   @override
-  _UnderlinePainter createBoxPainter([ VoidCallback onChanged ]) {
+  _UnderlinePainter createBoxPainter([VoidCallback onChanged]) {
     return _UnderlinePainter(this, onChanged);
   }
 }
- 
+
 class _UnderlinePainter extends BoxPainter {
   _UnderlinePainter(this.decoration, VoidCallback onChanged)
       : assert(decoration != null),
         super(onChanged);
- 
+
   final RoundUnderlineTabIndicator decoration;
- 
+
   BorderSide get borderSide => decoration.borderSide;
   EdgeInsetsGeometry get insets => decoration.insets;
- 
+
   Rect _indicatorRectFor(Rect rect, TextDirection textDirection) {
     assert(rect != null);
     assert(textDirection != null);
@@ -77,26 +78,22 @@ class _UnderlinePainter extends BoxPainter {
     return Rect.fromLTWH(cw - wantWidth / 2,
         indicator.bottom - borderSide.width, wantWidth, borderSide.width);
   }
- 
+
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
     assert(configuration != null);
     assert(configuration.size != null);
     final Rect rect = offset & configuration.size;
     final TextDirection textDirection = configuration.textDirection;
-    final Rect indicator = _indicatorRectFor(rect, textDirection).deflate(borderSide.width / 2.0);
+    final Rect indicator =
+        _indicatorRectFor(rect, textDirection).deflate(borderSide.width / 2.0);
 //    final Paint paint = borderSide.toPaint()..strokeCap = StrokeCap.square;
     // 改为圆角
     final Paint paint = borderSide.toPaint()..strokeCap = StrokeCap.round;
     canvas.drawLine(indicator.bottomLeft, indicator.bottomRight, paint);
   }
 }
- 
- 
- 
- 
- 
- 
+
 class VgTab extends StatelessWidget {
   /// Creates a material design [TabBar] tab.
   ///
@@ -107,33 +104,35 @@ class VgTab extends StatelessWidget {
     this.text,
     this.icon,
     this.child,
-  }) : assert(text != null || child != null || icon != null),
-        assert(!(text != null && null != child)), // TODO(goderbauer): https://github.com/dart-lang/sdk/issues/34180
+  })  : assert(text != null || child != null || icon != null),
+        assert(!(text != null &&
+            null !=
+                child)), // TODO(goderbauer): https://github.com/dart-lang/sdk/issues/34180
         super(key: key);
- 
+
   /// The text to display as the tab's label.
   ///
   /// Must not be used in combination with [child].
   final String text;
- 
+
   /// The widget to be used as the tab's label.
   ///
   /// Usually a [Text] widget, possibly wrapped in a [Semantics] widget.
   ///
   /// Must not be used in combination with [text].
   final Widget child;
- 
+
   /// An icon to display as the tab's label.
   final Widget icon;
- 
+
   Widget _buildLabelText() {
     return child ?? Text(text, softWrap: false, overflow: TextOverflow.fade);
   }
- 
+
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterial(context));
- 
+
     double height;
     Widget label;
     if (icon == null) {
@@ -156,7 +155,7 @@ class VgTab extends StatelessWidget {
         ],
       );
     }
- 
+
     return SizedBox(
       height: height,
       child: Center(

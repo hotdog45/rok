@@ -6,6 +6,10 @@ import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/user/login_page.dart';
 
 class AccountWidget extends StatefulWidget {
+  final String userName;
+
+  const AccountWidget({Key key, this.userName}) : super(key: key);
+
   @override
   _AccountWidgetState createState() => _AccountWidgetState();
 }
@@ -36,7 +40,8 @@ class _AccountWidgetState extends State<AccountWidget> {
                     top: 50,
                   ),
                   child: Text(
-                    "请登录",
+                    widget.userName,
+//                    "请登录",
                     style: TextStyle(
                         fontSize: fontSizeMiddle,
                         color: kAppTextColor,
@@ -57,7 +62,11 @@ class _AccountWidgetState extends State<AccountWidget> {
               ],
             ),
             onTap: () {
-              NavigatorUtils.navigatorRouter(context, LoginPage());
+              if( widget.userName=="请登录"){
+                NavigatorUtils.navigatorRouter(context, LoginPage());
+              }
+
+
             }),
         Expanded(
           child: Container(),

@@ -12,10 +12,10 @@ class CalculatorUtilPage extends StatefulWidget {
   _CalculatorUtilPageState createState() => _CalculatorUtilPageState();
 }
 
-class _CalculatorUtilPageState extends State<CalculatorUtilPage>  with SingleTickerProviderStateMixin{
+class _CalculatorUtilPageState extends State<CalculatorUtilPage>
+    with SingleTickerProviderStateMixin {
   @override
   void initState() {
-
     super.initState();
     mController = TabController(
       length: tabTitles.length,
@@ -35,16 +35,17 @@ class _CalculatorUtilPageState extends State<CalculatorUtilPage>  with SingleTic
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [kAppWhiteColor, kAppWhiteColor]),
       ),
-      child: ListView(children: <Widget>[
-        MyTabBar(mController: mController, tabTitles: tabTitles),
-        Container(
-            width: double.infinity,
-            height: ScreenUtil.screenHeightDp,
-            child: _tabBarView())
-      ],),
+      child: ListView(
+        children: <Widget>[
+          MyTabBar(mController: mController, tabTitles: tabTitles),
+          Container(
+              width: double.infinity,
+              height: ScreenUtil.screenHeightDp,
+              child: _tabBarView())
+        ],
+      ),
     );
   }
-
 
   Widget _tabBarView() {
     return TabBarView(

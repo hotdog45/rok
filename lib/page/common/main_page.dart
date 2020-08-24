@@ -57,15 +57,13 @@ class _MainPageState extends State<MainPage> {
 
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(initConnectivity);
-
   }
 
   @override
   Widget build(BuildContext context) {
     return MediaQuery(
-        data: MediaQuery.of(context)
-            .copyWith(textScaleFactor: 1),
-        child: Scaffold(
+      data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+      child: Scaffold(
         bottomNavigationBar: CupertinoTabBar(
           items: _getBottomList(),
           currentIndex: currentIndex,
@@ -104,17 +102,17 @@ class _MainPageState extends State<MainPage> {
 
   List<BottomNavigationBarItem> _getBottomList() {
     List<BottomNavigationBarItem> bottomTabs = [
-      _getBottomNavigationBarItem(
-          "tab_home_unSel.png", "tab_home_sel.png", I18nUtils.translate(context, "title.home")),
-      _getBottomNavigationBarItem(
-          "tab_category_unSel.png", "tab_category_sel.png", I18nUtils.translate(context, "title.quotes")),
+      _getBottomNavigationBarItem("tab_home_unSel.png", "tab_home_sel.png",
+          I18nUtils.translate(context, "title.home")),
+      _getBottomNavigationBarItem("tab_category_unSel.png",
+          "tab_category_sel.png", I18nUtils.translate(context, "title.quotes")),
 
-      _getBottomNavigationBarItem(
-          "tab_order_unSel.png", "tab_order_sel.png", I18nUtils.translate(context, "title.contract")),
+      _getBottomNavigationBarItem("tab_order_unSel.png", "tab_order_sel.png",
+          I18nUtils.translate(context, "title.contract")),
 //      _getBottomNavigationBarItem(
 //          "tab_mine_unSel.png", "tab_mine_sel.png", I18nUtils.translate(context, "title.assets")),
-      _getBottomNavigationBarItem(
-          "tab_mine_unSel.png", "tab_mine_sel.png", I18nUtils.translate(context, "title.mine")),
+      _getBottomNavigationBarItem("tab_mine_unSel.png", "tab_mine_sel.png",
+          I18nUtils.translate(context, "title.mine")),
     ];
 
     return bottomTabs;
