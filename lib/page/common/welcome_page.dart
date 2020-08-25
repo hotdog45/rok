@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rok/common/config/config.dart';
+import 'package:rok/common/constant/app_constant.dart';
 import 'package:rok/common/unils/dialog_utils.dart';
 import 'package:rok/common/unils/local_storage.dart';
 
@@ -38,7 +38,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
   initParams() async {
     isOpen = true;
-    String token = await LocalStorage.get(Config.USER_TOKEN) ?? "";
+    String token = await LocalStorage.get(AppConstant.USER_TOKEN) ?? "";
     if (token.isNotEmpty) {
       Navigator.pushReplacementNamed(context, MainPage.sName);
     } else {

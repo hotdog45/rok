@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:rok/common/config/config.dart';
+import 'package:rok/config/config.dart';
 
 /// Log 拦截器
 class LogsInterceptors extends InterceptorsWrapper {

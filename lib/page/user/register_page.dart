@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rok/common/config/config.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/my_super_widget.dart';

@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:dio_log/dio_log.dart';
-import 'package:rok/common/config/config.dart';
 import 'package:rok/common/model/base_model.dart';
 import 'package:rok/common/unils/local_storage.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/config/config.dart';
 
 import 'address.dart';
 import 'code.dart';

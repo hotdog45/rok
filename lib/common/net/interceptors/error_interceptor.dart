@@ -1,7 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
-import 'package:rok/common/config/config.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/config/config.dart';
 
 ///是否需要弹提示
 const NOT_TIP_KEY = "noTip";
