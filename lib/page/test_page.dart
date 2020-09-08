@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:dio_log/overlay_draggable_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bugly/flutter_bugly.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
@@ -51,8 +52,7 @@ class _TestPageState extends State<TestPage> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 onPressed: () {
-                  NavigatorUtils.navigatorRouter(
-                      context, WebViewPage(url: "https://www.baidu.com"));
+                  FlutterBugly.checkUpgrade();
                 },
               )),
           Container(

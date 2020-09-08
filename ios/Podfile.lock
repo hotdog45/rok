@@ -1,4 +1,5 @@
 PODS:
+  - Bugly (2.5.5)
   - connectivity (0.0.1):
     - Flutter
     - Reachability
@@ -7,6 +8,9 @@ PODS:
   - connectivity_macos (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - flutter_bugly (0.0.1):
+    - Bugly
+    - Flutter
   - flutter_custom_dialog (0.0.1):
     - Flutter
   - flutter_geetest_plugin (0.2.2):
@@ -62,6 +66,7 @@ DEPENDENCIES:
   - connectivity_for_web (from `.symlinks/plugins/connectivity_for_web/ios`)
   - connectivity_macos (from `.symlinks/plugins/connectivity_macos/ios`)
   - Flutter (from `Flutter`)
+  - flutter_bugly (from `.symlinks/plugins/flutter_bugly/ios`)
   - flutter_custom_dialog (from `.symlinks/plugins/flutter_custom_dialog/ios`)
   - flutter_geetest_plugin (from `.symlinks/plugins/flutter_geetest_plugin/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -83,7 +88,8 @@ DEPENDENCIES:
   - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
-  trunk:
+  https://cdn.cocoapods.org/:
+    - Bugly
     - FMDB
     - GT3Captcha-iOS
     - Reachability
@@ -99,6 +105,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/connectivity_macos/ios"
   Flutter:
     :path: Flutter
+  flutter_bugly:
+    :path: ".symlinks/plugins/flutter_bugly/ios"
   flutter_custom_dialog:
     :path: ".symlinks/plugins/flutter_custom_dialog/ios"
   flutter_geetest_plugin:
@@ -139,10 +147,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
+  Bugly: eded937bbb1f731cacf689c2d934ddbd9ab34f83
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
   connectivity_for_web: 2b8584556930d4bd490d82b836bcf45067ce345b
   connectivity_macos: e2e9731b6b22dda39eb1b128f6969d574460e191
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_bugly: c9800f4d5bc5bdc27ffdde3417a26ba44266e0c3
   flutter_custom_dialog: c0d222a3c35af5b57581e54ef8784c94037cd2ec
   flutter_geetest_plugin: 7aeeac94615b2c300f62334e9e91496f28137503
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
@@ -170,4 +180,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f32fb4e7c14f8b3ca19a369d7be425dd9241af27
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

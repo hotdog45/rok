@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rok/common/model/home/now_market_model.dart';
+import 'package:rok/common/model/socket_base_model.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/quotes_details_page.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+
 /// Copyright (C), 2015-2020, 谊品生鲜
 /// FileName: home_quotes_item
 /// Author: lishunfeng
@@ -13,15 +19,34 @@ import 'package:rok/page/quotes_details_page.dart';
 /// 作者姓名 修改时间 版本号 描述
 
 class HomeQuotesList extends StatefulWidget {
-  final Color color;
+  final WebSocketChannel channel;
 
-  const HomeQuotesList({Key key, this.color = Colors.white}) : super(key: key);
+  const HomeQuotesList({Key key, this.channel}) : super(key: key);
 
   @override
   _HomeQuotesListState createState() => _HomeQuotesListState();
 }
 
 class _HomeQuotesListState extends State<HomeQuotesList> {
+  NowMarketModel nowMarketModel;
+
+  @override
+  void initState() {
+    super.initState();
+    print("IOWebSocketChannel==============");
+    widget.channel.sink
+        .add('{"event":"addTopic","topic":"market.bchusdt.detail"}');
+    widget.channel.stream.listen((message) {
+//      channel.sink.close(message.goingAway);
+      print("IOWebSocketChannel===" + message.toString());
+      var model = SocketBaseModel.fromJson(jsonDecode(message));
+      if (model.ch == "market.bchusdt.detail") {
+        nowMarketModel = NowMarketModel.fromJson(model.tick);
+        setState(() {});
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,18 +55,18 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, index) {
-          return HomeQuotesItem(color: widget.color);
+          return HomeQuotesItem(nowMarketModel: nowMarketModel);
         },
-        itemCount: 7,
+        itemCount: 2,
       ),
     );
   }
 }
 
 class HomeQuotesItem extends StatelessWidget {
-  final Color color;
+  final NowMarketModel nowMarketModel;
 
-  const HomeQuotesItem({Key key, this.color = Colors.white}) : super(key: key);
+  const HomeQuotesItem({Key key, this.nowMarketModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +82,7 @@ class HomeQuotesItem extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                color,
+                Colors.white,
                 Colors.white,
               ],
             ),
@@ -74,7 +99,7 @@ class HomeQuotesItem extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(top: 5, bottom: 6),
                 child: Text(
-                  "9649.50",
+                  nowMarketModel.close.toString(),
                   style: TextStyle(
                       fontSize: fontSizeNormal,
                       fontWeight: FontWeight.w600,
@@ -83,7 +108,9 @@ class HomeQuotesItem extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  "9.05%",
+                  ((nowMarketModel.close - nowMarketModel.open) /nowMarketModel.open *100).toStringAsFixed(2)
+                          .toString() +
+                      "%",
                   style: TextStyle(fontSize: fontSizeSmall, color: kGreenColor),
                 ),
               ),

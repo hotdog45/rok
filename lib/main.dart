@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bugly/flutter_bugly.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_i18n/loaders/file_translation_loader.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -26,13 +27,22 @@ void main() async {
   appInitUtils.initEasyLoading();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   appInitUtils.initAndroidSystemUI();
-  runApp(MyApp(flutterI18nDelegate));
+
+  FlutterBugly.postCatchedException((){
+    runApp(MyApp(flutterI18nDelegate));
+  });
+  FlutterBugly.init(androidAppId: "335a1918-a791-4258-969e-0e648861ff8e",iOSAppId: "your iOS app id");
+
+
+
 }
 
 class MyApp extends StatelessWidget {
   final FlutterI18nDelegate flutterI18nDelegate;
 
   MyApp(this.flutterI18nDelegate);
+
+
 
   @override
   Widget build(BuildContext context) {
