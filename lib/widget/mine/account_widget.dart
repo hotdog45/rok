@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/page/setting_page.dart';
 import 'package:rok/page/user/login_page.dart';
 
 class AccountWidget extends StatefulWidget {
@@ -72,13 +73,20 @@ class _AccountWidgetState extends State<AccountWidget> {
           child: Container(),
           flex: 1,
         ),
-        Container(
+
+        InkWell(child:  Container(
           margin: EdgeInsets.only(right: 30, top: 30, left: 20),
           child: Icon(
             FlutterIcons.setting_ant,
             size: 20,
           ),
-        ),
+
+
+        ),onTap: (){
+          NavigatorUtils.navigatorRouter(context, SettingPage());
+        },) ,
+
+
       ],
     );
   }
