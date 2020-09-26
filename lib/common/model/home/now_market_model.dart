@@ -33,6 +33,7 @@ class NowMarketModel extends Object {
   @JsonKey(name: 'count')
   int count;
 
+
   NowMarketModel(this.id,this.low,this.high,this.open,this.close,this.vol,this.amount,this.version,this.count,);
 
   factory NowMarketModel.fromJson(Map<String, dynamic> srcJson) => _$NowMarketModelFromJson(srcJson);

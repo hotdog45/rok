@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/model/home/now_market_model.dart';
 import 'package:rok/common/model/socket_base_model.dart';
 import 'package:rok/common/style/style.dart';
@@ -20,30 +21,43 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 class HomeQuotesList extends StatefulWidget {
   final WebSocketChannel channel;
+  final List<Contracts> contracts;
 
-  const HomeQuotesList({Key key, this.channel}) : super(key: key);
+  const HomeQuotesList({Key key, this.channel, this.contracts}) : super(key: key);
+
 
   @override
   _HomeQuotesListState createState() => _HomeQuotesListState();
 }
 
 class _HomeQuotesListState extends State<HomeQuotesList> {
+
   NowMarketModel nowMarketModel;
 
   @override
   void initState() {
     super.initState();
-    print("IOWebSocketChannel==============");
+    reqMarket(widget.contracts[0].topic);
+  }
+
+  reqMarket(topic){
+    print("IOWebSocketChannel=============="+'{"event":"addTopic","topic":"${topic}"}');
     widget.channel.sink
-        .add('{"event":"addTopic","topic":"market.bchusdt.detail"}');
+        .add('{"event":"addTopic","topic":"${topic}"}');
     widget.channel.stream.listen((message) {
-//      channel.sink.close(message.goingAway);
       print("IOWebSocketChannel===" + message.toString());
-      var model = SocketBaseModel.fromJson(jsonDecode(message));
-      if (model.ch == "market.bchusdt.detail") {
-        nowMarketModel = NowMarketModel.fromJson(model.tick);
-        setState(() {});
+      try{
+        var model = SocketBaseModel.fromJson(jsonDecode(message));
+        if (model.ch == topic) {
+          nowMarketModel = NowMarketModel.fromJson(model.tick);
+          print("nowMarketModel:"+nowMarketModel.close.toString());
+          setState(() {});
+        }
+      }catch (e){
+        widget.channel.sink.close(message.goingAway);
       }
+
+
     });
   }
 
@@ -51,13 +65,15 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
   Widget build(BuildContext context) {
     return Container(
       color: kAppWhiteColor,
-      height: 140,
+      height: 100,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, index) {
-          return HomeQuotesItem(nowMarketModel: nowMarketModel);
+
+          return HomeQuotesItem(nowMarketModel: nowMarketModel,contract: widget.contracts[index],
+          );
         },
-        itemCount: 2,
+        itemCount: widget.contracts.length,
       ),
     );
   }
@@ -66,16 +82,23 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
 class HomeQuotesItem extends StatelessWidget {
   final NowMarketModel nowMarketModel;
 
-  const HomeQuotesItem({Key key, this.nowMarketModel}) : super(key: key);
+
+  final Contracts contract;
+
+  const HomeQuotesItem({Key key, this.nowMarketModel, this.contract}) : super(key: key);
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return  InkWell(
         onTap: () {
           NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
         },
         child: Container(
-          width: ScreenUtil.screenWidthDp / 3,
+          width: ScreenUtil.screenWidthDp / 2.5,
           padding: EdgeInsets.only(top: 15, bottom: 15),
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -90,9 +113,9 @@ class HomeQuotesItem extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                "BTC/USDT",
+                contract.name,
                 style: TextStyle(
-                    fontSize: fontSizeNormal,
+                    fontSize: fontSizeMiddle,
                     fontWeight: FontWeight.bold,
                     color: kAppTextColor),
               ),
@@ -103,29 +126,38 @@ class HomeQuotesItem extends StatelessWidget {
                   style: TextStyle(
                       fontSize: fontSizeNormal,
                       fontWeight: FontWeight.w600,
-                      color: kGreenColor),
+                      color: nowMarketModel.close - nowMarketModel.open > 0
+                          ? kGreenColor
+                          : kRedColor),
                 ),
               ),
               Expanded(
                 child: Text(
-                  ((nowMarketModel.close - nowMarketModel.open) /nowMarketModel.open *100).toStringAsFixed(2)
+                  ((nowMarketModel.close - nowMarketModel.open) /
+                              nowMarketModel.open *
+                              100)
+                          .toStringAsFixed(2)
                           .toString() +
                       "%",
-                  style: TextStyle(fontSize: fontSizeSmall, color: kGreenColor),
+                  style: TextStyle(
+                      fontSize: fontSizeSmall,
+                      color: nowMarketModel.close - nowMarketModel.open > 0
+                          ? kGreenColor
+                          : kRedColor),
                 ),
               ),
-              Container(
-                width: 100,
-                height: 25,
-                decoration: BoxDecoration(
-                    color: kGreenColor, borderRadius: BorderRadius.circular(3)),
-                alignment: Alignment.center,
-                child: Text(
-                  "≈¥56522.222",
-                  style:
-                      TextStyle(fontSize: fontSizeSmall, color: kAppWhiteColor),
-                ),
-              ),
+//              Container(
+//                width: 100,
+//                height: 25,
+//                decoration: BoxDecoration(
+//                    color: kGreenColor, borderRadius: BorderRadius.circular(3)),
+//                alignment: Alignment.center,
+//                child: Text(
+//                  "≈¥56522.222",
+//                  style:
+//                      TextStyle(fontSize: fontSizeSmall, color: kAppWhiteColor),
+//                ),
+//              ),
             ],
           ),
         ));

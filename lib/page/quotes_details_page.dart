@@ -48,10 +48,10 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
     // TODO: implement initState
     super.initState();
 
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeRight,
-    ]);
+//    SystemChrome.setPreferredOrientations([
+//      DeviceOrientation.landscapeRight,
+//      DeviceOrientation.landscapeRight,
+//    ]);
 
     getData(dataController.periodModel.period);
     rootBundle.loadString('assets/depth.json').then((result) {
@@ -77,18 +77,18 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
       vsync: this,
     );
 
-    subscription = OrientationPlugin.onOrientationChange.listen((value) {
-      // If the widget was removed from the tree while the asynchronous platform
-      // message was in flight, we want to discard the reply rather than calling
-      // setState to update our non-existent appearance.
-      if (!mounted) return;
-
-      setState(() {
-        _deviceOrientation = value;
-      });
-
-      OrientationPlugin.forceOrientation(value);
-    });
+//    subscription = OrientationPlugin.onOrientationChange.listen((value) {
+//      // If the widget was removed from the tree while the asynchronous platform
+//      // message was in flight, we want to discard the reply rather than calling
+//      // setState to update our non-existent appearance.
+//      if (!mounted) return;
+//
+//      setState(() {
+//        _deviceOrientation = value;
+//      });
+//
+//      OrientationPlugin.forceOrientation(value);
+//    });
   }
 
   @override

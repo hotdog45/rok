@@ -33,7 +33,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   List<Widget> tabBodies ;
-  final WebSocketChannel channel = IOWebSocketChannel.connect("ws://10.0.61.79:8003");
+  final WebSocketChannel channel = IOWebSocketChannel.connect("ws://172.20.10.2:8003");
   int currentIndex = 0;
   var currentPage;
   int badgeValue = 0;

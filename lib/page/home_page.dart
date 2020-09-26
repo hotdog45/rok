@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/model/home/now_market_model.dart';
 import 'package:rok/common/model/socket_base_model.dart';
@@ -33,8 +34,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
 
-  NowMarketModel nowMarketModel;
-
+  HomeData homeData;
 
 
   @override
@@ -47,10 +47,10 @@ class _HomePageState extends State<HomePage>
         child: ListView(
           padding: EdgeInsets.all(0),
           children: <Widget>[
-            HomeBannerWidget(),
-            HomeQuotesList(channel: widget.channel),
+            HomeBannerWidget(banners: homeData.banners),
+            HomeQuotesList(channel: widget.channel,contracts: homeData.contracts,),
             HomeIconWidget(),
-            HomeNotifWidget(),
+            HomeNotifWidget(notices: homeData.notices,),
             HomeProfitLossWidget(),
             HomeListWidget()
           ],
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
     controller = AnimationController(
         duration: Duration(milliseconds: 600),
@@ -74,7 +74,16 @@ class _HomePageState extends State<HomePage>
 
     reGetCountdown();
 
-    reqHomeData();
+    getHomeData();
+  }
+
+
+  getHomeData() async{
+    var data = await reqHomeData();
+    homeData = HomeData.fromJson(data) ;
+
+    setState(() {});
+    print("homeData"+homeData.banners.length.toString());
   }
 
   void _onTapHandle(color) {
