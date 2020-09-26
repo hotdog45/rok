@@ -35,13 +35,15 @@ const String passwordReset= "user/reset/password";
 const String tradePassword = "user/setting/trade/password";
 
 
+const String index = "index";
+
 
 
 ////////////////////////////////////////////////////////////////
 
 ///网关API
 const String BASE_URL_RELEASE = "https://apigw.ypshengxian.com/request"; //线上
-const String BASE_URL_DEV = "http://122.51.106.217:8001/"; //开发
+const String BASE_URL_DEV = "http://172.20.10.2:8001/"; //开发
 
 ///网页h5
 const String BASE_URL_H5_RELEASE = "https://h5.ypshengxian.com"; //线上

@@ -25,3 +25,6 @@ getAvailableBalance() async {
   });
 }
 
+reqHomeData() async {
+  return await httpManager.netFetch(index, null);
+}

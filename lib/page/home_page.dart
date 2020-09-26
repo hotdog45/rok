@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 import 'package:rok/widget/home/home_icon_widget.dart';
@@ -56,6 +57,8 @@ class _HomePageState extends State<HomePage>
     });
 
     reGetCountdown();
+
+    reqHomeData();
   }
 
   void _onTapHandle(color) {
