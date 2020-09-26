@@ -35,8 +35,11 @@ const String passwordReset= "user/reset/password";
 //设置交易密码
 const String tradePassword = "user/setting/trade/password";
 
-
+//首页
 const String index = "index";
+
+//行情
+const String contractList = "contract/list";
 
 
 

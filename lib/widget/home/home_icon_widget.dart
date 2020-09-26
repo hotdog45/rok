@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/style/style.dart';
 
 import 'home_item.dart';
 
 class HomeIconWidget extends StatelessWidget {
-  final String name;
-  final String url;
+  final List<Menus> menus;
 
-  const HomeIconWidget({Key key, this.name, this.url}) : super(key: key);
+  const HomeIconWidget({Key key, this.menus}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +16,10 @@ class HomeIconWidget extends StatelessWidget {
       color: kAppWhiteColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          HomeItemWidget(
-            name: "帮助中心",
-          ),
-          HomeItemWidget(
-            name: "福利中心",
-          ),
-          HomeItemWidget(
-            name: "在线客服",
-          ),
-        ],
+        children: menus.map((e) => HomeItemWidget(
+          name: e.title,
+          url: e.icon,
+        )).toList(),
       ),
     );
   }
