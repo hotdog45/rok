@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:package_info/package_info.dart';
-import 'package:rok/common/config/config.dart';
+import 'package:rok/common/constant/app_constant.dart';
 import 'package:rok/common/unils/local_storage.dart';
 
 class HeaderInterceptors extends InterceptorsWrapper {
@@ -13,7 +13,7 @@ class HeaderInterceptors extends InterceptorsWrapper {
   onRequest(RequestOptions options) async {
     Map<String, dynamic> headers = HashMap();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    String token = await LocalStorage.get(Config.USER_TOKEN) ?? "";
+    String token = await LocalStorage.get(AppConstant.USER_TOKEN) ?? "";
 
     headers["app-id"] = "rok";
     headers["app-platform"] = Platform.isIOS ? "ios" : "android";

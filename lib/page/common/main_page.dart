@@ -4,16 +4,16 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio_log/overlay_draggable_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:rok/common/config/config.dart';
 import 'package:rok/common/event/index.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/config/config.dart';
 import 'package:rok/page/user/mine_page.dart';
 import 'package:rok/widget/common/my_drawer.dart';
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
-import '../assets_page.dart';
 import '../home_page.dart';
 import '../quotes_list_page.dart';
 import '../test_page.dart';
@@ -23,21 +23,17 @@ class MainPage extends StatefulWidget {
   static final String sName = "main";
   final int selIndex;
 
+
+  const MainPage(int index, {Key key, this.selIndex}) : super(key: key);
   @override
   _MainPageState createState() => _MainPageState();
 
-  MainPage(this.selIndex);
+
 }
 
 class _MainPageState extends State<MainPage> {
-  final List<Widget> tabBodies = [
-    HomePage(),
-    QuotesListPage(),
-    TransactionPage(),
-//    AssetsPage(),
-    MinePage(),
-  ];
-
+  List<Widget> tabBodies ;
+  final WebSocketChannel channel = IOWebSocketChannel.connect("ws://10.0.61.79:8003");
   int currentIndex = 0;
   var currentPage;
   int badgeValue = 0;
@@ -46,6 +42,13 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
+    tabBodies = [
+      HomePage(channel),
+      QuotesListPage(),
+      TransactionPage(),
+//    AssetsPage(),
+      MinePage(),
+    ];
     currentIndex = widget.selIndex ?? 0;
     currentPage = tabBodies[currentIndex];
 

@@ -7,11 +7,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_geetest_plugin/flutter_geetest_plugin.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:rok/common/config/config.dart';
+import 'package:rok/common/constant/app_constant.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/local_storage.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/config/config.dart';
 import 'package:rok/page/common/webview_page.dart';
 import 'package:rok/page/user/register_page.dart';
 
@@ -25,8 +26,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController userController = TextEditingController();
-  final TextEditingController pwController = TextEditingController();
+  final TextEditingController userController = new TextEditingController();
+  final TextEditingController pwController = new TextEditingController();
   String _challenge = "";
   String _getPhoneCode = "获取验证码";
   bool _isClickCode = false;
@@ -44,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   getMobile() async {
-    String mobile = await LocalStorage.get(Config.USER_MOBILE);
+    String mobile = await LocalStorage.get(AppConstant.USER_MOBILE);
     userController.value = TextEditingValue(text: mobile ?? "");
 
     _setBtnState();
@@ -238,21 +239,20 @@ class _LoginPageState extends State<LoginPage> {
             color: kAppColor("#E7E7E7"),
             height: 0.5,
           ),
+
+
           Row(
             children: <Widget>[
-              Expanded(
-                child: Container(),
-                flex: 1,
-              ),
+              Expanded(child: Container(),flex: 1,),
               Container(
-                  margin: EdgeInsets.only(right: 10, top: 10),
+                margin: EdgeInsets.only(right: 10,top: 10),
                   child: Text(
-                    "忘记密码?",
-                    style: TextStyle(
-                      color: kAppThemeColor,
-                      fontSize: fontSizeSmall,
-                    ),
-                  )),
+                "忘记密码?",
+                style: TextStyle(
+                  color: kAppThemeColor,
+                  fontSize: fontSizeSmall,
+                ),
+              )),
             ],
           )
         ]));
@@ -299,8 +299,10 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(color: kAppThemeColor, fontSize: 14),
               ),
               onTap: () {
+
                 NavigatorUtils.navigatorRouter(context, RegisterPage());
               }),
+
         ],
       ),
     );
@@ -326,7 +328,7 @@ class _LoginPageState extends State<LoginPage> {
                 NavigatorUtils.navigatorRouter(
                     context,
                     WebViewPage(
-                        url: Config.H5_HEAD + "fwxy.html", title: "服务协议"));
+                        url: AppConstant.H5_HEAD + "fwxy.html", title: "服务协议"));
               },
             ),
             Text(
@@ -345,7 +347,7 @@ class _LoginPageState extends State<LoginPage> {
                 NavigatorUtils.navigatorRouter(
                     context,
                     WebViewPage(
-                        url: Config.H5_HEAD + "yhxy.html", title: "用户协议"));
+                        url: AppConstant.H5_HEAD + "yhxy.html", title: "用户协议"));
               },
             ),
           ],
@@ -359,9 +361,9 @@ class _LoginPageState extends State<LoginPage> {
     } on Exception {}
     if (!mounted && result.isEmpty) return;
     Map<String, dynamic> map = convert.jsonDecode(result);
-    LocalStorage.save(Config.BEHAVIOR_CHALLENGE, map["geetest_challenge"]);
-    LocalStorage.save(Config.BEHAVIOR_VALIDATE, map["geetest_validate"]);
-    LocalStorage.save(Config.BEHAVIOR_SEC_CODE, map["geetest_seccode"]);
+    LocalStorage.save(AppConstant.BEHAVIOR_CHALLENGE, map["geetest_challenge"]);
+    LocalStorage.save(AppConstant.BEHAVIOR_VALIDATE, map["geetest_validate"]);
+    LocalStorage.save(AppConstant.BEHAVIOR_SEC_CODE, map["geetest_seccode"]);
 
 //    var model = await YpGatewayDao.getSendVerifyCode(userController.text);
 //    if (model.success) {
@@ -410,7 +412,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _login() async {
-    reqUserLogin("18758586900", "123456");
+
+
+    reqUserLogin("18758586900","123456");
+
+//     Fluttertoast.showToast(msg: await reqUserLogin("18758586900","123456"));
+    LocalStorage.save(AppConstant.USER_TOKEN, await reqUserLogin("18758586900","123456"));
+    LocalStorage.save(AppConstant.USER_MOBILE, await "18758586900");
     NavigatorUtils.goHome(context);
     return;
 

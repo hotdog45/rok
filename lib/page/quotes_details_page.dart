@@ -47,6 +47,12 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeRight,
+    ]);
+
     getData(dataController.periodModel.period);
     rootBundle.loadString('assets/depth.json').then((result) {
       final parseJson = json.decode(result);
@@ -87,6 +93,9 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
 
   @override
   void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     subscription?.cancel();
     super.dispose();
     mController.dispose();
@@ -101,7 +110,7 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
       showLoading = true;
     });
     Map<String, dynamic> results = await HttpTool.tool.get(
-        'https://api.huobi.com/market/history/kline?period=${period ?? '1day'}&size=300&symbol=ethusdt',
+        'https://api.huobi.pro/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt',
         null);
     List list = results["data"];
     datas = list

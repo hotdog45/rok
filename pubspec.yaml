@@ -2,7 +2,7 @@ name: rok
 description: rok-客户端
 
 
-version: 2.0.2+4
+version: 1.0.0+3
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -64,6 +64,7 @@ dependencies:
   flutter_i18n: ^0.18.0
   flutter_icons: ^1.1.0
   orientation: ^1.2.0 #横竖屏切换
+  flutter_bugly: ^0.2.8 #bugly
 
 dev_dependencies:
   json_serializable: ^3.3.0

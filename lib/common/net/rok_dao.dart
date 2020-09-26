@@ -1,5 +1,4 @@
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:rok/common/config/config.dart';
+import 'package:rok/common/constant/app_constant.dart';
 import 'package:rok/common/net/address.dart';
 import 'package:rok/common/net/api.dart';
 import 'package:rok/common/unils/local_storage.dart';
@@ -17,9 +16,8 @@ reqUserLogin(String phone, /*String smsCode,*/ String password) async {
 //userProfit
 
 getAvailableBalance() async {
-  String token = await LocalStorage.get(Config.USER_TOKEN) ?? "";
+  String token = await LocalStorage.get(AppConstant.USER_TOKEN) ?? "";
 
-  Fluttertoast.showToast(msg: token+"ds");
   return await httpManager.netFetch(userProfit, {
     "token": token,
   });
