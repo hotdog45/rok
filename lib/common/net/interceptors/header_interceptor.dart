@@ -20,7 +20,7 @@ class HeaderInterceptors extends InterceptorsWrapper {
     headers["app-version"] = packageInfo.buildNumber ?? "1";
     headers["app-version-name"] = packageInfo.version ?? "v1.0.0";
     headers["app-device-id"] = "xxxxxxxxx";
-    headers["app-token"] = token ?? "";
+    headers["token"] = token ?? "";
     headers["api-version"] = "1.0";
     headers["content-type"] = CONTENT_TYPE_FORM;
 

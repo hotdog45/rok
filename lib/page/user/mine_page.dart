@@ -82,7 +82,7 @@ class _MinePageState extends State<MinePage> {
   }
 
   void _getAvailableBalance() async {
-    getAvailableBalance();
+    assetDetail()();
     return;
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:rok/common/model/mine/asset_detail_model.dart';
+import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/iconfont.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
@@ -16,7 +18,16 @@ class AssetsWidget extends StatefulWidget {
   _AssetsWidgetState createState() => _AssetsWidgetState();
 }
 
+
 class _AssetsWidgetState extends State<AssetsWidget> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    totalAssetDetail();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -125,4 +136,14 @@ class _AssetsWidgetState extends State<AssetsWidget> {
       ),
     );
   }
+
+
+//资产详情
+  void totalAssetDetail() async {
+    assetDetailModel detailModel  =  assetDetail().data;
+    NavigatorUtils.showToast(detailModel.balance);
+    return;
+
+  }
+
 }

@@ -26,8 +26,7 @@ const String changePassword= "user/change/password";
 //获取当前登录用户信息
 const String userCurrentInfo= "user/current";
 
-//获取用户当前盈亏
-const String userProfit= "user/profitloss";
+
 
 //重置登录密码
 const String passwordReset= "user/reset/password";
@@ -42,6 +41,8 @@ const String index = "index";
 const String contractList = "contract/list";
 
 
+//设置交易密码
+const String userAssetDetail = "asset/detail";
 
 ////////////////////////////////////////////////////////////////
 
