@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/style/style.dart';
 
 import 'home_item.dart';
 
 class HomeNotifWidget extends StatelessWidget {
-  final String name;
-  final String url;
+  final List<Notices> notices;
 
-  const HomeNotifWidget({Key key, this.name, this.url}) : super(key: key);
+  const HomeNotifWidget({Key key, this.notices }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class HomeNotifWidget extends StatelessWidget {
                 return Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "跨日交易上线公告",
+                    notices[index].content,
                     style: TextStyle(
                         fontSize: fontSizeSmall, color: kAppTextColor),
                   ),
@@ -43,7 +43,7 @@ class HomeNotifWidget extends StatelessWidget {
               },
               scrollDirection: Axis.vertical,
               autoplay: true,
-              itemCount: 3,
+              itemCount: notices.length,
             ),
           ),
           Icon(Icons.arrow_right),
