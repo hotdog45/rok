@@ -140,8 +140,10 @@ class _AssetsWidgetState extends State<AssetsWidget> {
 
 //资产详情
   void totalAssetDetail() async {
-    assetDetailModel detailModel  =  assetDetail().data;
-    NavigatorUtils.showToast(detailModel.balance);
+
+
+  var data   = await assetDetail() ;
+  assetDetailModel detailModel = assetDetailModel.fromJson(data);
     return;
 
   }

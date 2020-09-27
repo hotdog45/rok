@@ -20,10 +20,9 @@ import 'address.dart';
 
 assetDetail()async
 {
-  String token = await LocalStorage.get(AppConstant.USER_TOKEN) ?? "";
 
   return await httpManager.netFetch(userAssetDetail, {
-    "token": token,
+
   });
 }
 
