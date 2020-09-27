@@ -25,7 +25,6 @@ class _MinePageState extends State<MinePage> {
   }
 
   _getUser() async {
-//    userName = await LocalStorage.get(Config.USER_TOKEN) ?? "";
    String token = await LocalStorage.get(AppConstant.USER_TOKEN);
    if(null!=token&&token.length>1){
      userName = await LocalStorage.get(AppConstant.USER_MOBILE);

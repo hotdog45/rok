@@ -8,7 +8,7 @@ import 'address.dart';
 
 //获取版本更新数据
 
- reqUserLogin(String phone, /*String smsCode,*/ String password) async {
+reqUserLogin(String phone, /*String smsCode,*/ String password) async {
   return await httpManager.netFetch(userLogin, {
     "phone": phone,
     "password": password,
@@ -16,14 +16,8 @@ import 'address.dart';
   });
 }
 
-
-
-assetDetail()async
-{
-
-  return await httpManager.netFetch(userAssetDetail, {
-
-  });
+assetDetail() async {
+  return await httpManager.netFetch(userAssetDetail, {});
 }
 
 reqHomeData() async {
@@ -33,4 +27,3 @@ reqHomeData() async {
 reqContractListData() async {
   return await httpManager.netFetch(contractList, null);
 }
-

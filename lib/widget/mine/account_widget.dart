@@ -5,6 +5,8 @@ import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/setting_page.dart';
 import 'package:rok/page/user/login_page.dart';
+import 'package:rok/page/user/real_name_auth.dart';
+import 'package:rok/widget/common/my_super_widget.dart';
 
 class AccountWidget extends StatefulWidget {
   final String userName;
@@ -16,6 +18,29 @@ class AccountWidget extends StatefulWidget {
 }
 
 class _AccountWidgetState extends State<AccountWidget> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+
+  }
+
+
+  _getUserInfo() async {
+    String token = await LocalStorage.get(AppConstant.USER_TOKEN);
+    if(null!=token&&token.length>1){
+      userName = await LocalStorage.get(AppConstant.USER_MOBILE);
+      userName = userName.substring(0,3)+"****"+ userName.substring(7,11);
+      setState(() {
+
+      });
+    }else{
+      userName = "请登录";
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -49,17 +74,47 @@ class _AccountWidgetState extends State<AccountWidget> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                Container(
-                  width: 160,
+
+                Row(children: <Widget>[
+                  InkWell(
+                    child: MySuperWidget(
+                      width: 60,
+                      bgColor: kAppPriceColor,
+                      radius: 20,
+                      padding: EdgeInsets.only(left: 8,right: 8,top: 5,bottom: 5),
+                      margin: EdgeInsets.only(
+                        top: 5,
+                      ),
+                      child: Text(
+                        "实名认证",
+                        style:
+                        TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                      ),
+
+                    ),
+                    onTap: (){
+                      NavigatorUtils.navigatorRouter(context, RealNameAuth());
+
+                    },
+                  ),
+
+                  Container(
+
+                  width: 70,
                   margin: EdgeInsets.only(
+                    left: 10,
                     top: 5,
                   ),
                   child: Text(
                     "欢迎来到TOC",
                     style:
-                        TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
+                    TextStyle(fontSize: fontSizeMin, color: kAppTextColor),
                   ),
-                ),
+                ),],),
+
+
+
+
               ],
             ),
             onTap: () {

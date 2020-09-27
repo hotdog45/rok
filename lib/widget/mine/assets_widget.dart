@@ -20,6 +20,7 @@ class AssetsWidget extends StatefulWidget {
 
 
 class _AssetsWidgetState extends State<AssetsWidget> {
+  assetDetailModel detailModel;
   @override
   void initState() {
     // TODO: implement initState
@@ -30,7 +31,9 @@ class _AssetsWidgetState extends State<AssetsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return
+      detailModel !=null?
+      Container(
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
@@ -58,7 +61,7 @@ class _AssetsWidgetState extends State<AssetsWidget> {
               margin: EdgeInsets.only(left: 20, top: 5),
               width: ScreenUtil.screenWidthDp,
               child: Text(
-                "88888888.000000" + "BTC",
+                detailModel.btcAsset.toString() + "  BTC",
                 style: TextStyle(
                     fontSize: fontSizeNormal,
                     color: kAppTextColor,
@@ -74,8 +77,8 @@ class _AssetsWidgetState extends State<AssetsWidget> {
               width: ScreenUtil.screenWidthDp,
               margin: EdgeInsets.only(left: 20, top: 5),
               child: Text(
-                "≈0.00000000",
-                style: TextStyle(fontSize: fontSizeSmall, color: kAppTextColor),
+                "≈ "+detailModel.totalAsset.toString(),
+                style: TextStyle(fontSize: fontSizeMiddle, color: kAppTextColor),
               ),
             ),
             onTap: () {
@@ -134,7 +137,7 @@ class _AssetsWidgetState extends State<AssetsWidget> {
           )
         ],
       ),
-    );
+    ):Container();
   }
 
 
@@ -143,7 +146,12 @@ class _AssetsWidgetState extends State<AssetsWidget> {
 
 
   var data   = await assetDetail() ;
-  assetDetailModel detailModel = assetDetailModel.fromJson(data);
+   detailModel = assetDetailModel.fromJson(data);
+
+   setState(() {
+
+   });
+
     return;
 
   }
