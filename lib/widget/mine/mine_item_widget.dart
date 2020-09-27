@@ -7,8 +7,9 @@ class MineItemWidget extends StatefulWidget {
   final String theme;
   final int type;
   final String rightAction;
+  final Color color ;
 
-  const MineItemWidget({Key key, this.theme, this.type, this.rightAction})
+  const MineItemWidget({Key key, this.theme, this.type, this.rightAction, this.color})
       : super(key: key);
 
   @override
@@ -45,7 +46,7 @@ class _MineItemWidgetState extends State<MineItemWidget> {
                   null == widget.rightAction ? "" : widget.rightAction + "   ",
                   style: TextStyle(
                     fontSize: fontSizeSmall,
-                    color: kAppSubTextColor,
+                    color: widget.color!=null?widget.color:kAppSubTextColor ,
                   ),
                 ),
                 Container(

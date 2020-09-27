@@ -13,6 +13,10 @@ Color kAppBcgColor = Color(0xFFF8F8F8);
 Color kAppPriceColor = Color(0xFFff4400);
 //一级文字
 Color kAppTextColor = Color(0xFF373235);
+
+//一级文字
+Color kAppBrandBgColor = Color(0xfff5b90b);
+
 //二级文字
 Color kAppSubTextColor = Color(0xFF969696);
 //三级文字

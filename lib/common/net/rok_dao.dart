@@ -16,6 +16,14 @@ reqUserLogin(String phone, /*String smsCode,*/ String password) async {
   });
 }
 
+
+reqUserInfo( ) async {
+  return await httpManager.netFetch(userCurrentInfo, {
+
+  });
+}
+
+
 assetDetail() async {
   return await httpManager.netFetch(userAssetDetail, {});
 }
