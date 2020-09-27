@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/quotes_details_page.dart';
@@ -14,7 +15,9 @@ import 'package:rok/page/quotes_details_page.dart';
 class QuotesItemWidget extends StatefulWidget {
   final Color color;
 
-  const QuotesItemWidget({Key key, this.color = Colors.white})
+  final Contracts contract;
+
+  const QuotesItemWidget({Key key,this.contract, this.color = Colors.white})
       : super(key: key);
 
   @override
@@ -49,7 +52,7 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
             Container(
               margin: EdgeInsets.only(left: 10, right: 10),
               child: Image.network(
-                "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=257845908,2576941774&fm=26&gp=0.jpg",
+                widget.contract.icon,
                 fit: BoxFit.fill,
               ),
               height: 22,
@@ -61,14 +64,14 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "BTC",
+                    widget.contract.symbol,
                     style: TextStyle(
                         fontSize: fontSizeNormal,
                         fontWeight: FontWeight.bold,
                         color: kAppTextColor),
                   ),
                   Text(
-                    "USDT",
+                    widget.contract.code,
                     style: TextStyle(
                         fontSize: fontSizeSmall, color: kAppSub2TextColor),
                   ),

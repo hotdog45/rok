@@ -15,10 +15,13 @@ class HomeData extends Object {
   @JsonKey(name: 'contracts')
   List<Contracts> contracts;
 
+  @JsonKey(name: 'menus')
+  List<Menus> menus;
+
   @JsonKey(name: 'notices')
   List<Notices> notices;
 
-  HomeData(this.appConfigs,this.banners,this.contracts,this.notices,);
+  HomeData(this.appConfigs,this.banners,this.contracts,this.menus,this.notices,);
 
   factory HomeData.fromJson(Map<String, dynamic> srcJson) => _$HomeDataFromJson(srcJson);
 
@@ -77,9 +80,6 @@ class Contracts extends Object {
 
   @JsonKey(name: 'icon')
   String icon;
-  @JsonKey(name: 'topic')
-  String topic;
-
 
   @JsonKey(name: 'maxMultiple')
   int maxMultiple;
@@ -108,17 +108,41 @@ class Contracts extends Object {
   @JsonKey(name: 'symbol')
   String symbol;
 
+  @JsonKey(name: 'topic')
+  String topic;
+
   @JsonKey(name: 'tradeStatus')
   int tradeStatus;
 
   @JsonKey(name: 'type')
   int type;
 
-  Contracts(this.code,this.feeRate,this.icon,this.topic,this.maxMultiple,this.maxQuantity,this.minQuantity,this.name,this.rate,this.remark,this.scale,this.status,this.symbol,this.tradeStatus,this.type,);
+  Contracts(this.code,this.feeRate,this.icon,this.maxMultiple,this.maxQuantity,this.minQuantity,this.name,this.rate,this.remark,this.scale,this.status,this.symbol,this.topic,this.tradeStatus,this.type,);
 
   factory Contracts.fromJson(Map<String, dynamic> srcJson) => _$ContractsFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$ContractsToJson(this);
+
+}
+
+
+@JsonSerializable()
+class Menus extends Object {
+
+  @JsonKey(name: 'icon')
+  String icon;
+
+  @JsonKey(name: 'targetUrl')
+  String targetUrl;
+
+  @JsonKey(name: 'title')
+  String title;
+
+  Menus(this.icon,this.targetUrl,this.title,);
+
+  factory Menus.fromJson(Map<String, dynamic> srcJson) => _$MenusFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$MenusToJson(this);
 
 }
 

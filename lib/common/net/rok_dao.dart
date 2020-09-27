@@ -29,3 +29,8 @@ assetDetail()async
 reqHomeData() async {
   return await httpManager.netFetch(index, null);
 }
+
+reqContractListData() async {
+  return await httpManager.netFetch(contractList, null);
+}
+

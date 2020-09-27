@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage>
           children: <Widget>[
             HomeBannerWidget(banners: homeData.banners),
             HomeQuotesList(channel: widget.channel,contracts: homeData.contracts,),
-            HomeIconWidget(),
+            HomeIconWidget(menus: homeData.menus),
             HomeNotifWidget(notices: homeData.notices,),
             HomeProfitLossWidget(),
             HomeListWidget()
