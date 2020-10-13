@@ -41,8 +41,15 @@ const String index = "index";
 const String contractList = "contract/list";
 
 
-//设置交易密码
+//资产详情
 const String userAssetDetail = "asset/detail";
+
+//查询当前用户对应的ERC20-USDT钱包地址
+const String ERC20USDTWalletAddress= "user/wallet/address";
+
+//钱包地址二维码
+const String  walletAddressCode= "qrcode/wallet";
+
 
 ////////////////////////////////////////////////////////////////
 

@@ -10,6 +10,7 @@ import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/assets_page.dart';
 import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/page/recharge_online_page.dart';
 import 'package:rok/page/recharge_page.dart';
 import 'package:rok/page/withdrawal_page.dart';
 
@@ -105,7 +106,9 @@ class _AssetsWidgetState extends State<AssetsWidget> {
                       ),
                     )),
                 onTap: () {
-                  NavigatorUtils.navigatorRouter(context, RechargePage());
+//                 NavigatorUtils.navigatorRouter(context, RechargePage());
+                  NavigatorUtils.navigatorRouter(context, RechargeOnlinePage());
+
                 },
               ),
               Expanded(

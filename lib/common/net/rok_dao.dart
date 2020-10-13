@@ -1,8 +1,6 @@
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:rok/common/constant/app_constant.dart';
 
 import 'package:rok/common/net/api.dart';
-import 'package:rok/common/unils/local_storage.dart';
+
 
 import 'address.dart';
 
@@ -23,7 +21,7 @@ reqUserInfo( ) async {
   });
 }
 
-
+//资产详情
 assetDetail() async {
   return await httpManager.netFetch(userAssetDetail, {});
 }
@@ -34,4 +32,15 @@ reqHomeData() async {
 
 reqContractListData() async {
   return await httpManager.netFetch(contractList, null);
+}
+//钱包地址
+walletAddress() async {
+  return await httpManager.netFetch(ERC20USDTWalletAddress, {});
+}
+//钱包地址二维码
+walletAddressCodePic(String address) async {
+  return await httpManager.netFetch(walletAddressCode, {
+    "address": address,
+
+  });
 }
