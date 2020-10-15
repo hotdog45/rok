@@ -39,8 +39,8 @@ walletAddress() async {
 }
 //钱包地址二维码
 walletAddressCodePic(String address) async {
-  return await httpManager.netFetch(walletAddressCode, {
-    "address": address,
+  return await httpManager.netFetch(walletAddressCode+"?address="+address, {
+
 
   });
 }
