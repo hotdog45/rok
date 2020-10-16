@@ -133,7 +133,8 @@ class _AssetsWidgetState extends State<AssetsWidget> {
                       ),
                     )),
                 onTap: () {
-                  NavigatorUtils.navigatorRouter(context, WithdrawalPage());
+//                  NavigatorUtils.navigatorRouter(context, WithdrawalPage());
+
                 },
               ),
             ],

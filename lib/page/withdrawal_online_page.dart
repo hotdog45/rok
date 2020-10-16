@@ -1,31 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
-import 'package:rok/widget/common/yp_cached_network_Image.dart';
 
-class RechargeOnlinePage extends StatefulWidget {
+class WithdrawlOnlinePage extends StatefulWidget {
   @override
-  _RechargeOnlinePageState createState() => _RechargeOnlinePageState();
+  _WithdrawlOnlinePageState createState() => _WithdrawlOnlinePageState();
 }
 
-class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
-  String walletAdd = "";
-  String walletAddss = "";
-  @override
-  void initState() {
-    super.initState();
-    _getWalletAddress();
-  }
-
+class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: YPAppBar("链上交易入金", actions: [
+      appBar: YPAppBar("链上交易出金", actions: [
         MySuperWidget(text: "资金记录", onTap: () {}),
       ]).build(context),
       body: ListView(
@@ -45,11 +33,11 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                             child: Text(
-                          "充值币种", //"选择充值币种"
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: fontSizeMiddle),
-                        )),
+                              "充值币种", //"选择充值币种"
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: fontSizeMiddle),
+                            )),
                       ),
                       Expanded(
                         child: Container(),
@@ -59,11 +47,11 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                             child: Text(
-                          "USDT", //"USTD >"
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: fontSizeMiddle),
-                        )),
+                              "USDT", //"USTD >"
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: fontSizeMiddle),
+                            )),
                       ),
                     ],
                   ),
@@ -80,11 +68,11 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                             child: Text(
-                          "链名", //"选择充值币种"
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: fontSizeMiddle),
-                        )),
+                              "链名", //"选择充值币种"
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: fontSizeMiddle),
+                            )),
                       ),
                       Expanded(
                         child: Container(),
@@ -94,11 +82,11 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                             child: Text(
-                          "trc20", //"USTD >"
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: fontSizeMiddle),
-                        )),
+                              "trc20", //"USTD >"
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: fontSizeMiddle),
+                            )),
                       ),
                     ],
                   ),
@@ -139,16 +127,16 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                             Expanded(
                               child: Container(
                                 margin:
-                                    EdgeInsets.only(left: 0, right: 20, top: 0),
+                                EdgeInsets.only(left: 0, right: 20, top: 0),
                                 padding: EdgeInsets.only(
                                     left: 10, right: 10, top: 4, bottom: 4),
                                 child: walletAdd.length > 1
                                     ? Text(
-                                        walletAdd,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: fontSizeMiddle),
-                                      )
+                                  walletAdd,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: fontSizeMiddle),
+                                )
                                     : Container(),
                                 decoration: BoxDecoration(
                                     color: kShadowColor,
@@ -220,18 +208,4 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
       ),
     );
   }
-
-  void _getWalletAddress() async {
-    walletAdd = await walletAddress();
-    setState(() {});
-    _getWalletCodePic(walletAdd);
-    return;
-  }
-  void _getWalletCodePic(String add) async {
-    walletAddss = await walletAddressCodePic(add);
-    setState(() {});
-    return;
-  }
-
-
 }
