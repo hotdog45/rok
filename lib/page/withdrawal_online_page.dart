@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
+import 'package:rok/widget/common/yp_cached_network_Image.dart';
 
 class WithdrawlOnlinePage extends StatefulWidget {
   @override
@@ -108,7 +110,7 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
                           EdgeInsets.only(bottom: 15, right: 10, left: 15, top: 10),
                           child: YPCachedNetworkImage(
 //                            placeholder: YPICons.DEFAULT_USER_ICON,
-                            image: walletAddss,
+                            image: "",
                             width: 80,
                             height: 80,
                           ),
@@ -130,9 +132,9 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
                                 EdgeInsets.only(left: 0, right: 20, top: 0),
                                 padding: EdgeInsets.only(
                                     left: 10, right: 10, top: 4, bottom: 4),
-                                child: walletAdd.length > 1
+                                child: 2 > 1
                                     ? Text(
-                                  walletAdd,
+                                  "walletAdd",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: fontSizeMiddle),
