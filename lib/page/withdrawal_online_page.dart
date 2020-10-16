@@ -94,6 +94,39 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
                   ),
                 ),
                 Container(
+                  height: 50,
+                  margin: EdgeInsets.only(left: 10, right: 10, top: 1),
+                  decoration: BoxDecoration(
+                      color: kAppWhiteColor,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                            child: Text(
+                              "出金地址", //"选择充值币种"
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: fontSizeMiddle),
+                            )),
+                      ),
+                      Expanded(
+                        child: Container(),
+                        flex: 1,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(//crcode
+                            child:  Image.asset(
+                              "static/images/qrcode.png",
+                              scale: 0.5,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
                   height: 350,
                   margin: EdgeInsets.only(left: 10, right: 10, top: 1),
                   decoration: BoxDecoration(

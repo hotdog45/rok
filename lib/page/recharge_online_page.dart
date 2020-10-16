@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rok/common/net/rok_dao.dart';
@@ -155,19 +156,28 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                                     borderRadius: BorderRadius.circular(2)),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: 8, right: 8, top: 5, bottom: 5),
-                              child: Text(
-                                "复制地址",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: fontSizeMiddle),
+                            InkWell(
+                              child: Container(
+                                padding: EdgeInsets.only(
+                                    left: 8, right: 8, top: 5, bottom: 5),
+                                child: Text(
+                                  "复制地址",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: fontSizeMiddle),
+                                ),
+                                decoration: BoxDecoration(
+                                    color: kAppThemeColor,
+                                    borderRadius: BorderRadius.circular(2)),
                               ),
-                              decoration: BoxDecoration(
-                                  color: kAppThemeColor,
-                                  borderRadius: BorderRadius.circular(2)),
+                              onTap: (){
+                                Fluttertoast.showToast(msg: "复制成功");
+                                Clipboard.getData(
+                                    Clipboard.kTextPlain);
+                                Clipboard.setData(ClipboardData(
+                                    text: walletAdd));
+                              },
                             ),
                           ],
                         ),
