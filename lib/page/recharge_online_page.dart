@@ -95,7 +95,7 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                             child: Text(
-                          "trc20", //"USTD >"
+                          "ERC20-USDT", //"USTD >"
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: fontSizeMiddle),
