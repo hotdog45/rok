@@ -339,7 +339,6 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
                           borderRadius: BorderRadius.circular(2)),
                     ),
                     onTap: (){
-                    Fluttertoast.showToast(msg: withdrawalController.text);
                       _applyWithdrawPreview("wwwdf", double.parse(withdrawalController.text) );
                     },
 

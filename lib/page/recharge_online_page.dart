@@ -31,7 +31,7 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
     return Scaffold(
       appBar: YPAppBar("链上交易入金", actions: [
         MySuperWidget(text: "资金记录", onTap: () {
-          Fluttertoast.showToast(msg: "1111");
+
 
           NavigatorUtils.navigatorRouter(context, BillDetailListPage());
 
