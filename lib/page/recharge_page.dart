@@ -6,7 +6,7 @@ import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 import 'package:rok/widget/recharge/purchase_widget.dart';
 import 'package:rok/widget/recharge/recharging_deal_widget.dart';
-
+//充值OTC 暂时不做
 class RechargePage extends StatefulWidget {
   @override
   _RechargePageState createState() => _RechargePageState();

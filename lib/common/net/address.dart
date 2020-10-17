@@ -41,14 +41,28 @@ const String index = "index";
 const String contractList = "contract/list";
 
 
-//设置交易密码
+//资产详情
 const String userAssetDetail = "asset/detail";
+
+//查询当前用户对应的ERC20-USDT钱包地址
+const String ERC20USDTWalletAddress= "user/wallet/address";
+
+//钱包地址二维码
+const String  walletAddressCode= "qrcode/wallet";
+
+
+//提币申请预览
+const String  withdrawPre= "asset/withdraw/preview";
+
+//提币申请预览
+const String  withdrawApply= "asset/withdraw";
+
 
 ////////////////////////////////////////////////////////////////
 
 ///网关API
 const String BASE_URL_RELEASE = "https://apigw.ypshengxian.com/request"; //线上
-const String BASE_URL_DEV = "http://172.20.10.2:8001/"; //开发
+const String BASE_URL_DEV = "http://yd-api.qicp.vip/"; //"http://10.0.61.79:8001/"; //开发  api  http://yd-api.qicp.vip/   websocket 映射地址  ws://2888300uv3.qicp.vip
 
 ///网页h5
 const String BASE_URL_H5_RELEASE = "https://h5.ypshengxian.com"; //线上

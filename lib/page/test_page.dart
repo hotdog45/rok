@@ -8,6 +8,7 @@ import 'package:launch_review/launch_review.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/test/channel_page.dart';
 import 'package:rok/test/i18nPage.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 
@@ -61,11 +62,11 @@ class _TestPageState extends State<TestPage> {
               width: double.infinity,
               child: FlatButton(
                 color: getRandomColor(),
-                child: Text("国际化"),
+                child: Text("通信"),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 onPressed: () {
-                  NavigatorUtils.navigatorRouter(context, MyHomePage());
+                  NavigatorUtils.navigatorRouter(context, ChannelPage());
                 },
               )),
           Container(

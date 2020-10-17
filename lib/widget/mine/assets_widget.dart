@@ -10,7 +10,9 @@ import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/assets_page.dart';
 import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/page/recharge_online_page.dart';
 import 'package:rok/page/recharge_page.dart';
+import 'package:rok/page/withdrawal_online_page.dart';
 import 'package:rok/page/withdrawal_page.dart';
 
 class AssetsWidget extends StatefulWidget {
@@ -20,6 +22,7 @@ class AssetsWidget extends StatefulWidget {
 
 
 class _AssetsWidgetState extends State<AssetsWidget> {
+  assetDetailModel detailModel;
   @override
   void initState() {
     // TODO: implement initState
@@ -30,7 +33,9 @@ class _AssetsWidgetState extends State<AssetsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return
+      detailModel !=null?
+      Container(
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
@@ -58,7 +63,7 @@ class _AssetsWidgetState extends State<AssetsWidget> {
               margin: EdgeInsets.only(left: 20, top: 5),
               width: ScreenUtil.screenWidthDp,
               child: Text(
-                "88888888.000000" + "BTC",
+                detailModel.btcAsset.toString() + "  BTC",
                 style: TextStyle(
                     fontSize: fontSizeNormal,
                     color: kAppTextColor,
@@ -74,8 +79,8 @@ class _AssetsWidgetState extends State<AssetsWidget> {
               width: ScreenUtil.screenWidthDp,
               margin: EdgeInsets.only(left: 20, top: 5),
               child: Text(
-                "≈0.00000000",
-                style: TextStyle(fontSize: fontSizeSmall, color: kAppTextColor),
+                "≈ "+detailModel.totalAsset.toString(),
+                style: TextStyle(fontSize: fontSizeMiddle, color: kAppTextColor),
               ),
             ),
             onTap: () {
@@ -102,7 +107,9 @@ class _AssetsWidgetState extends State<AssetsWidget> {
                       ),
                     )),
                 onTap: () {
-                  NavigatorUtils.navigatorRouter(context, RechargePage());
+//                 NavigatorUtils.navigatorRouter(context, RechargePage());
+                  NavigatorUtils.navigatorRouter(context, RechargeOnlinePage());
+
                 },
               ),
               Expanded(
@@ -127,21 +134,30 @@ class _AssetsWidgetState extends State<AssetsWidget> {
                       ),
                     )),
                 onTap: () {
-                  NavigatorUtils.navigatorRouter(context, WithdrawalPage());
+//                  NavigatorUtils.navigatorRouter(context, WithdrawalPage());
+                  NavigatorUtils.navigatorRouter(context, WithdrawlOnlinePage());
+
                 },
               ),
             ],
           )
         ],
       ),
-    );
+    ):Container();
   }
 
 
 //资产详情
   void totalAssetDetail() async {
-    assetDetailModel detailModel  =  assetDetail().data;
-    NavigatorUtils.showToast(detailModel.balance);
+
+
+  var data   = await assetDetail() ;
+   detailModel = assetDetailModel.fromJson(data);
+
+   setState(() {
+
+   });
+
     return;
 
   }

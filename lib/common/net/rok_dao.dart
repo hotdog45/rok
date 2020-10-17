@@ -1,14 +1,10 @@
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:rok/common/constant/app_constant.dart';
-
 import 'package:rok/common/net/api.dart';
-import 'package:rok/common/unils/local_storage.dart';
 
 import 'address.dart';
 
 //获取版本更新数据
 
- reqUserLogin(String phone, /*String smsCode,*/ String password) async {
+reqUserLogin(String phone, /*String smsCode,*/ String password) async {
   return await httpManager.netFetch(userLogin, {
     "phone": phone,
     "password": password,
@@ -16,15 +12,13 @@ import 'address.dart';
   });
 }
 
+reqUserInfo() async {
+  return await httpManager.netFetch(userCurrentInfo, {});
+}
 
-
-assetDetail()async
-{
-  String token = await LocalStorage.get(AppConstant.USER_TOKEN) ?? "";
-
-  return await httpManager.netFetch(userAssetDetail, {
-    "token": token,
-  });
+//资产详情
+assetDetail() async {
+  return await httpManager.netFetch(userAssetDetail, {});
 }
 
 reqHomeData() async {
@@ -35,3 +29,27 @@ reqContractListData() async {
   return await httpManager.netFetch(contractList, null);
 }
 
+//钱包地址
+walletAddress() async {
+  return await httpManager.netFetch(ERC20USDTWalletAddress, {});
+}
+
+//钱包地址二维码
+walletAddressCodePic(String address) async {
+  return await httpManager
+      .netFetch(walletAddressCode + "?address=" + address, {});
+}
+
+//
+//提币申请预览
+withdrawPreviews() async {
+  return await httpManager.netFetch(withdrawPre, {});
+}
+
+//提币申请
+applyWithdrawPreviews( String address,double quantity)async {
+  return await httpManager.netFetch(withdrawApply, {
+    "address": address,
+    "quantity": quantity,
+  });
+}
