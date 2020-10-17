@@ -5,9 +5,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rok/common/model/mine/withdraw_preview_model.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 import 'package:rok/widget/common/yp_cached_network_Image.dart';
+
+import 'bill_detail_list_page.dart';
 
 class WithdrawlOnlinePage extends StatefulWidget {
   @override
@@ -29,7 +32,9 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: YPAppBar("链上交易出金", actions: [
-        MySuperWidget(text: "资金记录", onTap: () {}),
+        MySuperWidget(text: "资金记录", onTap: () {
+          NavigatorUtils.navigatorRouter(context, BillDetailListPage());
+        }),
       ]).build(context),
       body: ListView(
         children: <Widget>[
