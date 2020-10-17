@@ -57,6 +57,9 @@ const String  withdrawPre= "asset/withdraw/preview";
 //提币申请预览
 const String  withdrawApply= "asset/withdraw";
 
+//提币申请预览
+const String  recordListreq= "asset/record/list";
+
 
 ////////////////////////////////////////////////////////////////
 

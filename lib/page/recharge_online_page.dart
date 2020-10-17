@@ -5,9 +5,12 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 import 'package:rok/widget/common/yp_cached_network_Image.dart';
+
+import 'bill_detail_list_page.dart';
 
 class RechargeOnlinePage extends StatefulWidget {
   @override
@@ -27,7 +30,12 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: YPAppBar("链上交易入金", actions: [
-        MySuperWidget(text: "资金记录", onTap: () {}),
+        MySuperWidget(text: "资金记录", onTap: () {
+          Fluttertoast.showToast(msg: "1111");
+
+          NavigatorUtils.navigatorRouter(context, BillDetailListPage());
+
+        }),
       ]).build(context),
       body: ListView(
         children: <Widget>[

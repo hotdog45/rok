@@ -53,3 +53,10 @@ applyWithdrawPreviews( String address,double quantity)async {
     "quantity": quantity,
   });
 }
+recordList (int bizType,int pageNo,int pageSize )async {
+  return await httpManager.netFetch(recordListreq, {
+    "bizType": bizType,
+    "pageNo": pageNo,
+    "pageSize":pageSize,
+  });
+}

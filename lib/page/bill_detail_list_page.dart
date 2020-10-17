@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/widget/asset/bill_item_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 
@@ -9,6 +10,13 @@ class BillDetailListPage extends StatefulWidget {
 }
 
 class _BillDetailListPageState extends State<BillDetailListPage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _recordList(null,1,10);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,4 +37,13 @@ class _BillDetailListPageState extends State<BillDetailListPage> {
       ),
     );
   }
+
+
+  void _recordList(int bizType,int pageNo,int pageSize) async {///asset/record/list
+    var data = await recordList(bizType,pageNo,pageSize);
+//    _previewModel = withdrawPreviewModel.fromJson(data);
+    setState(() {});
+    return;
+  }
+
 }
