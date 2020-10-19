@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rok/common/net/address.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
@@ -19,7 +20,8 @@ class RechargeOnlinePage extends StatefulWidget {
 
 class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
   String walletAdd = "";
-  String walletAddss = "";
+  var walletAddss = "";
+
   @override
   void initState() {
     super.initState();
@@ -30,12 +32,11 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: YPAppBar("链上交易入金", actions: [
-        MySuperWidget(text: "资金记录", onTap: () {
-
-
-          NavigatorUtils.navigatorRouter(context, BillDetailListPage());
-
-        }),
+        MySuperWidget(
+            text: "资金记录",
+            onTap: () {
+              NavigatorUtils.navigatorRouter(context, BillDetailListPage());
+            }),
       ]).build(context),
       body: ListView(
         children: <Widget>[
@@ -113,28 +114,25 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                   ),
                 ),
                 Container(
-                  height: 350,
+                  height: 330,
                   margin: EdgeInsets.only(left: 10, right: 10, top: 1),
                   decoration: BoxDecoration(
                       color: kAppWhiteColor,
                       borderRadius: BorderRadius.circular(8)),
                   child: Column(
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-
-                          margin: EdgeInsets.only(top: 1),
-                          padding:
-                          EdgeInsets.only(bottom: 15, right: 10, left: 15, top: 10),
-                          child: YPCachedNetworkImage(
+                      Container(
+                        margin: EdgeInsets.only(top: 1),
+                        padding: EdgeInsets.only(
+                           right: 10, left: 15, top: 10),
+                        child: YPCachedNetworkImage(
 //                            placeholder: YPICons.DEFAULT_USER_ICON,
-                            image: walletAddss,
-                            width: 80,
-                            height: 80,
-                          ),
-                          width: 95,
-                          height: 95,
+                          image: BASE_URL_DEV +
+                              "qrcode/wallet?address=" +
+                              walletAdd,
+                          width: 228,
+                          height: 228,
+                          fit: BoxFit.fill,
                         ),
                       ),
                       Expanded(
@@ -179,12 +177,11 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                                     color: kAppThemeColor,
                                     borderRadius: BorderRadius.circular(2)),
                               ),
-                              onTap: (){
+                              onTap: () {
                                 Fluttertoast.showToast(msg: "复制成功");
-                                Clipboard.getData(
-                                    Clipboard.kTextPlain);
-                                Clipboard.setData(ClipboardData(
-                                    text: walletAdd));
+                                Clipboard.getData(Clipboard.kTextPlain);
+                                Clipboard.setData(
+                                    ClipboardData(text: walletAdd));
                               },
                             ),
                           ],
@@ -242,14 +239,7 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
   void _getWalletAddress() async {
     walletAdd = await walletAddress();
     setState(() {});
-    _getWalletCodePic(walletAdd);
+
     return;
   }
-  void _getWalletCodePic(String add) async {
-    walletAddss = await walletAddressCodePic(add);
-    setState(() {});
-    return;
-  }
-
-
 }

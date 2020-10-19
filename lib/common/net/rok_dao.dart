@@ -34,12 +34,6 @@ walletAddress() async {
   return await httpManager.netFetch(ERC20USDTWalletAddress, {});
 }
 
-//钱包地址二维码
-walletAddressCodePic(String address) async {
-  return await httpManager
-      .netFetch(walletAddressCode + "?address=" + address, {});
-}
-
 //
 //提币申请预览
 withdrawPreviews() async {
