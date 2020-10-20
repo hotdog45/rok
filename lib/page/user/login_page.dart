@@ -29,6 +29,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController userController = new TextEditingController();
   final TextEditingController pwController = new TextEditingController();
+  final TextEditingController codeController = new TextEditingController();
   String _challenge = "";
   String _getPhoneCode = "获取验证码";
   bool _isClickCode = false;
@@ -121,16 +122,16 @@ class _LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.symmetric(horizontal: 25),
         child: Column(children: <Widget>[
           TextField(
-            controller: pwController,
+            controller: userController,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-              hintText: '请输入手机号（18758586900）',
+              hintText: '请输入手机号18758586900',//（18758586900）
               hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
               border: InputBorder.none,
             ),
             inputFormatters: [
-              LengthLimitingTextInputFormatter(6),
+              LengthLimitingTextInputFormatter(11),
               WhitelistingTextInputFormatter.digitsOnly
             ],
             onChanged: (v) {
@@ -169,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
           Stack(
             children: <Widget>[
               TextField(
-                controller: userController,
+                controller: codeController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -414,13 +415,24 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() async {
 
+    if(userController.text.length!=11){
+      Fluttertoast.showToast(msg: "手机号格式不对");
+      return;
+    }
 
-    reqUserLogin("18758586900","123456");
+    if(pwController.text.length!=6){
+      Fluttertoast.showToast(msg: "密码错误");
+      return;
+    }
 
-//    Fluttertoast.showToast(msg: await reqUserLogin("18758586900","123456"));
-    LocalStorage.save(AppConstant.USER_TOKEN, await reqUserLogin("18758586900","123456"));
-    LocalStorage.save(AppConstant.USER_MOBILE, await "18758586900");
+
+
+    LocalStorage.save(AppConstant.USER_TOKEN, await reqUserLogin(userController.text,pwController.text));
+    LocalStorage.save(AppConstant.USER_MOBILE, await userController.text);
+    String taken = await LocalStorage.get(AppConstant.USER_TOKEN);
+  if(null!= taken&& taken.length>0){
     NavigatorUtils.goHome(context);
+  }
     return;
 
   }

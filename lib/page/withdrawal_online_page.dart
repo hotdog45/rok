@@ -126,8 +126,10 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
                         padding: const EdgeInsets.all(10.0),
                         child:Container(
                             width:220,
+//                            color: Colors.red,
                             margin: EdgeInsets.only(bottom: 8),
                             child: TextField(
+
                               controller: withdrawalControllerAddress,
                               keyboardType: TextInputType.number,
                               maxLines: 1,
@@ -140,9 +142,7 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
                               ),
                               //输入文本的样式
                               onChanged:  (v){
-                                setState(() {
-                                  availableAmount =  double.parse(v) -    _previewModel.fee ;
-                                });
+
 
                               },
                               onSubmitted: (text) {
