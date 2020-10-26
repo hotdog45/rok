@@ -9,6 +9,7 @@ import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/common/unils/web_socket_utils.dart';
 import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/kline/kchart/utils/date_format_util.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -38,27 +39,24 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
   @override
   void initState() {
     super.initState();
-    if (widget.contracts != null){
+    if (widget.contracts != null && widget.contracts.length>0){
       reqMarket(widget.contracts[0].topic);
     }
 
   }
 
   reqMarket(topic){
-    // print("IOWebSocketChannel=============="+'{"event":"addTopic","topic":"${topic}"}');
     WebSocketUtils.channel.sink
         .add('{"event":"addTopic","topic":"${topic}"}');
     WebSocketUtils.channel.stream.listen((message) {
-      // print("IOWebSocketChannel===" + message.toString());
       try{
         var model = SocketBaseModel.fromJson(jsonDecode(message));
         if (model.ch == topic) {
           nowMarketModel = NowMarketModel.fromJson(model.tick);
-          // print("nowMarketModel:"+nowMarketModel.close.toString());
           setState(() {});
         }
       }catch (e){
-        WebSocketUtils.channel.sink.close(message.goingAway);
+        // WebSocketUtils.channel.sink.close(message.goingAway);
       }
     });
   }
@@ -72,7 +70,8 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, index) {
 
-          return HomeQuotesItem(nowMarketModel: nowMarketModel,contract: widget.contracts[index],
+          return MySuperWidget(text: "ces "
+          // return nowMarketModel == null ? Container():  HomeQuotesItem(nowMarketModel: nowMarketModel,contract: widget.contracts[index],
           );
         },
         itemCount: widget.contracts.length,

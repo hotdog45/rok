@@ -22,9 +22,7 @@ import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class HomePage extends StatefulWidget {
-
-  const HomePage( {Key key}) : super(key: key);
-
+  const HomePage({Key key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -32,9 +30,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-
   HomeData homeData;
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,27 +39,33 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       body: Container(
         color: kAppBcgColor,
-        child: ListView(
-          padding: EdgeInsets.all(0),
-          children: <Widget>[
-            HomeBannerWidget(banners: homeData.banners),
-            HomeQuotesList(contracts: homeData.contracts,),
-            HomeIconWidget(menus: homeData.menus),
-            HomeNotifWidget(notices: homeData.notices,),
-            HomeProfitLossWidget(),
-            HomeListWidget()
-          ],
-        ),
+        child: homeData == null
+            ? Container()
+            : ListView(
+                padding: EdgeInsets.all(0),
+                children: <Widget>[
+                  HomeBannerWidget(banners: homeData.banners),
+                  // homeData.contracts == null
+                  //     ? Container()
+                  //     : HomeQuotesList(contracts: homeData.contracts),
+                  HomeIconWidget(menus: homeData.menus),
+                  homeData.notices == null
+                      ? Container()
+                      : HomeNotifWidget(notices: homeData.notices),
+                  HomeProfitLossWidget(),
+                  HomeListWidget()
+                ],
+              ),
       ),
     );
   }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     controller = AnimationController(
         duration: Duration(milliseconds: 600),
-        vsync: this); //AnimationController
+        vsync: this);
 
     animation =
         ColorTween(begin: Colors.white, end: Colors.white).animate(controller);
@@ -76,15 +78,16 @@ class _HomePageState extends State<HomePage>
     getHomeData();
   }
 
-
-  getHomeData() async{
+  getHomeData() async {
     var data = await reqHomeData();
-    homeData = HomeData.fromJson(data) ;
+    print("homeData=======>" + data.toString());
+    homeData = HomeData.fromJson(data);
 
     setState(() {});
-    print("homeData"+homeData.banners.length.toString());
-    getContractListData();
+    print("homeData" + homeData.contracts.length.toString());
+    // getContractListData();
   }
+
   List<Contracts> contracts;
 
   getContractListData() async {
@@ -92,7 +95,6 @@ class _HomePageState extends State<HomePage>
     setState(() {});
     print("contracts" + contracts.length.toString());
   }
-
 
   void _onTapHandle(color) {
     controller.reset();
