@@ -42,13 +42,7 @@ class _QuotesListPageState extends State<QuotesListPage>
   }
 
   getContractListData() async {
-    var jsonStr = await reqContractListData();
-    print("jsonStr" + jsonStr.toString());
-
-    List list = json.decode(jsonStr);
-
-    contracts = list.map((e) => Contracts.fromJson(e)).toList();
-
+    contracts = await reqContractListData();
     setState(() {});
     print("contracts" + contracts.length.toString());
   }
@@ -73,7 +67,7 @@ class _QuotesListPageState extends State<QuotesListPage>
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
 
     return Scaffold(
-      appBar: YPAppBar("title.quo0tes", hasBackBtn: false, actions: [
+      appBar: YPAppBar("title.quotes", hasBackBtn: false, actions: [
         InkWell(
             child: Icon(Icons.refresh),
             onTap: () {
@@ -91,7 +85,7 @@ class _QuotesListPageState extends State<QuotesListPage>
           child: ListView.builder(
             itemBuilder: (BuildContext context, index) {
               return QuotesItemWidget(
-                  color: index % 2 == 0 ? animation.value : animation2.value,contract: contracts[index],);
+                  color: index % 2 == 0 ? animation.value : animation2.value);
             },
             itemCount: contracts.length,
             padding: EdgeInsets.all(15),

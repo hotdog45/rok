@@ -6,6 +6,24 @@ part of 'now_market_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+NowMarketBaseModel _$NowMarketBaseModelFromJson(Map<String, dynamic> json) {
+  return NowMarketBaseModel(
+    json['message'] as String,
+    (json['data'] as List)
+        ?.map((e) =>
+            e == null ? null : Contracts.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    json['code'] as int,
+  );
+}
+
+Map<String, dynamic> _$NowMarketBaseModelToJson(NowMarketBaseModel instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'data': instance.data,
+      'code': instance.code,
+    };
+
 NowMarketModel _$NowMarketModelFromJson(Map<String, dynamic> json) {
   return NowMarketModel(
     json['id'] as int,

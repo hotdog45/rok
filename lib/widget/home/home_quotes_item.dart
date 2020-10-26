@@ -56,8 +56,6 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
       }catch (e){
         widget.channel.sink.close(message.goingAway);
       }
-
-
     });
   }
 

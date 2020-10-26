@@ -1,3 +1,5 @@
+import 'package:rok/common/model/home/home_data.dart';
+import 'package:rok/common/model/home/now_market_model.dart';
 import 'package:rok/common/net/api.dart';
 
 import 'address.dart';
@@ -24,9 +26,12 @@ assetDetail() async {
 reqHomeData() async {
   return await httpManager.netFetch(index, null);
 }
+//行情列表
+ Future<List<Contracts>> reqContractListData() async {
+ var jsonStr = await httpManager.netFetch(contractList, null,useBaseModel: false);
+ NowMarketBaseModel nowMarketBaseModel = NowMarketBaseModel.fromJson(jsonStr);
 
-reqContractListData() async {
-  return await httpManager.netFetch(contractList, null);
+  return nowMarketBaseModel.data;
 }
 
 //钱包地址

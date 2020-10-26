@@ -1,6 +1,32 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'home_data.dart';
+
 part 'now_market_model.g.dart';
+
+
+@JsonSerializable()
+class NowMarketBaseModel extends Object {
+  @JsonKey(name: 'message')
+  String message;
+
+  @JsonKey(name: 'data')
+  List<Contracts> data;
+
+  @JsonKey(name: 'code')
+  int code;
+
+  NowMarketBaseModel(
+      this.message,
+      this.data,
+      this.code,
+      );
+
+  factory NowMarketBaseModel.fromJson(Map<String, dynamic> srcJson) =>
+      _$NowMarketBaseModelFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$NowMarketBaseModelToJson(this);
+}
 
 
 @JsonSerializable()

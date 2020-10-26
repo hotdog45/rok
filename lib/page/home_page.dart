@@ -48,11 +48,11 @@ class _HomePageState extends State<HomePage>
           padding: EdgeInsets.all(0),
           children: <Widget>[
             HomeBannerWidget(banners: homeData.banners),
-            HomeQuotesList(channel: widget.channel,contracts: homeData.contracts,),
+            // HomeQuotesList(channel: widget.channel,contracts: homeData.contracts,),
             HomeIconWidget(menus: homeData.menus),
             HomeNotifWidget(notices: homeData.notices,),
             HomeProfitLossWidget(),
-            HomeListWidget()
+            HomeListWidget(channel: widget.channel)
           ],
         ),
       ),
@@ -84,7 +84,16 @@ class _HomePageState extends State<HomePage>
 
     setState(() {});
     print("homeData"+homeData.banners.length.toString());
+    getContractListData();
   }
+  List<Contracts> contracts;
+
+  getContractListData() async {
+    contracts = await reqContractListData();
+    setState(() {});
+    print("contracts" + contracts.length.toString());
+  }
+
 
   void _onTapHandle(color) {
     controller.reset();

@@ -27,7 +27,7 @@ class HttpManager {
   ///发起网络请求
   ///[ url] 请求url
   ///[ params] 请求参数
-  netFetch(String api, body, {noTip = false}) async {
+  netFetch(String api, body, {noTip = false, method = "post", useBaseModel = true}) async {
     String apiNum = await LocalStorage.get(Config.KEY_API_NUM);
     resultError(DioError e) {
       Response errorResponse;
@@ -52,11 +52,16 @@ class HttpManager {
         if (!noTip) NavigatorUtils.showToast(Config.ERR_MSG2);
       } else {
         BaseModel baseModel = BaseModel.fromJson(response.data);
+
+
         switch (baseModel.code) {
           case Code.INVALID_TOKEN_ERROR: //用户token失效，重写登录 ，清除用户缓存
 
             break;
           case Code.SUCCESS:
+            if (!useBaseModel) {
+              return response.data;
+            }
             return baseModel.data;
           default:
             {
