@@ -21,6 +21,7 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
   withdrawPreviewModel _previewModel;
   double availableAmount = 0.00;
   final TextEditingController withdrawalController = new TextEditingController();
+  final TextEditingController withdrawalControllerAddress = new TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
@@ -123,13 +124,34 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                            child: Text(
-                          "出金地址", //"选择充值币种"
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: fontSizeMiddle),
-                        )),
+                        child:Container(
+                            width:220,
+//                            color: Colors.red,
+                            margin: EdgeInsets.only(bottom: 8),
+                            child: TextField(
+
+                              controller: withdrawalControllerAddress,
+                              keyboardType: TextInputType.number,
+                              maxLines: 1,
+                              //最大行数
+                              decoration: InputDecoration.collapsed(hintText: "出金地址" ,  hintStyle: TextStyle(color: Color(0xffc3c3c3))),
+
+                              style: TextStyle(
+                                fontSize: fontSizeMiddle,
+                                color: kAppTextColor,
+                              ),
+                              //输入文本的样式
+                              onChanged:  (v){
+
+
+                              },
+                              onSubmitted: (text) {
+                                //内容提交(按回车)的回调
+//                        print('submit $text');
+//                        Fluttertoast.showToast(msg: 'submit $text');
+                              },
+                              enabled: true,
+                            )),
                       ),
                       Expanded(
                         child: Container(),
@@ -335,12 +357,19 @@ class _WithdrawlOnlinePageState extends State<WithdrawlOnlinePage> {
                         ),
                       ),
                       decoration: BoxDecoration(
-                          color: kAppBrandBgColor,
+                          color:    _previewModel.status==1?kAppBrandBgColor:kAppSub2TextColor,
                           borderRadius: BorderRadius.circular(2)),
                     ),
                     onTap: (){
-                    Fluttertoast.showToast(msg: withdrawalController.text);
-                      _applyWithdrawPreview("wwwdf", double.parse(withdrawalController.text) );
+           
+                          if( _previewModel.status==1){
+                            _applyWithdrawPreview(withdrawalControllerAddress.text, double.parse(withdrawalController.text) );
+                          }else{
+                            Fluttertoast.showToast(msg: "暂停提币申请");
+                          }
+      
+
+
                     },
 
                   ),

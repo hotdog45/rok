@@ -5,6 +5,7 @@ import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/model/home/operation_records_model.dart';
 import 'package:rok/common/model/socket_base_model.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/common/unils/web_socket_utils.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/roundUnderlineTabIndicator.dart';
 import 'package:rok/widget/quotes/quotes_item_widget.dart';
@@ -20,10 +21,6 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 /// 作者姓名 修改时间 版本号 描述
 
 class HomeListWidget extends StatefulWidget {
-  final WebSocketChannel channel;
-
-  const HomeListWidget({Key key, this.channel})
-      : super(key: key);
 
   @override
   _HomeListWidgetState createState() => _HomeListWidgetState();
@@ -45,8 +42,8 @@ class _HomeListWidgetState extends State<HomeListWidget>
 
   reqMarket() {
     print("====================================");
-    widget.channel.sink.add('{"event":"addTopic","topic":"market.rank.list"}');
-    widget.channel.stream.listen((message) {
+    WebSocketUtils.channel.sink.add('{"event":"addTopic","topic":"market.rank.list"}');
+    WebSocketUtils.channel.stream.listen((message) {
       try {
         print("11111111111111===================================="+message);
 
@@ -60,7 +57,7 @@ class _HomeListWidgetState extends State<HomeListWidget>
           setState(() {});
         }
       } catch (e) {
-        widget.channel.sink.close(message.goingAway);
+        WebSocketUtils.channel.sink.close(message.goingAway);
       }
     });
   }

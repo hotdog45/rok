@@ -298,8 +298,8 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
 
   TabController mController;
   List<String> tabTitles = [
-    "委托 entrust",
-    "成交 knockdown",
-    "说明 Instructions",
+    "委托",// entrust
+    "成交",// knockdown
+    "说明",//Instructions
   ];
 }

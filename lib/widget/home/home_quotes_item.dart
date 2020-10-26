@@ -7,7 +7,9 @@ import 'package:rok/common/model/home/now_market_model.dart';
 import 'package:rok/common/model/socket_base_model.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
+import 'package:rok/common/unils/web_socket_utils.dart';
 import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/widget/kline/kchart/utils/date_format_util.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 /// Copyright (C), 2015-2020, 谊品生鲜
@@ -20,10 +22,9 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 /// 作者姓名 修改时间 版本号 描述
 
 class HomeQuotesList extends StatefulWidget {
-  final WebSocketChannel channel;
   final List<Contracts> contracts;
 
-  const HomeQuotesList({Key key, this.channel, this.contracts}) : super(key: key);
+  const HomeQuotesList({Key key,   this.contracts}) : super(key: key);
 
 
   @override
@@ -37,31 +38,34 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
   @override
   void initState() {
     super.initState();
-    reqMarket(widget.contracts[0].topic);
+    if (widget.contracts != null){
+      reqMarket(widget.contracts[0].topic);
+    }
+
   }
 
   reqMarket(topic){
-    print("IOWebSocketChannel=============="+'{"event":"addTopic","topic":"${topic}"}');
-    widget.channel.sink
+    // print("IOWebSocketChannel=============="+'{"event":"addTopic","topic":"${topic}"}');
+    WebSocketUtils.channel.sink
         .add('{"event":"addTopic","topic":"${topic}"}');
-    widget.channel.stream.listen((message) {
-      print("IOWebSocketChannel===" + message.toString());
+    WebSocketUtils.channel.stream.listen((message) {
+      // print("IOWebSocketChannel===" + message.toString());
       try{
         var model = SocketBaseModel.fromJson(jsonDecode(message));
         if (model.ch == topic) {
           nowMarketModel = NowMarketModel.fromJson(model.tick);
-          print("nowMarketModel:"+nowMarketModel.close.toString());
+          // print("nowMarketModel:"+nowMarketModel.close.toString());
           setState(() {});
         }
       }catch (e){
-        widget.channel.sink.close(message.goingAway);
+        WebSocketUtils.channel.sink.close(message.goingAway);
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return widget.contracts == null ? Container():Container(
       color: kAppWhiteColor,
       height: 100,
       child: ListView.builder(
@@ -91,7 +95,7 @@ class HomeQuotesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  InkWell(
+    return nowMarketModel == null ? Container(): InkWell(
         onTap: () {
           NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
         },

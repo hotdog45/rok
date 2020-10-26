@@ -20,7 +20,7 @@ class _QuotesListPageState extends State<QuotesListPage>
   Animation animation;
   Animation animation2;
 
-  List<Contracts> contracts;
+  List<Contracts> contracts = [];
 
   @override
   void initState() {
@@ -42,9 +42,18 @@ class _QuotesListPageState extends State<QuotesListPage>
   }
 
   getContractListData() async {
-    contracts = await reqContractListData();
+
+    var jsonStr = await reqContractListData();
+    print("jsonStr" + jsonStr.toString());
+
+    List list = json.decode(jsonStr.toString());
+    // List<CardBean> cardbeanList = responseJson.map((m) => new CardBean.fromJson(m)).toList();
+
+    contracts = list.map((e) => Contracts.fromJson(e)).toList();
+
+    
     setState(() {});
-    print("contracts" + contracts.length.toString());
+    // print("contracts" + contracts.length.toString());
   }
 
   void _onTapHandle() {
@@ -82,7 +91,7 @@ class _QuotesListPageState extends State<QuotesListPage>
       body: Container(
         color: kAppBcgColor,
         child: MyRefresh(
-          child: ListView.builder(
+          child: contracts == null ? Container():  ListView.builder(
             itemBuilder: (BuildContext context, index) {
               return QuotesItemWidget(
                   color: index % 2 == 0 ? animation.value : animation2.value);
