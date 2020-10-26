@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rok/common/net/address.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
+import 'package:rok/widget/common/yp_cached_network_Image.dart';
+
+import 'bill_detail_list_page.dart';
 
 class RechargeOnlinePage extends StatefulWidget {
   @override
@@ -14,6 +20,7 @@ class RechargeOnlinePage extends StatefulWidget {
 
 class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
   String walletAdd = "";
+  var walletAddss = "";
 
   @override
   void initState() {
@@ -24,8 +31,12 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: YPAppBar("链上交易", actions: [
-        MySuperWidget(text: "资金记录", onTap: () {}),
+      appBar: YPAppBar("链上交易入金", actions: [
+        MySuperWidget(
+            text: "资金记录",
+            onTap: () {
+              NavigatorUtils.navigatorRouter(context, BillDetailListPage());
+            }),
       ]).build(context),
       body: ListView(
         children: <Widget>[
@@ -93,7 +104,7 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
                             child: Text(
-                          "trc20", //"USTD >"
+                          "ERC20-USDT", //"USTD >"
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: fontSizeMiddle),
@@ -103,21 +114,25 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                   ),
                 ),
                 Container(
-                  height: 350,
+                  height: 330,
                   margin: EdgeInsets.only(left: 10, right: 10, top: 1),
                   decoration: BoxDecoration(
                       color: kAppWhiteColor,
                       borderRadius: BorderRadius.circular(8)),
                   child: Column(
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-//                          child:
-//                            QrImage(
-//                              data: "这里是需要生成二维码的数据",
-//                              size: 200.0,
-//                            )
+                      Container(
+                        margin: EdgeInsets.only(top: 1),
+                        padding: EdgeInsets.only(
+                           right: 10, left: 15, top: 10),
+                        child: YPCachedNetworkImage(
+//                            placeholder: YPICons.DEFAULT_USER_ICON,
+                          image: BASE_URL_DEV +
+                              "qrcode/wallet?address=" +
+                              walletAdd,
+                          width: 228,
+                          height: 228,
+                          fit: BoxFit.fill,
                         ),
                       ),
                       Expanded(
@@ -147,19 +162,27 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
                                     borderRadius: BorderRadius.circular(2)),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  left: 8, right: 8, top: 5, bottom: 5),
-                              child: Text(
-                                "复制地址",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: fontSizeMiddle),
+                            InkWell(
+                              child: Container(
+                                padding: EdgeInsets.only(
+                                    left: 8, right: 8, top: 5, bottom: 5),
+                                child: Text(
+                                  "复制地址",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: fontSizeMiddle),
+                                ),
+                                decoration: BoxDecoration(
+                                    color: kAppThemeColor,
+                                    borderRadius: BorderRadius.circular(2)),
                               ),
-                              decoration: BoxDecoration(
-                                  color: kAppThemeColor,
-                                  borderRadius: BorderRadius.circular(2)),
+                              onTap: () {
+                                Fluttertoast.showToast(msg: "复制成功");
+                                Clipboard.getData(Clipboard.kTextPlain);
+                                Clipboard.setData(
+                                    ClipboardData(text: walletAdd));
+                              },
                             ),
                           ],
                         ),
@@ -216,14 +239,7 @@ class _RechargeOnlinePageState extends State<RechargeOnlinePage> {
   void _getWalletAddress() async {
     walletAdd = await walletAddress();
     setState(() {});
-    _getWalletCodePic(walletAdd);
+
     return;
   }
-  void _getWalletCodePic(String add) async {
-    walletAdd = await walletAddressCodePic(add);
-    setState(() {});
-    return;
-  }
-
-
 }

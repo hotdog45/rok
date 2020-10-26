@@ -1,6 +1,4 @@
-
 import 'package:rok/common/net/api.dart';
-
 
 import 'address.dart';
 
@@ -14,11 +12,8 @@ reqUserLogin(String phone, /*String smsCode,*/ String password) async {
   });
 }
 
-
-reqUserInfo( ) async {
-  return await httpManager.netFetch(userCurrentInfo, {
-
-  });
+reqUserInfo() async {
+  return await httpManager.netFetch(userCurrentInfo, {});
 }
 
 //资产详情
@@ -33,14 +28,29 @@ reqHomeData() async {
 reqContractListData() async {
   return await httpManager.netFetch(contractList, null);
 }
+
 //钱包地址
 walletAddress() async {
   return await httpManager.netFetch(ERC20USDTWalletAddress, {});
 }
-//钱包地址二维码
-walletAddressCodePic(String address) async {
-  return await httpManager.netFetch(walletAddressCode, {
-    "address": address,
 
+//
+//提币申请预览
+withdrawPreviews() async {
+  return await httpManager.netFetch(withdrawPre, {});
+}
+
+//提币申请
+applyWithdrawPreviews( String address,double quantity)async {
+  return await httpManager.netFetch(withdrawApply, {
+    "address": address,
+    "quantity": quantity,
+  });
+}
+recordList (int bizType,int pageNo,int pageSize )async {
+  return await httpManager.netFetch(recordListreq, {
+    "bizType": bizType,
+    "pageNo": pageNo,
+    "pageSize":pageSize,
   });
 }

@@ -74,7 +74,7 @@ class _QuotesListPageState extends State<QuotesListPage>
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
 
     return Scaffold(
-      appBar: YPAppBar("title.quotes", hasBackBtn: false, actions: [
+      appBar: YPAppBar("title.quo0tes", hasBackBtn: false, actions: [
         InkWell(
             child: Icon(Icons.refresh),
             onTap: () {

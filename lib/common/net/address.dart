@@ -51,6 +51,16 @@ const String ERC20USDTWalletAddress= "user/wallet/address";
 const String  walletAddressCode= "qrcode/wallet";
 
 
+//提币申请预览
+const String  withdrawPre= "asset/withdraw/preview";
+
+//提币申请预览
+const String  withdrawApply= "asset/withdraw";
+
+//提币申请预览
+const String  recordListreq= "asset/record/list";
+
+
 ////////////////////////////////////////////////////////////////
 
 ///网关API

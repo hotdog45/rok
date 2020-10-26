@@ -12,6 +12,7 @@ import 'package:rok/page/assets_page.dart';
 import 'package:rok/page/quotes_details_page.dart';
 import 'package:rok/page/recharge_online_page.dart';
 import 'package:rok/page/recharge_page.dart';
+import 'package:rok/page/withdrawal_online_page.dart';
 import 'package:rok/page/withdrawal_page.dart';
 
 class AssetsWidget extends StatefulWidget {
@@ -88,18 +89,25 @@ class _AssetsWidgetState extends State<AssetsWidget> {
           ),
           Row(
             children: <Widget>[
-              Container(
-                  margin: EdgeInsets.only(top: 20, left: 20),
-                  child: Icon(
-                    FlutterIcons.account_circle_outline_mco,
-                    size: 20,
-                  )),
+              InkWell(
+                child: Container(
+                    margin: EdgeInsets.only(top: 20, left: 20),
+                    child: Icon(
+                      FlutterIcons.account_circle_outline_mco,
+                      size: 20,
+                    )),
+                onTap: (){
+                  NavigatorUtils.navigatorRouter(context, RechargeOnlinePage());
+                },
+              ),
               InkWell(
                 child: Container(
                     margin: EdgeInsets.only(top: 20, left: 5),
+                    padding: EdgeInsets.all(3),
                     child: Text(
                       //入金
                       I18nUtils.translate(context, "button.deposit"),
+
                       style: TextStyle(
                         fontSize: fontSizeMiddle,
                         color: kAppTextColor,
@@ -115,15 +123,22 @@ class _AssetsWidgetState extends State<AssetsWidget> {
                 child: Container(),
                 flex: 1,
               ),
-              Container(
-                  margin: EdgeInsets.only(top: 20, left: 20),
-                  child: Icon(
-                    FlutterIcons.account_circle_outline_mco,
-                    size: 20,
-                  )),
               InkWell(
                 child: Container(
+                    margin: EdgeInsets.only(top: 20, left: 20),
+                    child: Icon(
+                      FlutterIcons.account_circle_outline_mco,
+                      size: 20,
+                    )),
+                onTap: (){
+                  NavigatorUtils.navigatorRouter(context, WithdrawlOnlinePage());
+                },
+              ),
+              InkWell(
+                child: Container(
+
                     margin: EdgeInsets.only(top: 20, left: 5, right: 50),
+                    padding: EdgeInsets.all(3),
                     child: Text(
                       //出金
                       I18nUtils.translate(context, "button.withdrawal"),
@@ -133,7 +148,9 @@ class _AssetsWidgetState extends State<AssetsWidget> {
                       ),
                     )),
                 onTap: () {
-                  NavigatorUtils.navigatorRouter(context, WithdrawalPage());
+//                  NavigatorUtils.navigatorRouter(context, WithdrawalPage());
+                  NavigatorUtils.navigatorRouter(context, WithdrawlOnlinePage());
+
                 },
               ),
             ],
