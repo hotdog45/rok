@@ -22,9 +22,8 @@ import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class HomePage extends StatefulWidget {
-  final WebSocketChannel channel;
 
-  const HomePage(this.channel,{Key key}) : super(key: key);
+  const HomePage( {Key key}) : super(key: key);
 
 
   @override
@@ -48,7 +47,7 @@ class _HomePageState extends State<HomePage>
           padding: EdgeInsets.all(0),
           children: <Widget>[
             HomeBannerWidget(banners: homeData.banners),
-            HomeQuotesList(channel: widget.channel,contracts: homeData.contracts,),
+            HomeQuotesList(contracts: homeData.contracts,),
             HomeIconWidget(menus: homeData.menus),
             HomeNotifWidget(notices: homeData.notices,),
             HomeProfitLossWidget(),

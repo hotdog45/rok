@@ -31,7 +31,7 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
       onTap: () {
         NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
       },
-      child: Container(
+      child: widget.contract == null ? Container(): Container(
         height: 65,
         decoration: BoxDecoration(
             gradient: LinearGradient(
