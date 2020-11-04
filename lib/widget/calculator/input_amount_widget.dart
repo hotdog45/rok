@@ -48,7 +48,7 @@ class _InputAmountWidgetState extends State<InputAmountWidget> {
                 ),
 
                 Container(
-                  width: 250,
+                  width: 200,
                   height: 40,
                   margin: EdgeInsets.only(bottom: 8),
                   child: TextField(
