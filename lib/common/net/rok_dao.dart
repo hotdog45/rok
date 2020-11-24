@@ -55,13 +55,17 @@ applyWithdrawPreviews( String address,double quantity)async {
 
 
 //持仓列表
-reqPositionList( String address,double quantity)async {
+reqPositionList( String contractCode)async {
   return await httpManager.netFetch(positionList, {
-    "contractCode": address
+    "contractCode": contractCode
   });
 }
-
-
+//委托列表
+reqEntrustList( String contractCode)async {
+  return await httpManager.netFetch(entrustList, {
+    "contractCode": contractCode
+  });
+}
 
 recordList (int bizType,int pageNo,int pageSize )async {
   return await httpManager.netFetch(recordListreq, {

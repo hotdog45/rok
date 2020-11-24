@@ -63,6 +63,8 @@ const String  recordListreq= "asset/record/list";
 
 //持仓列表
 const String  positionList= "position/list";
+//委托列表
+const String  entrustList= "entrust/list";
 
 
 ////////////////////////////////////////////////////////////////
