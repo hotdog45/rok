@@ -61,6 +61,10 @@ const String  withdrawApply= "asset/withdraw";
 const String  recordListreq= "asset/record/list";
 
 
+//持仓列表
+const String  positionList= "position/list";
+
+
 ////////////////////////////////////////////////////////////////
 
 ///网关API
