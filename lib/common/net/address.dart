@@ -65,8 +65,8 @@ const String  recordListreq= "asset/record/list";
 
 ///网关API
 const String BASE_URL_RELEASE = "https://apigw.ypshengxian.com/request"; //线上
-// const String BASE_URL_DEV = "http://yd-api.qicp.vip/"; //"http://10.0.61.79:8001/"; //开发  api  http://yd-api.qicp.vip/   websocket 映射地址  ws://2888300uv3.qicp.vip
-const String BASE_URL_DEV = "http://10.0.61.79:8001/"; //开发  api  http://yd-api.qicp.vip/   websocket 映射地址  ws://2888300uv3.qicp.vip
+const String BASE_URL_DEV = "http://yd-api.qicp.vip/"; //"http://10.0.61.79:8001/"; //开发  api  http://yd-api.qicp.vip/   websocket 映射地址  ws://2888300uv3.qicp.vip
+// const String BASE_URL_DEV = "http://10.0.61.79:8001/"; //开发  api  http://yd-api.qicp.vip/   websocket 映射地址  ws://2888300uv3.qicp.vip
 
 ///网页h5
 const String BASE_URL_H5_RELEASE = "https://h5.ypshengxian.com"; //线上
