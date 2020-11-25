@@ -52,6 +52,21 @@ applyWithdrawPreviews( String address,double quantity)async {
     "quantity": quantity,
   });
 }
+
+
+//持仓列表
+reqPositionList( String contractCode)async {
+  return await httpManager.netFetch(positionList, {
+    "contractCode": contractCode
+  });
+}
+//委托列表
+reqEntrustList( String contractCode)async {
+  return await httpManager.netFetch(entrustList, {
+    "contractCode": contractCode
+  });
+}
+
 recordList (int bizType,int pageNo,int pageSize )async {
   return await httpManager.netFetch(recordListreq, {
     "bizType": bizType,

@@ -51,7 +51,7 @@ class _QuotesListPageState extends State<QuotesListPage>
 
     contracts = list.map((e) => Contracts.fromJson(e)).toList();
 
-    
+
     setState(() {});
     // print("contracts" + contracts.length.toString());
   }
