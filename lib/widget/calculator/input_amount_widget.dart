@@ -53,6 +53,7 @@ class _InputAmountWidgetState extends State<InputAmountWidget> {
                   margin: EdgeInsets.only(bottom: 8),
                   child: TextField(
                     controller: controller1,
+
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -64,6 +65,7 @@ class _InputAmountWidgetState extends State<InputAmountWidget> {
 //                    LengthLimitingTextInputFormatter(11),
                       WhitelistingTextInputFormatter.digitsOnly
                     ],
+    enableInteractiveSelection:false,
                     onChanged: (v) {
                       //   _setBtnState();
                     },

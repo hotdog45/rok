@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/page/user/login_page.dart';
 
@@ -85,4 +86,23 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
       ),
     );
   }
+
+
+  //收益计算
+  void profitCalculation() async {
+
+
+    var data   = await assetDetail() ;
+    detailModel = assetDetailModel.fromJson(data);
+
+    setState(() {
+
+    });
+
+    return;
+
+  }
+
+
+
 }
