@@ -74,3 +74,17 @@ recordList (int bizType,int pageNo,int pageSize )async {
     "pageSize":pageSize,
   });
 }
+
+///收益计算  closePrice: 平仓价   multiple： 倍数   contractCode：合约编码  openPrice:开仓价  side  1-开多 2-开空  quantity 开仓数量(张)
+//
+
+profitCalculat(int closePrice,String contractCode,int multiple,int openPrice, int side,quantity )async{
+  return await httpManager.netFetch(profitCalculation, {
+    "closePrice": closePrice,
+    "contractCode": contractCode,
+    "multiple":multiple,
+    "openPrice":openPrice,
+    "side":side,
+    "quantity":quantity,
+  });
+}

@@ -1,9 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/page/user/login_page.dart';
+import 'package:rok/widget/common/my_super_widget.dart';
+import 'package:rok/widget/common/yp_cached_network_Image.dart';
 
 import 'input_amount_widget.dart';
 import 'input_item_widget.dart';
@@ -25,13 +29,18 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
         ),
         child: Column(
           children: <Widget>[
-            Container(
-                margin: EdgeInsets.only(top: 20),
-                child: InputItemWidget(
-                  theme: "合约",
-                  type: 10,
-                  rightAction: "BTC/USDT 永续",
-                )),
+            InkWell(
+              child: Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: InputItemWidget(
+                    theme: "合约",
+                    type: 10,
+                    rightAction: "BTC/USDT 永续",
+                  )),
+              onTap: (){
+                popApp();
+              },
+            ),
             InputSwitchWidget(
               theme: "开仓类型",
               type: 1,
@@ -65,7 +74,9 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
                         fontSize: kAppFontSize(28)),
                   )),
               onTap: () {
-                Fluttertoast.showToast(msg: "点我gan嘛");
+
+
+                profitCalculation(10,"BTCUSDT",100,8,1,50);
               },
             ),
             Container(
@@ -89,11 +100,11 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
 
 
   //收益计算
-  void profitCalculation() async {
+  void profitCalculation(int closePrice,String contractCode,int multiple,int openPrice, int side,int quantity) async {
 
-
-    var data   = await assetDetail() ;
-    detailModel = assetDetailModel.fromJson(data);
+//int closePrice,String contractCode,int multiple,int openPrice, int side
+    var data   = await profitCalculat(closePrice,contractCode,multiple,openPrice,side,quantity) ;
+//    detailModel = assetDetailModel.fromJson(data);
 
     setState(() {
 
@@ -103,6 +114,58 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
 
   }
 
+
+
+  List<Contracts> contracts;
+
+  getContractListData() async {
+    contracts = await reqContractListData();
+    setState(() {});
+    print("contracts" + contracts.length.toString());
+  }
+
+
+  popApp() {
+    showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return Material(
+            type: MaterialType.transparency,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                MySuperWidget(
+                  width: 270,
+                  height:378,
+                  radius: 5,
+                  onTap: (){
+
+
+
+                  },
+//                  child: YPCachedNetworkImage(
+//                      image:imageUrl,
+//                      width: 270,
+//                      height: 378,
+//                      isCompress:false
+//
+//                  ),
+                ),
+                MySuperWidget(
+                  margin:EdgeInsets.only(top: 22),
+                  child: Image.asset("static/images/icon_colse_white.png",),
+                  width: ScreenUtil().setWidth(65),
+                  height: ScreenUtil().setWidth(65),
+                  onTap: (){
+                    Navigator.of(context).pop(false);
+                  },
+                )
+              ],
+            ),
+          );
+        });
+  }
 
 
 }

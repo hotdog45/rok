@@ -66,6 +66,9 @@ const String  positionList= "position/list";
 //委托列表
 const String  entrustList= "entrust/list";
 
+//收益计算
+const String  profitCalculation= "calc/profit";
+
 
 ////////////////////////////////////////////////////////////////
 
