@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_geetest_plugin/flutter_geetest_plugin.dart';
+// import 'package:flutter_geetest_plugin/flutter_geetest_plugin.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rok/common/constant/app_constant.dart';
@@ -357,15 +357,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> getSendVerifyCode() async {
-    String result;
-    try {
-      result = await FlutterGeetestPlugin.getGeetest(_challenge);
-    } on Exception {}
-    if (!mounted && result.isEmpty) return;
-    Map<String, dynamic> map = convert.jsonDecode(result);
-    LocalStorage.save(AppConstant.BEHAVIOR_CHALLENGE, map["geetest_challenge"]);
-    LocalStorage.save(AppConstant.BEHAVIOR_VALIDATE, map["geetest_validate"]);
-    LocalStorage.save(AppConstant.BEHAVIOR_SEC_CODE, map["geetest_seccode"]);
+    // String result;
+    // try {
+    //   result = await FlutterGeetestPlugin.getGeetest(_challenge);
+    // } on Exception {}
+    // if (!mounted && result.isEmpty) return;
+    // Map<String, dynamic> map = convert.jsonDecode(result);
+    // LocalStorage.save(AppConstant.BEHAVIOR_CHALLENGE, map["geetest_challenge"]);
+    // LocalStorage.save(AppConstant.BEHAVIOR_VALIDATE, map["geetest_validate"]);
+    // LocalStorage.save(AppConstant.BEHAVIOR_SEC_CODE, map["geetest_seccode"]);
 
 //    var model = await YpGatewayDao.getSendVerifyCode(userController.text);
 //    if (model.success) {

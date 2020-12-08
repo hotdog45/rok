@@ -43,10 +43,10 @@ dependencies:
   badges: ^1.1.1 #小红点
   fluwx: ^2.1.0  #微信sdk
   dio_log : ^1.3.3
-  flutter_geetest_plugin:
-    git:
-      ref: 0.1.1
-      url: https://github.com/hotdog45/flutter_geetest_plugin.git
+#  flutter_geetest_plugin:
+#    git:
+#      ref: 0.1.1
+#      url: https://github.com/hotdog45/flutter_geetest_plugin.git
 
   #  flutter_app_upgrade: ^1.0.2
   launch_review: ^2.0.0

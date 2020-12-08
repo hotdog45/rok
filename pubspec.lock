@@ -293,15 +293,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.1"
-  flutter_geetest_plugin:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "0.1.1"
-      resolved-ref: ed22b841077abb35a0d750fb1d6bcb96d2ee5312
-      url: "https://github.com/hotdog45/flutter_geetest_plugin.git"
-    source: git
-    version: "1.0.5"
   flutter_i18n:
     dependency: "direct main"
     description:
