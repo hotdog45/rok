@@ -37,8 +37,9 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
                     type: 10,
                     rightAction: "BTC/USDT 永续",
                   )),
-              onTap: (){
-                popApp();
+              onTap: () {
+//                popApp();
+                showListDialog();
               },
             ),
             InputSwitchWidget(
@@ -74,9 +75,7 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
                         fontSize: kAppFontSize(28)),
                   )),
               onTap: () {
-
-
-                profitCalculation(10,"BTCUSDT",100,8,1,50);
+                profitCalculation(10, "BTCUSDT", 100, 8, 1, 50);
               },
             ),
             Container(
@@ -98,23 +97,18 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
     );
   }
 
-
   //收益计算
-  void profitCalculation(int closePrice,String contractCode,int multiple,int openPrice, int side,int quantity) async {
-
+  void profitCalculation(int closePrice, String contractCode, int multiple,
+      int openPrice, int side, int quantity) async {
 //int closePrice,String contractCode,int multiple,int openPrice, int side
-    var data   = await profitCalculat(closePrice,contractCode,multiple,openPrice,side,quantity) ;
+    var data = await profitCalculat(
+        closePrice, contractCode, multiple, openPrice, side, quantity);
 //    detailModel = assetDetailModel.fromJson(data);
 
-    setState(() {
-
-    });
+    setState(() {});
 
     return;
-
   }
-
-
 
   List<Contracts> contracts;
 
@@ -123,7 +117,6 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
     setState(() {});
     print("contracts" + contracts.length.toString());
   }
-
 
   popApp() {
     showCupertinoDialog(
@@ -137,13 +130,9 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
               children: <Widget>[
                 MySuperWidget(
                   width: 270,
-                  height:378,
+                  height: 378,
                   radius: 5,
-                  onTap: (){
-
-
-
-                  },
+                  onTap: () {},
 //                  child: YPCachedNetworkImage(
 //                      image:imageUrl,
 //                      width: 270,
@@ -153,11 +142,13 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
 //                  ),
                 ),
                 MySuperWidget(
-                  margin:EdgeInsets.only(top: 22),
-                  child: Image.asset("static/images/icon_colse_white.png",),
+                  margin: EdgeInsets.only(top: 22),
+                  child: Image.asset(
+                    "static/images/icon_colse_white.png",
+                  ),
                   width: ScreenUtil().setWidth(65),
                   height: ScreenUtil().setWidth(65),
-                  onTap: (){
+                  onTap: () {
                     Navigator.of(context).pop(false);
                   },
                 )
@@ -167,5 +158,36 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
         });
   }
 
+  Future<void> showListDialog() async {
+    int index = await showDialog<int>(
+      context: context,
+      builder: (BuildContext context) {
+        var child = Container(
+            height: 300,
+            child: Column(
+              children: <Widget>[
+                ListTile(title: Text("请选择")),
+                Expanded(
+                    child: ListView.builder(
+                  itemCount: 30,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: Text("$index"),
+                      onTap: () => Navigator.of(context).pop(index),
+                    );
+                  },
+                )),
+              ],
+            ));
 
+        //使用AlertDialog会报错
+        //return AlertDialog(content: child);
+        return Dialog(child: child);
+      },
+    );
+    if (index != null) {
+      print("点击了：$index");
+      Fluttertoast.showToast(msg: "点击了：$index");
+    }
+  }
 }
