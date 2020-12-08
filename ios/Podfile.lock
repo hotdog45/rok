@@ -13,9 +13,6 @@ PODS:
     - Flutter
   - flutter_custom_dialog (0.0.1):
     - Flutter
-  - flutter_geetest_plugin (0.2.2):
-    - Flutter
-    - GT3Captcha-iOS
   - fluttertoast (0.0.2):
     - Flutter
   - fluwx (0.0.1):
@@ -24,7 +21,6 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - GT3Captcha-iOS (0.13.9)
   - launch_review (0.0.1):
     - Flutter
   - orientation (0.0.1):
@@ -68,7 +64,6 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_bugly (from `.symlinks/plugins/flutter_bugly/ios`)
   - flutter_custom_dialog (from `.symlinks/plugins/flutter_custom_dialog/ios`)
-  - flutter_geetest_plugin (from `.symlinks/plugins/flutter_geetest_plugin/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - fluwx (from `.symlinks/plugins/fluwx/ios`)
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
@@ -91,7 +86,6 @@ SPEC REPOS:
   trunk:
     - Bugly
     - FMDB
-    - GT3Captcha-iOS
     - Reachability
     - UMengAnalytics-NO-IDFA
     - WechatOpenSDK
@@ -109,8 +103,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_bugly/ios"
   flutter_custom_dialog:
     :path: ".symlinks/plugins/flutter_custom_dialog/ios"
-  flutter_geetest_plugin:
-    :path: ".symlinks/plugins/flutter_geetest_plugin/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
   fluwx:
@@ -154,11 +146,9 @@ SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_bugly: c9800f4d5bc5bdc27ffdde3417a26ba44266e0c3
   flutter_custom_dialog: c0d222a3c35af5b57581e54ef8784c94037cd2ec
-  flutter_geetest_plugin: 7aeeac94615b2c300f62334e9e91496f28137503
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
   fluwx: 07a55ed66bf3a4961e836a2a411b02dcada32902
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  GT3Captcha-iOS: a9287376880aff5663ec464b891e86507a148357
   launch_review: 75d5a956ba8eaa493e9c9d4bf4c05e505e8d5ed0
   orientation: 6c9203efe86ce4cff379756910f18b2d745628c3
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62

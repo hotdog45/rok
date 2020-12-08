@@ -47,8 +47,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   getMobile() async {
-    String mobile = await LocalStorage.get(AppConstant.USER_MOBILE);
-    userController.value = TextEditingValue(text: mobile ?? "");
+    // String mobile = await LocalStorage.get(AppConstant.USER_MOBILE);
+    userController.value = TextEditingValue(text: "18758586900");
+    pwController.value = TextEditingValue(text: "123456");
 
     _setBtnState();
   }
@@ -146,7 +147,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
           TextField(
             controller: pwController,
-            keyboardType: TextInputType.number,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
               hintText: '请输入密码',
@@ -157,6 +157,7 @@ class _LoginPageState extends State<LoginPage> {
               LengthLimitingTextInputFormatter(6),
               WhitelistingTextInputFormatter.digitsOnly
             ],
+            obscureText: true,
             onChanged: (v) {
               _setBtnState();
             },
@@ -167,80 +168,7 @@ class _LoginPageState extends State<LoginPage> {
             color: kAppColor("#E7E7E7"),
             height: 0.5,
           ),
-          Stack(
-            children: <Widget>[
-              TextField(
-                controller: codeController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                  hintText: '请输入验证码',
-                  hintStyle: TextStyle(color: Color(0xffc3c3c3)), //修改颜色
-                  border: InputBorder.none,
-                ),
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(11),
-                  WhitelistingTextInputFormatter.digitsOnly
-                ],
-                onChanged: (v) {
-                  _setBtnState();
-                },
-                textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 15, color: kAppTextColor),
-              ),
-              Positioned(
-                  top: 15,
-                  right: 0,
-                  child: InkWell(
-                    highlightColor: Colors.transparent,
-                    radius: 0.0,
-                    child: Container(
-                      width: 80,
-                      child: Text(
-                        _getPhoneCode,
-                        textAlign: _countdownNum == 59
-                            ? TextAlign.center
-                            : TextAlign.right,
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: (_countdownNum == 59 && _isClickCode)
-                                ? kAppThemeColor
-                                : kAppColor("#c3c3c3")),
-                      ),
-                    ),
-                    onTap: getPreProcess,
-                  )),
-              Positioned(
-                  top: 12,
-                  right: 88,
-                  bottom: 12,
-                  child: Container(
-                    color: kAppColor("#E7E7E7"),
-                    width: 0.5,
-                  )),
-              Positioned(
-                  top: 0,
-                  right: 90,
-                  bottom: 0,
-                  child: InkWell(
-                    onTap: () {
-                      userController.value = TextEditingValue(text: "");
-                      _setBtnState();
-                    },
-                    child: Container(
-                      width: ScreenUtil().setWidth(56),
-                      height: ScreenUtil().setWidth(56),
-                      padding: EdgeInsets.all(ScreenUtil().setWidth(15)),
-                      child: Image.asset(
-                          "static/images/icon_close.png"), //AssetImage('static/images/close_circle.png')
-                    ),
-                  ))
-            ],
-          ),
-          Container(
-            color: kAppColor("#E7E7E7"),
-            height: 0.5,
-          ),
+
 
 
           Row(
