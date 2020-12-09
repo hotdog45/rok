@@ -25,8 +25,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 class HomeQuotesList extends StatefulWidget {
   final List<Contracts> contracts;
 
-  const HomeQuotesList({Key key,   this.contracts}) : super(key: key);
-
+  const HomeQuotesList({Key key, this.contracts}) : super(key: key);
 
   @override
   _HomeQuotesListState createState() => _HomeQuotesListState();
@@ -34,119 +33,123 @@ class HomeQuotesList extends StatefulWidget {
 
 class _HomeQuotesListState extends State<HomeQuotesList> {
 
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.contracts == null
+        ? Container()
+        : Container(
+            color: kAppWhiteColor,
+            height: 100,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, index) {
+                // return MySuperWidget(text: "ces "
+                return  HomeQuotesItem(
+                        contract: widget.contracts[index],
+                      );
+              },
+              itemCount: widget.contracts.length,
+            ),
+          );
+  }
+}
+
+class HomeQuotesItem extends StatefulWidget {
+  final Contracts contract;
+
+  const HomeQuotesItem({Key key, this.contract})
+      : super(key: key);
+
+  @override
+  _HomeQuotesItemState createState() => _HomeQuotesItemState();
+}
+
+class _HomeQuotesItemState extends State<HomeQuotesItem> {
   NowMarketModel nowMarketModel;
+
 
   @override
   void initState() {
     super.initState();
-    if (widget.contracts != null && widget.contracts.length>0){
-      reqMarket(widget.contracts[0].topic);
+    if (widget.contract != null) {
+      // reqMarket(widget.contract.topic);
     }
-
   }
 
-  reqMarket(topic){
-    WebSocketUtils.channel.sink
-        .add('{"event":"addTopic","topic":"${topic}"}');
+  reqMarket(topic) {
+    WebSocketUtils.channel.sink.add('{"event":"addTopic","topic":"$topic"}');
     WebSocketUtils.channel.stream.listen((message) {
-      try{
+      try {
         var model = SocketBaseModel.fromJson(jsonDecode(message));
-        if (model.ch == topic) {
+        if (nowMarketModel ==null && model != null && model.ch == topic) {
           nowMarketModel = NowMarketModel.fromJson(model.tick);
           setState(() {});
         }
-      }catch (e){
-        // WebSocketUtils.channel.sink.close(message.goingAway);
+      } catch (e) {
+        WebSocketUtils.channel.sink.close(message.goingAway);
       }
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return widget.contracts == null ? Container():Container(
-      color: kAppWhiteColor,
-      height: 100,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, index) {
-
-          return MySuperWidget(text: "ces "
-          // return nowMarketModel == null ? Container():  HomeQuotesItem(nowMarketModel: nowMarketModel,contract: widget.contracts[index],
-          );
-        },
-        itemCount: widget.contracts.length,
-      ),
-    );
-  }
-}
-
-class HomeQuotesItem extends StatelessWidget {
-  final NowMarketModel nowMarketModel;
-
-
-  final Contracts contract;
-
-  const HomeQuotesItem({Key key, this.nowMarketModel, this.contract}) : super(key: key);
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
-    return nowMarketModel == null ? Container(): InkWell(
-        onTap: () {
-          NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
-        },
-        child: Container(
-          width: ScreenUtil.screenWidthDp / 2.5,
-          padding: EdgeInsets.only(top: 15, bottom: 15),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.white,
-                Colors.white,
-              ],
-            ),
-          ),
-          child: Column(
-            children: <Widget>[
-              Text(
-                contract.name,
-                style: TextStyle(
-                    fontSize: fontSizeMiddle,
-                    fontWeight: FontWeight.bold,
-                    color: kAppTextColor),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 5, bottom: 6),
-                child: Text(
-                  nowMarketModel.close.toString(),
-                  style: TextStyle(
-                      fontSize: fontSizeNormal,
-                      fontWeight: FontWeight.w600,
-                      color: nowMarketModel.close - nowMarketModel.open > 0
-                          ? kGreenColor
-                          : kRedColor),
+    return nowMarketModel == null
+        ? MySuperWidget(text: "ces222 ")
+        : InkWell(
+            onTap: () {
+              NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
+            },
+            child: Container(
+              width: ScreenUtil.screenWidthDp / 2.5,
+              padding: EdgeInsets.only(top: 15, bottom: 15),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.white,
+                    Colors.white,
+                  ],
                 ),
               ),
-              Expanded(
-                child: Text(
-                  ((nowMarketModel.close - nowMarketModel.open) /
-                              nowMarketModel.open *
-                              100)
-                          .toStringAsFixed(2)
-                          .toString() +
-                      "%",
-                  style: TextStyle(
-                      fontSize: fontSizeSmall,
-                      color: nowMarketModel.close - nowMarketModel.open > 0
-                          ? kGreenColor
-                          : kRedColor),
-                ),
-              ),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    widget.contract.name,
+                    style: TextStyle(
+                        fontSize: fontSizeMiddle,
+                        fontWeight: FontWeight.bold,
+                        color: kAppTextColor),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 5, bottom: 6),
+                    child: Text(
+                      nowMarketModel.close.toString(),
+                      style: TextStyle(
+                          fontSize: fontSizeNormal,
+                          fontWeight: FontWeight.w600,
+                          color: nowMarketModel.close - nowMarketModel.open > 0
+                              ? kGreenColor
+                              : kRedColor),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      ((nowMarketModel.close - nowMarketModel.open) /
+                                  nowMarketModel.open *
+                                  100)
+                              .toStringAsFixed(2)
+                              .toString() +
+                          "%",
+                      style: TextStyle(
+                          fontSize: fontSizeSmall,
+                          color: nowMarketModel.close - nowMarketModel.open > 0
+                              ? kGreenColor
+                              : kRedColor),
+                    ),
+                  ),
 //              Container(
 //                width: 100,
 //                height: 25,
@@ -159,8 +162,8 @@ class HomeQuotesItem extends StatelessWidget {
 //                      TextStyle(fontSize: fontSizeSmall, color: kAppWhiteColor),
 //                ),
 //              ),
-            ],
-          ),
-        ));
+                ],
+              ),
+            ));
   }
 }
