@@ -15,7 +15,7 @@ import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../home_page.dart';
-import '../quotes_list_page.dart';
+import '../quotes/quotes_list_page.dart';
 import '../test_page.dart';
 import '../transaction_page.dart';
 

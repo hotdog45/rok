@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
-import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/page/quotes/quotes_details_page.dart';
 import 'package:rok/test/channel_page.dart';
 import 'package:rok/test/i18nPage.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';

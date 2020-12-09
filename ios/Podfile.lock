@@ -83,7 +83,7 @@ DEPENDENCIES:
   - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
-  trunk:
+  https://cdn.cocoapods.org/:
     - Bugly
     - FMDB
     - Reachability
@@ -170,4 +170,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f32fb4e7c14f8b3ca19a369d7be425dd9241af27
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

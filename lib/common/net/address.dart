@@ -1,4 +1,3 @@
-
 import 'package:rok/config/config.dart';
 
 ///uri
@@ -10,7 +9,6 @@ const String getUserRegister = "user/register";
 //登录
 const String userLogin = "user/login";
 
-
 //个人认证
 const String userAuth = "user/auth/personal";
 
@@ -18,18 +16,16 @@ const String userAuth = "user/auth/personal";
 const String bindCard = "user/bind/card";
 
 //收款账号详情
-const String cardDetail= "user/card/detail";
+const String cardDetail = "user/card/detail";
 
 //修改密码
-const String changePassword= "user/change/password";
+const String changePassword = "user/change/password";
 
 //获取当前登录用户信息
-const String userCurrentInfo= "user/current";
-
-
+const String userCurrentInfo = "user/current";
 
 //重置登录密码
-const String passwordReset= "user/reset/password";
+const String passwordReset = "user/reset/password";
 
 //设置交易密码
 const String tradePassword = "user/setting/trade/password";
@@ -40,43 +36,40 @@ const String index = "index";
 //行情
 const String contractList = "contract/list";
 
-
 //资产详情
 const String userAssetDetail = "asset/detail";
 
 //查询当前用户对应的ERC20-USDT钱包地址
-const String ERC20USDTWalletAddress= "user/wallet/address";
+const String ERC20USDTWalletAddress = "user/wallet/address";
 
 //钱包地址二维码
-const String  walletAddressCode= "qrcode/wallet";
-
-
-//提币申请预览
-const String  withdrawPre= "asset/withdraw/preview";
+const String walletAddressCode = "qrcode/wallet";
 
 //提币申请预览
-const String  withdrawApply= "asset/withdraw";
+const String withdrawPre = "asset/withdraw/preview";
 
 //提币申请预览
-const String  recordListreq= "asset/record/list";
+const String withdrawApply = "asset/withdraw";
 
+//提币申请预览
+const String recordListreq = "asset/record/list";
 
 //持仓列表
-const String  positionList= "position/list";
+const String positionList = "position/list";
 //委托列表
-const String  entrustList= "entrust/list";
+const String entrustList = "entrust/list";
 
 //收益计算
-const String  profitCalculation= "calc/profit";
-
+const String profitCalculation = "calc/profit";
 
 ////////////////////////////////////////////////////////////////
 
 ///网关API
-const String BASE_URL_RELEASE = "https://apigw.ypshengxian.com/request"; //线上
- const String BASE_URL_DEV = "http://yd-api.qicp.vip/"; //"http://10.0.61.79:8001/"; //开发  api  http://yd-api.qicp.vip/   websocket 映射地址  ws://2888300uv3.qicp.vip
-//const String BASE_URL_DEV = "http://10.0.61.79:8001/"; //开发  api  http://yd-api.qicp.vip/   websocket 映射地址  ws://2888300uv3.qicp.vip
-
+const String BASE_URL_RELEASE = "http://yd-api.qicp.vip/"; //线上
+const String BASE_URL_DEV = "http://yd-api.qicp.vip/"; //开发
+///WebSocket
+const String BASE_WEB_SOCKET_RELEASE = "ws://2888300uv3.qicp.vip/"; //线上
+const String BASE_WEB_SOCKET_DEV = "ws://2888300uv3.qicp.vip/"; //开发
 ///网页h5
 const String BASE_URL_H5_RELEASE = "https://h5.ypshengxian.com"; //线上
 const String BASE_URL_H5_DEV = "https://dev-h5.ypshengxian.com"; //开发
@@ -88,6 +81,15 @@ getHostAddress(num) {
       return BASE_URL_RELEASE;
     default:
       return BASE_URL_DEV;
+  }
+}
+
+getWebSocketAddress(num) {
+  switch (num) {
+    case Config.KEY_API_HOST_RELEASE:
+      return BASE_WEB_SOCKET_RELEASE;
+    default:
+      return BASE_WEB_SOCKET_DEV;
   }
 }
 

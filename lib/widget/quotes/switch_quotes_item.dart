@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
-import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/page/quotes/quotes_details_page.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 /// Copyright (C), 2015-2020, 谊品生鲜
 /// FileName: quotes_item_widget

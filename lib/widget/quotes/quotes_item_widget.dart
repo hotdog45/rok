@@ -3,7 +3,7 @@ import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/model/home/operation_records_model.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
-import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/page/quotes/quotes_details_page.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 /// Copyright (C), 2015-2020, 谊品生鲜
 /// FileName: quotes_item_widget

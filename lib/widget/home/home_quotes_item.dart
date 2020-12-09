@@ -8,7 +8,7 @@ import 'package:rok/common/model/socket_base_model.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/common/unils/web_socket_utils.dart';
-import 'package:rok/page/quotes_details_page.dart';
+import 'package:rok/page/quotes/quotes_details_page.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/kline/kchart/utils/date_format_util.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
