@@ -5,7 +5,7 @@ import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/model/home/operation_records_model.dart';
 import 'package:rok/common/model/socket_base_model.dart';
 import 'package:rok/common/style/style.dart';
-import 'package:rok/common/unils/web_socket_utils.dart';
+import 'package:rok/common/net/web_socket_utils.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/roundUnderlineTabIndicator.dart';
 import 'package:rok/widget/quotes/quotes_item_widget.dart';
