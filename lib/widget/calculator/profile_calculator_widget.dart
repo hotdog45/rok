@@ -20,6 +20,12 @@ class ProfileCalculatorWidget extends StatefulWidget {
 }
 
 class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
+  String selecctedCode = "BTCUSDT";
+  @override
+  void initState() {
+    getContractListData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +41,7 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
                   child: InputItemWidget(
                     theme: "合约",
                     type: 10,
-                    rightAction: "BTC/USDT 永续",
+                    rightAction:selecctedCode+" 永续",
                   )),
               onTap: () {
 //                popApp();
@@ -75,7 +81,7 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
                         fontSize: kAppFontSize(28)),
                   )),
               onTap: () {
-                profitCalculation(10, "BTCUSDT", 100, 8, 1, 50);
+                profitCalculation(10, selecctedCode, 100, 8, 1, 50);
               },
             ),
             Container(
@@ -115,7 +121,7 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
   getContractListData() async {
     contracts = await reqContractListData();
     setState(() {});
-    print("contracts" + contracts.length.toString());
+    Fluttertoast.showToast(msg: contracts.length.toString());
   }
 
   popApp() {
@@ -164,15 +170,22 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
       builder: (BuildContext context) {
         var child = Container(
             height: 300,
+            color: kAppBcgColor,
             child: Column(
               children: <Widget>[
                 ListTile(title: Text("请选择")),
                 Expanded(
                     child: ListView.builder(
-                  itemCount: 30,
+                  itemCount: contracts.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text("$index"),
+                      title: Container(
+                          padding: EdgeInsets.only(top: 8, bottom: 8, left: 5),
+                          decoration: BoxDecoration(
+                            color: kAppWhiteColor,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(contracts[index].code)),
                       onTap: () => Navigator.of(context).pop(index),
                     );
                   },
@@ -186,11 +199,11 @@ class _ProfileCalculatorWidgetState extends State<ProfileCalculatorWidget> {
       },
     );
     if (index != null) {
-      print("点击了：$index");
-      Fluttertoast.showToast(msg: "点击了：$index");
+      selecctedCode = contracts[index].code;
+      setState(() {
+
+      });
+
     }
   }
-
-
-
 }

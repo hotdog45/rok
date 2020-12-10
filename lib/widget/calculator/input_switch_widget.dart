@@ -46,6 +46,8 @@ class _InputSwitchWidgetState extends State<InputSwitchWidget> {
                   child: Switch(
                       value: check,
                       activeColor: Colors.blue,
+                      inactiveThumbImage: AssetImage("static/images/right_arrow.png"),
+                      activeThumbImage:AssetImage("static/images/yes_icon.png"),
                       onChanged: (bool val) {
                         this.setState(() {
                           this.check = !this.check;
