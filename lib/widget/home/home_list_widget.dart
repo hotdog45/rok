@@ -41,19 +41,19 @@ class _HomeListWidgetState extends State<HomeListWidget>
   OperationRecordsModel operationRecordsModel;
 
   reqMarket() {
-    print("====================================");
+    // print("====================================");
     WebSocketUtils.channel.sink.add('{"event":"addTopic","topic":"market.rank.list"}');
     WebSocketUtils.channel.stream.listen((message) {
       try {
-        print("11111111111111===================================="+message);
+        // print("11111111111111===================================="+message);
 
         var model = SocketBaseModel.fromJson(jsonDecode(message));
-        print("====2222222222222222222================="+model.toJson().toString());
+        // print("====2222222222222222222================="+model.toJson().toString());
 
         if (model.ch == "market.rank.list") {
           operationRecordsModel =
               OperationRecordsModel.fromJson(model.tick);
-          print("nowMarketModel:" + operationRecordsModel.toString());
+          // print("nowMarketModel:" + operationRecordsModel.toString());
           setState(() {});
         }
       } catch (e) {

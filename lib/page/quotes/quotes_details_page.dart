@@ -6,6 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:orientation/orientation.dart';
+import 'package:rok/common/model/socket_base_model.dart';
+import 'package:rok/common/net/address.dart';
+import 'package:rok/common/net/web_socket_utils.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/my_drawer.dart';
@@ -100,8 +103,59 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
     super.dispose();
     mController.dispose();
   }
+  reqMarket() {
+    Map map = {
+      "event":"request",
+      "topic":"market.request",
+      "body":{
+        "type":1,
+        "content":{
+          "ch":"market.ethusdt.kline.1day",
+          "from":1602669198,
+          "to":1607939598
+        }
+      }
+    };
+
+    String jsonString = jsonEncode(map);
+    WebSocketUtils.channel.sink.add(""" '{
+    "event":"request",
+    "topic":"market.request",
+    "body":{
+    "type":1,
+    "content":{
+    "ch":"market.ethusdt.kline.1day",
+    "from":1602669198,
+    "to":1607939598
+    }
+    }
+    } ' """ );
+    WebSocketUtils.channel.stream.listen((message) {
+      try {
+        var model = SocketBaseModel.fromJson(jsonDecode(message));
+        print("====2222222222222222222================="+model.toJson().toString());
+
+        if (model.ch == "market.ethusdt.kline.1day") {
+          List list = model.tick;
+          datas = list
+              .map((item) => KLineEntity.fromJson(item))
+              .toList()
+              .reversed
+              .toList()
+              .cast<KLineEntity>();
+          DataUtil.calculate(datas);
+          showLoading = false;
+          setState(() {});
+        }
+      } catch (e) {
+        WebSocketUtils.channel.sink.close(message.goingAway);
+      }
+    });
+  }
 
   void getData(String period) async {
+
+
 //    String result;
 //    print('获取数据失败,获取本地数据');
 
@@ -109,8 +163,13 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
       datas = [];
       showLoading = true;
     });
+    reqMarket();
+    return;
+
     Map<String, dynamic> results = await HttpTool.tool.get(
-        'https://api.huobi.pro/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt',
+        // 'https://api.huobi.pro/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt',
+        getHostAddress(2)+'port/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt',
+
         null);
     List list = results["data"];
     datas = list
