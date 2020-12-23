@@ -73,6 +73,7 @@ class _QuotesDetailsHPageState extends State<QuotesDetailsHPage>
             bgColor: Color(0x55ffffff),
             width: 60,
             height: 60,
+            radius: 6,
             margin: EdgeInsets.only(left: 30,top: 25),
             child: Icon(Icons.close,size: 55,),
             onTap: (){
