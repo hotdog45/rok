@@ -29,6 +29,8 @@ import 'package:rok/widget/quotes/make_a_bargain_widget.dart';
 import 'dart:convert';
 
 import 'package:rok/widget/transaction/transaction_widget.dart';
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class QuotesDetailsPage extends StatefulWidget {
   @override
@@ -42,36 +44,17 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
   bool showDrawer = false;
   KLineDataController dataController = KLineDataController();
 
-  DeviceOrientation _deviceOrientation;
+  var messageData ;
 
   StreamSubscription<DeviceOrientation> subscription;
+  WebSocketChannel channel = IOWebSocketChannel.connect(getWebSocketAddress(2));
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
-//    SystemChrome.setPreferredOrientations([
-//      DeviceOrientation.landscapeRight,
-//      DeviceOrientation.landscapeRight,
-//    ]);
-
-    getData(dataController.periodModel.period);
-    rootBundle.loadString('assets/depth.json').then((result) {
-      final parseJson = json.decode(result);
-      Map tick = parseJson['tick'];
-      var bids = tick['bids']
-          .map((item) => DepthEntity(item[0], item[1]))
-          .toList()
-          .cast<DepthEntity>();
-      var asks = tick['asks']
-          .map((item) => DepthEntity(item[0], item[1]))
-          .toList()
-          .cast<DepthEntity>();
-//      initDepth(bids, asks);
-    });
-
     dataController.changePeriodClick = (KLinePeriodModel model) {
+      channel.sink.close(messageData.goingAway);
       getData(model.period);
     };
 
@@ -79,19 +62,45 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
       length: tabTitles.length,
       vsync: this,
     );
+    channel.stream.listen((message) {
+      messageData = message;
+      var model = SocketBaseModel.fromJson(jsonDecode(message));
+      print("111111111111");
+      if (model != null && model.ch !=null && model.ch.startsWith("market.ethusdt.kline")) {
+        if (model.tick is Map){
+          print("333333333333333333");
+          var data = KLineEntity.fromJson(model.tick);
+          datas.add(data);
+        } else {
+          var list = jsonDecode(model.tick);
+          print("222222222");
+          datas = list
+              .map((item) => KLineEntity.fromJson(item))
+              .toList()
+              .reversed
+              .toList()
+              .cast<KLineEntity>();
+          channel.sink.close(message.goingAway);
+        }
+        DataUtil.calculate(datas);
+        showLoading = false;
+        setState(() {});
+      }
+    });
+    getData("1min");
+  }
 
-//    subscription = OrientationPlugin.onOrientationChange.listen((value) {
-//      // If the widget was removed from the tree while the asynchronous platform
-//      // message was in flight, we want to discard the reply rather than calling
-//      // setState to update our non-existent appearance.
-//      if (!mounted) return;
-//
-//      setState(() {
-//        _deviceOrientation = value;
-//      });
-//
-//      OrientationPlugin.forceOrientation(value);
-//    });
+  void getData(String period) async {
+
+    //
+    channel.sink.add(
+        '{"event":"request","topic":"market.request","body":{ "type":1, "content":{ "ch":"market.ethusdt.kline.${period ?? "1min"}"}}} ');
+
+    if (period.startsWith("1min")){
+      channel.sink.add(
+          '{"event":"addTopic","topic":"market.ethusdt.kline.${period ?? "1min"}"} ');
+    }
+
   }
 
   @override
@@ -102,92 +111,8 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
     subscription?.cancel();
     super.dispose();
     mController.dispose();
-  }
-  reqMarket() {
-    Map map = {
-      "event":"request",
-      "topic":"market.request",
-      "body":{
-        "type":1,
-        "content":{
-          "ch":"market.ethusdt.kline.1day",
-          "from":1602669198,
-          "to":1607939598
-        }
-      }
-    };
+    channel.sink.close();
 
-    String jsonString = jsonEncode(map);
-    WebSocketUtils.channel.sink.add(""" '{
-    "event":"request",
-    "topic":"market.request",
-    "body":{
-    "type":1,
-    "content":{
-    "ch":"market.ethusdt.kline.1day",
-    "from":1602669198,
-    "to":1607939598
-    }
-    }
-    } ' """ );
-    WebSocketUtils.channel.stream.listen((message) {
-      try {
-        var model = SocketBaseModel.fromJson(jsonDecode(message));
-        print("====2222222222222222222================="+model.toJson().toString());
-
-        if (model.ch == "market.ethusdt.kline.1day") {
-          List list = model.tick;
-          datas = list
-              .map((item) => KLineEntity.fromJson(item))
-              .toList()
-              .reversed
-              .toList()
-              .cast<KLineEntity>();
-          DataUtil.calculate(datas);
-          showLoading = false;
-          setState(() {});
-        }
-      } catch (e) {
-        WebSocketUtils.channel.sink.close(message.goingAway);
-      }
-    });
-  }
-
-  void getData(String period) async {
-
-
-//    String result;
-//    print('获取数据失败,获取本地数据');
-
-    setState(() {
-      datas = [];
-      showLoading = true;
-    });
-    reqMarket();
-    return;
-
-    Map<String, dynamic> results = await HttpTool.tool.get(
-        // 'https://api.huobi.pro/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt',
-        getHostAddress(2)+'port/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt',
-
-        null);
-    List list = results["data"];
-    datas = list
-        .map((item) => KLineEntity.fromJson(item))
-        .toList()
-        .reversed
-        .toList()
-        .cast<KLineEntity>();
-    DataUtil.calculate(datas);
-    showLoading = false;
-    setState(() {});
-
-//      Map parseJson = json.decode(result);
-//      List list = parseJson['data'];
-//      datas = list.map((item) => KLineEntity.fromJson(item)).toList().reversed.toList().cast<KLineEntity>();
-//      DataUtil.calculate(datas);
-//      showLoading = false;
-//      setState(() {});
   }
 
   @override
@@ -357,8 +282,8 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
 
   TabController mController;
   List<String> tabTitles = [
-    "委托",// entrust
-    "成交",// knockdown
-    "说明",//Instructions
+    "委托", // entrust
+    "成交", // knockdown
+    "说明", //Instructions
   ];
 }
