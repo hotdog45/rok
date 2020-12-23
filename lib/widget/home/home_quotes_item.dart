@@ -76,7 +76,7 @@ class _HomeQuotesItemState extends State<HomeQuotesItem> {
   void initState() {
     super.initState();
     if (widget.contract != null) {
-      // reqMarket(widget.contract.topic);
+      reqMarket(widget.contract.topic);
     }
   }
 
@@ -85,10 +85,11 @@ class _HomeQuotesItemState extends State<HomeQuotesItem> {
     channel.stream.listen((message) {
       try {
         var model = SocketBaseModel.fromJson(jsonDecode(message));
-        if (nowMarketModel ==null && model != null && model.ch == topic) {
+        if ( model != null && model.ch == topic) {
           nowMarketModel = NowMarketModel.fromJson(model.tick);
           setState(() {});
         }
+
       } catch (e) {
         channel.sink.close(message.goingAway);
       }
