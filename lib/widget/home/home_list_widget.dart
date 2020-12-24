@@ -97,8 +97,6 @@ class _HomeListWidgetState extends State<HomeListWidget>
       children: tabTitles.map((item) {
         return Container(
           child: ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, index) {
               OperationRecords model  = operationRecordsModel.last5[index];
 

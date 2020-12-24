@@ -70,7 +70,7 @@ class _QuotesDetailsHPageState extends State<QuotesDetailsHPage>
         children: <Widget>[
           QuotesDetailsWidget(height: double.infinity,),
           MySuperWidget(
-            bgColor: Color(0x55ffffff),
+            bgColor: Color(0x33ffffff),
             width: 60,
             height: 60,
             radius: 6,

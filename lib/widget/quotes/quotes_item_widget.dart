@@ -16,16 +16,8 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 class QuotesItemWidget extends StatefulWidget {
   final Color color;
-
-  // final Contracts contract;
-
   final OperationRecords model;
-
   const QuotesItemWidget({Key key, this.color,  this.model}) : super(key: key);
-
-
-
-
 
   @override
   _QuotesItemWidgetState createState() => _QuotesItemWidgetState();
@@ -96,7 +88,7 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
                     style: TextStyle(
                         fontSize: fontSizeMiddle,
                         fontWeight: FontWeight.bold,
-                        color: kGreenColor),
+                        color: widget.model.close - widget.model.open > 0 ?  kGreenColor: kRedColor),
                   ),
                   Text(
                     "≈¥2345.22",
@@ -119,7 +111,7 @@ class _QuotesItemWidgetState extends State<QuotesItemWidget> {
                 style: TextStyle(
                     fontSize: fontSizeNormal,
                     fontWeight: FontWeight.w500,
-                    color: kGreenColor),
+                    color: widget.model.close - widget.model.open > 0 ? kGreenColor :  kRedColor),
               ),
             ),
           ],

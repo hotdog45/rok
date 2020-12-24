@@ -52,7 +52,7 @@ class _QuotesDetailsWidgetState extends State<QuotesDetailsWidget> {
     super.initState();
 
     dataController.changePeriodClick = (KLinePeriodModel model) {
-      channel.sink.close(messageData.goingAway);
+      // channel.sink.close(messageData.goingAway);
       getData(model.period);
     };
     channel.stream.listen((message) {
