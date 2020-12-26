@@ -262,7 +262,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: TextStyle(
                       color: Colors.white, fontSize: kAppFontSize(28)),
                 )),
-            onTap: () {},
+            onTap: () {
+
+
+            },
           ),
           Container(
             margin: EdgeInsets.only(top: 20, right: 20),
