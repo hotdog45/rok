@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/model/home/operation_records_model.dart';
 import 'package:rok/common/model/socket_base_model.dart';
+import 'package:rok/common/net/address.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/net/web_socket_utils.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
 import 'package:rok/widget/common/roundUnderlineTabIndicator.dart';
 import 'package:rok/widget/quotes/quotes_item_widget.dart';
+import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 /// Copyright (C), 2015-2020, 谊品生鲜
@@ -28,6 +30,10 @@ class HomeListWidget extends StatefulWidget {
 
 class _HomeListWidgetState extends State<HomeListWidget>
     with SingleTickerProviderStateMixin {
+
+  WebSocketChannel channel = IOWebSocketChannel.connect(getWebSocketAddress(2));
+
+
   @override
   void initState() {
     super.initState();
@@ -42,8 +48,8 @@ class _HomeListWidgetState extends State<HomeListWidget>
 
   reqMarket() {
     // print("====================================");
-    WebSocketUtils.channel.sink.add('{"event":"addTopic","topic":"market.rank.list"}');
-    WebSocketUtils.channel.stream.listen((message) {
+    channel.sink.add('{"event":"addTopic","topic":"market.rank.list"}');
+    channel.stream.listen((message) {
       try {
         // print("11111111111111===================================="+message);
 
@@ -57,7 +63,7 @@ class _HomeListWidgetState extends State<HomeListWidget>
           setState(() {});
         }
       } catch (e) {
-        WebSocketUtils.channel.sink.close(message.goingAway);
+        // WebSocketUtils.channel.sink.close(message.goingAway);
       }
     });
   }
@@ -91,8 +97,6 @@ class _HomeListWidgetState extends State<HomeListWidget>
       children: tabTitles.map((item) {
         return Container(
           child: ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, index) {
               OperationRecords model  = operationRecordsModel.last5[index];
 

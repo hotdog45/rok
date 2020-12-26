@@ -29,6 +29,11 @@ import 'package:rok/widget/quotes/make_a_bargain_widget.dart';
 import 'dart:convert';
 
 import 'package:rok/widget/transaction/transaction_widget.dart';
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+
+import 'quotes_details_h_page.dart';
+import 'quotes_details_widget.dart';
 
 class QuotesDetailsPage extends StatefulWidget {
   @override
@@ -37,61 +42,20 @@ class QuotesDetailsPage extends StatefulWidget {
 
 class _QuotesDetailsPageState extends State<QuotesDetailsPage>
     with SingleTickerProviderStateMixin {
-  List<KLineEntity> datas = [];
-  bool showLoading = true;
+
   bool showDrawer = false;
-  KLineDataController dataController = KLineDataController();
 
-  DeviceOrientation _deviceOrientation;
-
+  var messageData ;
   StreamSubscription<DeviceOrientation> subscription;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
-//    SystemChrome.setPreferredOrientations([
-//      DeviceOrientation.landscapeRight,
-//      DeviceOrientation.landscapeRight,
-//    ]);
-
-    getData(dataController.periodModel.period);
-    rootBundle.loadString('assets/depth.json').then((result) {
-      final parseJson = json.decode(result);
-      Map tick = parseJson['tick'];
-      var bids = tick['bids']
-          .map((item) => DepthEntity(item[0], item[1]))
-          .toList()
-          .cast<DepthEntity>();
-      var asks = tick['asks']
-          .map((item) => DepthEntity(item[0], item[1]))
-          .toList()
-          .cast<DepthEntity>();
-//      initDepth(bids, asks);
-    });
-
-    dataController.changePeriodClick = (KLinePeriodModel model) {
-      getData(model.period);
-    };
 
     mController = TabController(
       length: tabTitles.length,
       vsync: this,
     );
-
-//    subscription = OrientationPlugin.onOrientationChange.listen((value) {
-//      // If the widget was removed from the tree while the asynchronous platform
-//      // message was in flight, we want to discard the reply rather than calling
-//      // setState to update our non-existent appearance.
-//      if (!mounted) return;
-//
-//      setState(() {
-//        _deviceOrientation = value;
-//      });
-//
-//      OrientationPlugin.forceOrientation(value);
-//    });
   }
 
   @override
@@ -102,92 +66,7 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
     subscription?.cancel();
     super.dispose();
     mController.dispose();
-  }
-  reqMarket() {
-    Map map = {
-      "event":"request",
-      "topic":"market.request",
-      "body":{
-        "type":1,
-        "content":{
-          "ch":"market.ethusdt.kline.1day",
-          "from":1602669198,
-          "to":1607939598
-        }
-      }
-    };
 
-    String jsonString = jsonEncode(map);
-    WebSocketUtils.channel.sink.add(""" '{
-    "event":"request",
-    "topic":"market.request",
-    "body":{
-    "type":1,
-    "content":{
-    "ch":"market.ethusdt.kline.1day",
-    "from":1602669198,
-    "to":1607939598
-    }
-    }
-    } ' """ );
-    WebSocketUtils.channel.stream.listen((message) {
-      try {
-        var model = SocketBaseModel.fromJson(jsonDecode(message));
-        print("====2222222222222222222================="+model.toJson().toString());
-
-        if (model.ch == "market.ethusdt.kline.1day") {
-          List list = model.tick;
-          datas = list
-              .map((item) => KLineEntity.fromJson(item))
-              .toList()
-              .reversed
-              .toList()
-              .cast<KLineEntity>();
-          DataUtil.calculate(datas);
-          showLoading = false;
-          setState(() {});
-        }
-      } catch (e) {
-        WebSocketUtils.channel.sink.close(message.goingAway);
-      }
-    });
-  }
-
-  void getData(String period) async {
-
-
-//    String result;
-//    print('获取数据失败,获取本地数据');
-
-    setState(() {
-      datas = [];
-      showLoading = true;
-    });
-    reqMarket();
-    return;
-
-    Map<String, dynamic> results = await HttpTool.tool.get(
-        // 'https://api.huobi.pro/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt',
-        getHostAddress(2)+'port/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt',
-
-        null);
-    List list = results["data"];
-    datas = list
-        .map((item) => KLineEntity.fromJson(item))
-        .toList()
-        .reversed
-        .toList()
-        .cast<KLineEntity>();
-    DataUtil.calculate(datas);
-    showLoading = false;
-    setState(() {});
-
-//      Map parseJson = json.decode(result);
-//      List list = parseJson['data'];
-//      datas = list.map((item) => KLineEntity.fromJson(item)).toList().reversed.toList().cast<KLineEntity>();
-//      DataUtil.calculate(datas);
-//      showLoading = false;
-//      setState(() {});
   }
 
   @override
@@ -232,9 +111,11 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
                     splashColor: Colors.transparent,
                     icon: Icon(Icons.fullscreen, size: 30),
                     onPressed: () {
+                      NavigatorUtils.navigatorRouter(context, QuotesDetailsHPage());
+
 //                      NavigatorUtils.showToast("全屏");
-                      OrientationPlugin.forceOrientation(
-                          DeviceOrientation.landscapeLeft);
+//                       OrientationPlugin.forceOrientation(
+//                           DeviceOrientation.landscapeLeft);
                     }),
                 IconButton(
                     highlightColor: Colors.transparent,
@@ -301,24 +182,7 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
                   ],
                 ),
               ),
-              Container(
-                width: double.infinity,
-                height: 450,
-                child: Stack(
-                  children: <Widget>[
-                    KLineVerticalWidget(
-                        datas: datas, dataController: dataController),
-                    Offstage(
-                      offstage: !showLoading,
-                      child: Container(
-                          width: double.infinity,
-                          height: 450,
-                          alignment: Alignment.center,
-                          child: CircularProgressIndicator()),
-                    ),
-                  ],
-                ),
-              ),
+              QuotesDetailsWidget(height: 450,),
               MyTabBar(mController: mController, tabTitles: tabTitles),
               Container(
                   width: double.infinity, height: 800, child: _tabBarView())
@@ -357,8 +221,8 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
 
   TabController mController;
   List<String> tabTitles = [
-    "委托",// entrust
-    "成交",// knockdown
-    "说明",//Instructions
+    "委托", // entrust
+    "成交", // knockdown
+    "说明", //Instructions
   ];
 }

@@ -3,11 +3,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/model/home/home_data.dart';
+import 'package:rok/common/model/home/operation_records_model.dart';
+import 'package:rok/common/model/socket_base_model.dart';
+import 'package:rok/common/net/address.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/widget/common/refresh_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
+import 'package:rok/widget/home/home_list_widget.dart';
 import 'package:rok/widget/quotes/quotes_item_widget.dart';
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class QuotesListPage extends StatefulWidget {
   @override
@@ -19,8 +25,10 @@ class _QuotesListPageState extends State<QuotesListPage>
   AnimationController controller;
   Animation animation;
   Animation animation2;
+  OperationRecordsModel operationRecordsModel;
 
   List<Contracts> contracts = [];
+  WebSocketChannel channel = IOWebSocketChannel.connect(getWebSocketAddress(2));
 
   @override
   void initState() {
@@ -37,23 +45,28 @@ class _QuotesListPageState extends State<QuotesListPage>
       setState(() {});
 //      print(animation.value);
     });
-
-    getContractListData();
+    reqMarket();
   }
 
-  getContractListData() async {
+  reqMarket() {
+    // print("====================================");
+    channel.sink.add('{"event":"addTopic","topic":"market.rank.list"}');
+    channel.stream.listen((message) {
+      try {
+        // print("11111111111111===================================="+message);
 
-    var jsonStr = await reqContractListData();
-    print("jsonStr" + jsonStr.toString());
+        var model = SocketBaseModel.fromJson(jsonDecode(message));
+        // print("====2222222222222222222================="+model.toJson().toString());
 
-    List list = json.decode(jsonStr.toString());
-    // List<CardBean> cardbeanList = responseJson.map((m) => new CardBean.fromJson(m)).toList();
-
-    contracts = list.map((e) => Contracts.fromJson(e)).toList();
-
-
-    setState(() {});
-    // print("contracts" + contracts.length.toString());
+        if (model.ch == "market.rank.list") {
+          operationRecordsModel = OperationRecordsModel.fromJson(model.tick);
+          // print("nowMarketModel:" + operationRecordsModel.toString());
+          setState(() {});
+        }
+      } catch (e) {
+        //  channel.sink.close(message.goingAway);
+      }
+    });
   }
 
   void _onTapHandle() {
@@ -76,30 +89,23 @@ class _QuotesListPageState extends State<QuotesListPage>
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
 
     return Scaffold(
-      appBar: YPAppBar("title.quotes", hasBackBtn: false, actions: [
-        InkWell(
-            child: Icon(Icons.refresh),
-            onTap: () {
-              _onTapHandle2();
-            }),
-        InkWell(
-            child: Icon(Icons.gavel),
-            onTap: () {
-              _onTapHandle();
-            }),
-      ]).build(context),
+      appBar: YPAppBar("title.quotes", hasBackBtn: false).build(context),
       body: Container(
-        color: kAppBcgColor,
-        child: MyRefresh(
-          child: contracts == null ? Container():  ListView.builder(
-            itemBuilder: (BuildContext context, index) {
-              return QuotesItemWidget(
-                  color: index % 2 == 0 ? animation.value : animation2.value);
-            },
-            itemCount: contracts.length,
-            padding: EdgeInsets.all(15),
-          ),
-          onRefresh: () {},
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (BuildContext context, index) {
+            OperationRecords model = operationRecordsModel.last5[index];
+            return QuotesItemWidget(
+              color: animation2.value,
+              model: model,
+            );
+          },
+          itemCount: operationRecordsModel == null ||
+                  operationRecordsModel.last5 == null
+              ? 0
+              : operationRecordsModel.last5.length,
+          padding: EdgeInsets.all(15),
         ),
       ),
     );

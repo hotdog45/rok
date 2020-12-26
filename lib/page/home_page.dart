@@ -45,9 +45,9 @@ class _HomePageState extends State<HomePage>
                 padding: EdgeInsets.all(0),
                 children: <Widget>[
                   HomeBannerWidget(banners: homeData.banners),
-                  // homeData.contracts == null
-                  //     ? Container()
-                  //     : HomeQuotesList(contracts: homeData.contracts),
+                  homeData.contracts == null
+                      ? Container()
+                      : HomeQuotesList(contracts: homeData.contracts),
                   HomeIconWidget(menus: homeData.menus),
                   homeData.notices == null
                       ? Container()

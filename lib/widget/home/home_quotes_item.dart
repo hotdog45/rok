@@ -5,12 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/model/home/now_market_model.dart';
 import 'package:rok/common/model/socket_base_model.dart';
+import 'package:rok/common/net/address.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/common/net/web_socket_utils.dart';
 import 'package:rok/page/quotes/quotes_details_page.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/kline/kchart/utils/date_format_util.dart';
+import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 /// Copyright (C), 2015-2020, 谊品生鲜
@@ -68,26 +70,28 @@ class HomeQuotesItem extends StatefulWidget {
 class _HomeQuotesItemState extends State<HomeQuotesItem> {
   NowMarketModel nowMarketModel;
 
+  WebSocketChannel channel = IOWebSocketChannel.connect(getWebSocketAddress(2));
 
   @override
   void initState() {
     super.initState();
     if (widget.contract != null) {
-      // reqMarket(widget.contract.topic);
+      reqMarket(widget.contract.topic);
     }
   }
 
   reqMarket(topic) {
-    WebSocketUtils.channel.sink.add('{"event":"addTopic","topic":"$topic"}');
-    WebSocketUtils.channel.stream.listen((message) {
+    channel.sink.add('{"event":"addTopic","topic":"$topic"}');
+    channel.stream.listen((message) {
       try {
         var model = SocketBaseModel.fromJson(jsonDecode(message));
-        if (nowMarketModel ==null && model != null && model.ch == topic) {
+        if ( model != null && model.ch == topic) {
           nowMarketModel = NowMarketModel.fromJson(model.tick);
           setState(() {});
         }
+
       } catch (e) {
-        WebSocketUtils.channel.sink.close(message.goingAway);
+        channel.sink.close(message.goingAway);
       }
     });
   }
