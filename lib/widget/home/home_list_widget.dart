@@ -23,16 +23,13 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 /// 作者姓名 修改时间 版本号 描述
 
 class HomeListWidget extends StatefulWidget {
-
   @override
   _HomeListWidgetState createState() => _HomeListWidgetState();
 }
 
 class _HomeListWidgetState extends State<HomeListWidget>
     with SingleTickerProviderStateMixin {
-
   WebSocketChannel channel = IOWebSocketChannel.connect(getWebSocketAddress(2));
-
 
   @override
   void initState() {
@@ -51,39 +48,29 @@ class _HomeListWidgetState extends State<HomeListWidget>
     channel.sink.add('{"event":"addTopic","topic":"market.rank.list"}');
     channel.stream.listen((message) {
       try {
-        // print("11111111111111===================================="+message);
-
         var model = SocketBaseModel.fromJson(jsonDecode(message));
-        // print("====2222222222222222222================="+model.toJson().toString());
-
         if (model.ch == "market.rank.list") {
-          operationRecordsModel =
-              OperationRecordsModel.fromJson(model.tick);
-          // print("nowMarketModel:" + operationRecordsModel.toString());
+          operationRecordsModel = OperationRecordsModel.fromJson(model.tick);
           setState(() {});
         }
       } catch (e) {
-        // WebSocketUtils.channel.sink.close(message.goingAway);
+        channel.sink.close(message.goingAway);
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          MyTabBar(mController: mController, tabTitles: tabTitles),
-          Container(
-              width: double.infinity,
-              height: 80.0 * 4 + 20,
-              child: _tabBarView())
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        MyTabBar(mController: mController, tabTitles: tabTitles),
+        Container(
+            width: double.infinity,
+            height: 85.0 * operationRecordsModel.last5.length + 20,
+            child: _tabBarView())
+      ],
     );
   }
-
-
 
   @override
   void dispose() {
@@ -95,20 +82,25 @@ class _HomeListWidgetState extends State<HomeListWidget>
     return TabBarView(
       controller: mController,
       children: tabTitles.map((item) {
-        return Container(
-          child: ListView.builder(
-            itemBuilder: (BuildContext context, index) {
-              OperationRecords model  = operationRecordsModel.last5[index];
-
-              return QuotesItemWidget(
-                color: Colors.white,
-                model: model,
+        return operationRecordsModel == null
+            ? Container()
+            : ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (BuildContext context, index) {
+                  OperationRecords model = item == "涨幅榜"
+                      ? operationRecordsModel.top5[index]
+                      : operationRecordsModel.last5[index];
+                  return QuotesItemWidget(
+                    color: Colors.white,
+                    model: model,
+                  );
+                },
+                itemExtent: 85,
+                itemCount: item == "涨幅榜"
+                    ? operationRecordsModel.top5.length
+                    : operationRecordsModel.last5.length,
+                padding: EdgeInsets.all(15),
               );
-            },
-            itemCount: operationRecordsModel == null || operationRecordsModel.last5 == null ? 0:  operationRecordsModel.last5.length,
-            padding: EdgeInsets.all(15),
-          ),
-        );
       }).toList(),
     );
   }

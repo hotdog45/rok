@@ -17,7 +17,7 @@ import 'package:rok/config/config.dart';
 import 'package:rok/page/common/webview_page.dart';
 import 'package:rok/page/user/register_page.dart';
 
-import '../test_page.dart';
+import '../../test/test_page.dart';
 
 class LoginPage extends StatefulWidget {
   static final String sName = "login";

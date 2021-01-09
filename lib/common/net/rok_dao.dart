@@ -3,6 +3,7 @@ import 'package:rok/common/model/home/home_data.dart';
 import 'package:rok/common/model/home/now_market_model.dart';
 import 'package:rok/common/model/home/operation_records_model.dart';
 import 'package:rok/common/model/mine/asset_detail_model.dart';
+import 'package:rok/common/model/position/position_model.dart';
 import 'package:rok/common/net/api.dart';
 
 import 'address.dart';
@@ -23,7 +24,7 @@ reqUserInfo() async {
 
 //资产详情
 assetDetail() async {
-  var json =  await httpManager.netFetch(userAssetDetail, {});
+  var json = await httpManager.netFetch(userAssetDetail, {});
   return AssetDetailModel.fromJson(json);
 }
 
@@ -60,18 +61,34 @@ applyWithdrawPreviews(String address, double quantity) async {
 }
 
 //持仓列表
-reqPositionList(String contractCode) async {
-  return await httpManager
+reqPositionList({String contractCode}) async {
+  List jsonList = await httpManager
       .netFetch(positionList, {"contractCode": contractCode});
+  List<PositionModel> list = jsonList
+      ?.map((e) => PositionModel.fromJson(e as Map<String, dynamic>))
+      ?.toList();
+  return list;
 }
 
 //委托列表
-reqEntrustList(String contractCode, {List<int> typeList}) async {
+reqEntrustList( {String contractCode,List<int> typeList}) async {
   List jsonList = await httpManager.netFetch(
       entrustList, {"contractCode": contractCode, "typeList": typeList});
 
   List<EntrustModel> list = jsonList
-      ?.map((e) =>  EntrustModel.fromJson(e as Map<String, dynamic>))
+      ?.map((e) => EntrustModel.fromJson(e as Map<String, dynamic>))
+      ?.toList();
+  return list;
+}
+
+///历史委托列表
+daoEntrustHistoryList( {String contractCode,List<int> typeList,int pageNo=1,int pageSize =20}) async {
+  var jsonList = await httpManager.netFetch(
+      entrustHistoryList, {"contractCode": contractCode,"pageNo": pageNo,
+    "pageSize": pageSize, "typeList": typeList});
+
+  List<EntrustModel> list = (jsonList["list"] as List)
+      .map((e) => EntrustModel.fromJson(e as Map<String, dynamic>))
       ?.toList();
   return list;
 }
@@ -99,6 +116,7 @@ profitCalculat(int closePrice, String contractCode, int multiple, int openPrice,
   });
 }
 
+/// 下单
 daoTradeOpen(String contractCode, int entrustType, int multiple, int price,
     int quantity, int side, int triggerPrice) async {
   return await httpManager.netFetch(tradeOpen, {

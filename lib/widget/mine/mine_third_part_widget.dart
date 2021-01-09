@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
-import 'package:rok/page/bill_detail_list_page.dart';
-import 'package:rok/page/safe_center_page.dart';
+import 'package:rok/page/withdrawal/bill_detail_list_page.dart';
+import 'package:rok/page/user/safe_center_page.dart';
 
 class MineThirdPartWidget extends StatefulWidget {
   @override

@@ -26,6 +26,7 @@ class _TransactionPageState extends State<TransactionPage>
     );
   }
 
+
   @override
   void dispose() {
     super.dispose();
@@ -93,11 +94,11 @@ class _TransactionPageState extends State<TransactionPage>
           case 0:
             return TransactionWidget();
           case 1:
-            return PositionListWidget();
+            return PositionListWidget(type: 1,);
           case 2:
-            return PositionListWidget();
+            return PositionListWidget(type: 5,);
           case 3:
-            return PositionListWidget();
+            return PositionListWidget(type: 9,);
           default:
             return Container();
         }

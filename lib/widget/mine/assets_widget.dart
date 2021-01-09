@@ -7,9 +7,9 @@ import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
-import 'package:rok/page/assets_page.dart';
-import 'package:rok/page/recharge_online_page.dart';
-import 'package:rok/page/withdrawal_online_page.dart';
+import 'package:rok/page/withdrawal/assets_page.dart';
+import 'package:rok/page/withdrawal/recharge_online_page.dart';
+import 'package:rok/page/withdrawal/withdrawal_online_page.dart';
 
 class AssetsWidget extends StatefulWidget {
   @override

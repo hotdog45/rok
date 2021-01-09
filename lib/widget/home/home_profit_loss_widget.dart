@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rok/common/model/mine/asset_detail_model.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
-import 'package:rok/page/recharge_online_page.dart';
-import 'package:rok/page/withdrawal_online_page.dart';
+import 'package:rok/page/withdrawal/recharge_online_page.dart';
+import 'package:rok/page/withdrawal/withdrawal_online_page.dart';
 
 class HomeProfitLossWidget extends StatefulWidget {
   final AssetDetailModel detailModel;

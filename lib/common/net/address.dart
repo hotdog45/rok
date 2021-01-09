@@ -64,6 +64,7 @@ const String profitCalculation = "calc/profit";
 
 const String tradeOpen = "trade/open";
 
+const String entrustHistoryList = "entrust/history/list";
 
 
 ////////////////////////////////////////////////////////////////

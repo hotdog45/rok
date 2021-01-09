@@ -12,8 +12,8 @@ import 'package:rok/test/channel_page.dart';
 import 'package:rok/test/i18nPage.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 
-import 'calculator_util_page.dart';
-import 'common/webview_page.dart';
+import '../page/withdrawal/calculator_util_page.dart';
+import '../page/common/webview_page.dart';
 
 class TestPage extends StatefulWidget {
   @override

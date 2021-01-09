@@ -47,13 +47,9 @@ class _TransactionWidgetState extends State<TransactionWidget>
       vsync: this,
     );
 
-    getEntrustList();
   }
 
-  getEntrustList() async{
-     list = await reqEntrustList("BTCUSDT");
 
-  }
 
 
   @override
@@ -230,8 +226,7 @@ class _TransactionWidgetState extends State<TransactionWidget>
             radius: 4,
             margin: EdgeInsets.only(top: 10),
             onTap: () async{
-              list=await reqEntrustList("BTCUSDT");
-              NavigatorUtils.showToast("开空"+list[0].toJson().toString());
+              // NavigatorUtils.showToast("开空"+list[0].toJson().toString());
 
             },
           ),
@@ -312,11 +307,11 @@ class _TransactionWidgetState extends State<TransactionWidget>
       children: tabTitles.asMap().keys.map((index) {
         switch (index) {
           case 0:
-            return  PositionListWidget(list: list,);
+            return PositionListWidget(type: 0,);
           case 1:
-            return PositionListWidget();
+            return PositionListWidget(type: 2,);
           default:
-            return PositionListWidget();
+            return PositionListWidget(type: 3,);
         }
       }).toList(),
     );
