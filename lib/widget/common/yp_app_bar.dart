@@ -25,7 +25,7 @@ class YPAppBar {
       title: titleWidget ??
           Text(
             I18nUtils.translate(context, title),
-            style: TextStyle(color: kAppTextColor, fontSize: 17),
+            style: TextStyle(color: kAppTextColor, fontSize: fontSizeMiddle),
           ),
       automaticallyImplyLeading: hasBackBtn,
       leading: hasBackBtn

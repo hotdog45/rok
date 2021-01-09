@@ -6,6 +6,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:rok/common/model/home/home_data.dart';
+import 'package:rok/common/model/mine/asset_detail_model.dart';
 import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/model/home/now_market_model.dart';
 import 'package:rok/common/model/socket_base_model.dart';
@@ -20,6 +21,7 @@ import 'package:rok/widget/home/home_quotes_item.dart';
 import 'package:rok/widget/home/home_swiper_widget.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:rok/widget/common/refresh_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -31,6 +33,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   HomeData homeData;
+  AssetDetailModel detailModel;
 
   @override
   Widget build(BuildContext context) {
@@ -41,20 +44,25 @@ class _HomePageState extends State<HomePage>
         color: kAppBcgColor,
         child: homeData == null
             ? Container()
-            : ListView(
-                padding: EdgeInsets.all(0),
-                children: <Widget>[
-                  HomeBannerWidget(banners: homeData.banners),
-                  homeData.contracts == null
-                      ? Container()
-                      : HomeQuotesList(contracts: homeData.contracts),
-                  HomeIconWidget(menus: homeData.menus),
-                  homeData.notices == null
-                      ? Container()
-                      : HomeNotifWidget(notices: homeData.notices),
-                  HomeProfitLossWidget(),
-                  HomeListWidget()
-                ],
+            : MyRefresh(
+                onRefresh: () {
+                  getHomeData();
+                },
+                child: ListView(
+                  padding: EdgeInsets.all(0),
+                  children: <Widget>[
+                    HomeBannerWidget(banners: homeData.banners),
+                    homeData.contracts == null
+                        ? Container()
+                        : HomeQuotesList(contracts: homeData.contracts),
+                    HomeIconWidget(menus: homeData.menus),
+                    homeData.notices == null
+                        ? Container()
+                        : HomeNotifWidget(notices: homeData.notices),
+                    HomeProfitLossWidget(detailModel: detailModel),
+                    HomeListWidget()
+                  ],
+                ),
               ),
       ),
     );
@@ -63,9 +71,8 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-        duration: Duration(milliseconds: 600),
-        vsync: this);
+    controller =
+        AnimationController(duration: Duration(milliseconds: 600), vsync: this);
 
     animation =
         ColorTween(begin: Colors.white, end: Colors.white).animate(controller);
@@ -78,14 +85,17 @@ class _HomePageState extends State<HomePage>
     getHomeData();
   }
 
+  getAssetDetail() async {
+    detailModel = await assetDetail();
+    setState(() {});
+  }
+
   getHomeData() async {
     var data = await reqHomeData();
-    print("homeData=======>" + data.toString());
     homeData = HomeData.fromJson(data);
-
-    setState(() {});
     print("homeData" + homeData.contracts.length.toString());
     // getContractListData();
+    getAssetDetail();
   }
 
   List<Contracts> contracts;

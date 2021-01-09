@@ -37,7 +37,7 @@ class _BillDetailListPageState extends State<BillDetailListPage> {
           _datas==null||_datas.length<1?Container():
           ListView.builder(
               itemCount: _datas.length,
-              itemExtent: 100.0, //强制高度为50.0
+              // itemExtent: 100.0, //强制高度为50.0
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 AssetList al = _datas[index];

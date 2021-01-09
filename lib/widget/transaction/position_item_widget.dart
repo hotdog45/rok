@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:rok/common/model/contract/entrust_model.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/line_widget.dart';
@@ -15,6 +16,10 @@ import 'package:rok/widget/common/my_super_widget.dart';
 /// 作者姓名 修改时间 版本号 描述
 
 class PositionItemWidget extends StatelessWidget {
+  final EntrustModel entrustModel;
+
+  PositionItemWidget({Key key, this.entrustModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,35 +70,36 @@ class PositionItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               MySuperWidget(
-                text: "XRP",
+                text: entrustModel.contractName,
                 textColor: kAppTextColor,
                 fontSize: fontSizeMiddle,
               ),
+              // MySuperWidget(
+              //   text: "USDT",
+              //   textColor: kAppSubTextColor,
+              //   fontSize: fontSizeSmall,
+              // ),
               MySuperWidget(
-                text: "USDT",
-                textColor: kAppSubTextColor,
-                fontSize: fontSizeSmall,
+                text: entrustModel.quantity.toString() + " 张",
+                textColor: kAppTextColor,
+                fontWeight: FontWeight.bold,
+                fontSize: fontSizeMiddle,
               ),
             ],
           ),
-          MySuperWidget(
-            text: "日内卖出",
-            height: 20,
-            width: 60,
-            margin: EdgeInsets.only(left: 15, right: 10),
-            textColor: kRedColor,
-            fontSize: fontSizeMin,
-            bgColor: kAppWhiteColor,
-            radius: 2,
-            borderColor: kRedColor,
-            hasBorder: true,
-          ),
-          MySuperWidget(
-            text: "10手",
-            textColor: kAppTextColor,
-            fontWeight: FontWeight.bold,
-            fontSize: fontSizeMiddle,
-          ),
+          // MySuperWidget(
+          //   text: "日内卖出",
+          //   height: 20,
+          //   width: 60,
+          //   margin: EdgeInsets.only(left: 15, right: 10),
+          //   textColor: kRedColor,
+          //   fontSize: fontSizeMin,
+          //   bgColor: kAppWhiteColor,
+          //   radius: 2,
+          //   borderColor: kRedColor,
+          //   hasBorder: true,
+          // ),
+
           Expanded(child: Container()),
           MySuperWidget(
             text: "-0.54",
@@ -119,11 +125,11 @@ class PositionItemWidget extends StatelessWidget {
       padding: EdgeInsets.only(left: 10, right: 10),
       child: Column(
         children: <Widget>[
-          _getItemWidget("杠杆", "50倍"),
-          _getItemWidget("止盈", "50%(0.242335)"),
+          _getItemWidget("杠杆", entrustModel.multiple.toString()+"倍"),
+          // _getItemWidget("止盈", "50%(0.242335)"),
           _getItemWidget("开仓价位", "0.243490"),
-          _getItemWidget("手续费", "0.2434 USDT"),
-          _getItemWidget("开仓时间", "2020/07/30 22:41:34", isMicro: true),
+          _getItemWidget("手续费", entrustModel.fee.toString()+" USDT"),
+          _getItemWidget("开仓时间", entrustModel.createTime, isMicro: true),
           Container(
             height: 35,
             child: Row(
@@ -144,11 +150,12 @@ class PositionItemWidget extends StatelessWidget {
       padding: EdgeInsets.only(left: 10, right: 10),
       child: Column(
         children: <Widget>[
-          _getItemWidget("保证金", "9.792 USDT"),
+          _getItemWidget("委托数量", entrustModel.quantity.toString()+" 张"),
+          _getItemWidget("保证金", "0 USDT"),
           _getItemWidget("止损", "80%(0.245238)"),
-          _getItemWidget("市价平仓", "0.24509"),
+          // _getItemWidget("市价平仓", "0.24509"),
           _getItemWidget("抵扣", "0"),
-          _getItemWidget("清算时间", "2020/07/30 22:46:24", isMicro: true),
+          // _getItemWidget("清算时间", "2020/07/30 22:46:24", isMicro: true),
           Container(
             height: 35,
             child: Row(

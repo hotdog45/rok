@@ -25,16 +25,16 @@ class _SafeCenterPageState extends State<SafeCenterPage> {
                 type: 7,
                 rightAction: "159****3544",
               )),
-          MineItemWidget(
-            theme: "邮箱验证",
-            type: 8,
-            rightAction: "未绑定",
-          ),
-          MineItemWidget(
-            theme: "谷歌验证",
-            type: 8,
-            rightAction: "未绑定",
-          ),
+          // MineItemWidget(
+          //   theme: "邮箱验证",
+          //   type: 8,
+          //   rightAction: "未绑定",
+          // ),
+          // MineItemWidget(
+          //   theme: "谷歌验证",
+          //   type: 8,
+          //   rightAction: "未绑定",
+          // ),
           MineItemWidget(
             theme: "登录密码",
             type: 8,
@@ -45,18 +45,18 @@ class _SafeCenterPageState extends State<SafeCenterPage> {
             type: 8,
             rightAction: "未设置",
           ),
-          MineItemWidget(
-            theme: "安全通知",
-            type: 9,
-          ),
-          MineItemWidget(
-            theme: "手势密码",
-            type: 10,
-          ),
-          MineItemWidget(
-            theme: "指纹密码",
-            type: 10,
-          )
+          // MineItemWidget(
+          //   theme: "安全通知",
+          //   type: 9,
+          // ),
+          // MineItemWidget(
+          //   theme: "手势密码",
+          //   type: 10,
+          // ),
+          // MineItemWidget(
+          //   theme: "指纹密码",
+          //   type: 10,
+          // )
         ],
       ),
     );

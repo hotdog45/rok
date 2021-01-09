@@ -42,7 +42,7 @@ class _HomeQuotesListState extends State<HomeQuotesList> {
         ? Container()
         : Container(
             color: kAppWhiteColor,
-            height: 100,
+            height: 120,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, index) {
@@ -97,13 +97,15 @@ class _HomeQuotesItemState extends State<HomeQuotesItem> {
   }
 
 
+
+
   @override
   Widget build(BuildContext context) {
     return nowMarketModel == null
-        ? MySuperWidget(text: "ces222 ")
+        ? Container()
         : InkWell(
             onTap: () {
-              NavigatorUtils.navigatorRouter(context, QuotesDetailsPage());
+              NavigatorUtils.navigatorRouter(context, QuotesDetailsPage(name: widget.contract.code.toLowerCase(),));
             },
             child: Container(
               width: ScreenUtil.screenWidthDp / 2.5,

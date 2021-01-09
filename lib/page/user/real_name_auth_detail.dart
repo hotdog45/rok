@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/style/style.dart';
+import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
 import 'package:rok/widget/mine/mine_item_widget.dart';
 
@@ -18,160 +19,84 @@ class _RealNameAuthDetailState extends State<RealNameAuthDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: YPAppBar(
-        "初级认证",
+        "身份认证",
       ).build(context),
-      body:    Container( width: ScreenUtil.screenWidthDp, child: Column(children: <Widget>[
-        Container(
-          width: ScreenUtil.screenWidthDp-42,
-          margin: EdgeInsets.only(left: 20,right: 20),
-          child: Text(
-            "请务必使用真实本人姓名及身份证号，一旦认证成功不可再次修改",
-            maxLines: 3,
-            style: TextStyle(
-              fontSize: fontSizeMiddle,
-              color: kAppSubTextColor,
+      body: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.all(20),
+            child: Text(
+              "请务必使用真实本人姓名及身份证号，一旦认证成功不可再次修改",
+              maxLines: 3,
+              style: TextStyle(
+                fontSize: fontSizeMiddle,
+                color: kAppSubTextColor,
+              ),
             ),
           ),
-        ),
-
-
-        Container(
-          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-          padding: EdgeInsets.only(left: 20),
-          decoration: BoxDecoration(
-            color: kAppWhiteColor,
-            borderRadius: BorderRadius.circular(2),
-          ),
-          height: 50,
-          width: ScreenUtil.screenWidthDp,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        "姓名",
-                        style: TextStyle(
-                          fontSize: fontSizeSmall,
-                          color: kAppTextColor,
-                        ),
-                      ),
-                    ),
-
-
-                    Container(
-                      width: 100,
-                      child: TextField(
-                        controller: nameController,
-                        maxLines: 1,
-                        //最大行数
-                        decoration: InputDecoration.collapsed(hintText: "请输入姓名"),
-                        style: TextStyle(
-                            fontSize: fontSizeMiddle,
-                            color: kAppTextColor,
-                            fontWeight: FontWeight.bold),
-                        //输入文本的样式
-//                      onChanged: onChanged,
-                        onSubmitted: (text) {
-                          //内容提交(按回车)的回调
-//                        print('submit $text');
-//                        Fluttertoast.showToast(msg: 'submit $text');
-                        },
-                        enabled: true, //是否禁用
-                      ),
-                    ),
-                  ],
+          _getItemWidget("姓名", "请输入真实姓名", nameController, type: 1),
+          _getItemWidget("身份证", "请输入身份证号码", idController),
+          InkWell(
+            highlightColor: Colors.transparent,
+            radius: 0.0,
+            child: Container(
+                margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+                height: 46,
+                width: double.infinity,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: kAppThemeColor,
+                  borderRadius: BorderRadius.circular(6),
                 ),
-              ),
-              Container(
-                height: 1,
-                width: ScreenUtil.screenWidthDp,
-                color: kMineBgColor,
-              )
-            ],
+                child: Text(
+                  "提 交",
+                  style: TextStyle(
+                      color: Colors.white, fontSize: kAppFontSize(28)),
+                )),
+            onTap: () {},
+          )
+        ],
+      ),
+    );
+  }
+
+  _getItemWidget(title, subTitle, TextEditingController controller,
+      {type = 2}) {
+    return MySuperWidget(
+      margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      padding: EdgeInsets.only(left: 20, right: 20),
+      bgColor: kAppWhiteColor,
+      radius: 6,
+      height: 55,
+      width: ScreenUtil.screenWidthDp,
+      child: Row(
+        children: <Widget>[
+          Text(
+            title,
+            style: TextStyle(
+                fontSize: fontSizeNormal,
+                color: kAppTextColor,
+                fontWeight: FontWeight.bold),
           ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-          padding: EdgeInsets.only(left: 20),
-          decoration: BoxDecoration(
-            color: kAppWhiteColor,
-            borderRadius: BorderRadius.circular(2),
-          ),
-          height: 50,
-          width: ScreenUtil.screenWidthDp,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        "身份证号",
-                        style: TextStyle(
-                          fontSize: fontSizeSmall,
-                          color: kAppTextColor,
-                        ),
-                      ),
-                    ),
-
-
-                    Container(
-                      width: 100,
-                      child: TextField(
-                        controller: idController,
-                        maxLines: 1,
-                        //最大行数
-                        decoration: InputDecoration.collapsed(hintText: "请输入证件号"),
-                        style: TextStyle(
-                            fontSize: fontSizeMiddle,
-                            color: kAppTextColor,
-                            fontWeight: FontWeight.bold),
-                        //输入文本的样式
-//                      onChanged: onChanged,
-                        onSubmitted: (text) {
-                          //内容提交(按回车)的回调
-//                        print('submit $text');
-//                        Fluttertoast.showToast(msg: 'submit $text');
-                        },
-                        enabled: true, //是否禁用
-                      ),
-                    ),
-                  ],
-                ),
+          Expanded(
+            child: TextField(
+              controller: controller,
+              maxLines: 1,
+              keyboardType:
+                  type == 1 ? TextInputType.text : TextInputType.emailAddress,
+              decoration: InputDecoration.collapsed(hintText: subTitle),
+              style: TextStyle(
+                fontSize: fontSizeNormal,
+                color: kAppTextColor,
               ),
-              Container(
-                height: 1,
-                width: ScreenUtil.screenWidthDp,
-                color: kMineBgColor,
-              )
-            ],
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(type == 1 ? 8 : 18),
+              ],
+              textAlign: TextAlign.right,
+            ),
           ),
-        ),
-        InkWell(
-          highlightColor: Colors.transparent,
-          radius: 0.0,
-          child: Container(
-              margin: EdgeInsets.only(left: 20, top: 20, right: 20),
-              height: 46,
-              width: double.infinity,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-//                color: _isClickLogin ? kAppThemeColor : Color(0x75A14EFF),
-                color:   kAppThemeColor  ,
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: Text(
-                "提 交",
-                style: TextStyle(color: Colors.white, fontSize: kAppFontSize(28)),
-              )),
-          onTap: (){
-
-
-          },
-        )
-      ],),),
+        ],
+      ),
     );
   }
 }

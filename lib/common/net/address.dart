@@ -62,14 +62,18 @@ const String entrustList = "entrust/list";
 //收益计算
 const String profitCalculation = "calc/profit";
 
+const String tradeOpen = "trade/open";
+
+
+
 ////////////////////////////////////////////////////////////////
 
 ///网关API
-const String BASE_URL_RELEASE = "http://yd-api.qicp.vip/"; //线上
-const String BASE_URL_DEV = "http://yd-api.qicp.vip/"; //开发
+const String BASE_URL_RELEASE = "http://g3zi8sd.nat.ipyingshe.com/"; //线上
+const String BASE_URL_DEV = "http://g3zi8sd.nat.ipyingshe.com/"; //开发
 ///WebSocket
-const String BASE_WEB_SOCKET_RELEASE = "ws://2888300uv3.qicp.vip/"; //线上
-const String BASE_WEB_SOCKET_DEV = "ws://2888300uv3.qicp.vip/"; //开发
+const String BASE_WEB_SOCKET_RELEASE = "ws://z7ih7p4.nat.ipyingshe.com"; //线上
+const String BASE_WEB_SOCKET_DEV = "ws://z7ih7p4.nat.ipyingshe.com"; //开发
 ///网页h5
 const String BASE_URL_H5_RELEASE = "https://h5.ypshengxian.com"; //线上
 const String BASE_URL_H5_DEV = "https://dev-h5.ypshengxian.com"; //开发

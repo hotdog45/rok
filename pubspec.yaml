@@ -15,7 +15,7 @@ dependencies:
   get: ^3.5.0
   provider: 4.0.4 #状态管理 google推荐
   dio: 3.0.9 #网络请求库
-  json_annotation: 3.0.1 #json解析
+  json_annotation: 3.1.1 #json解析
   flutter_screenutil: 1.1.0 #屏幕适配f
   flutter_easyrefresh: ^2.1.1 #刷新组件
   pull_to_refresh: 1.5.8 #刷新组件
@@ -68,8 +68,8 @@ dependencies:
   flutter_bugly: ^0.2.8 #bugly
 
 dev_dependencies:
-  json_serializable: ^3.3.0
-  build_runner: ^1.6.4
+  json_serializable: ^3.5.1
+  build_runner: ^1.10.12
   flutter_test:
     sdk: flutter
 

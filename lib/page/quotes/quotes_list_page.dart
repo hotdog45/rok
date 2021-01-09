@@ -91,6 +91,10 @@ class _QuotesListPageState extends State<QuotesListPage>
     return Scaffold(
       appBar: YPAppBar("title.quotes", hasBackBtn: false).build(context),
       body: Container(
+          child: MyRefresh(
+        onRefresh: () {
+          reqMarket();
+        },
         child: ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
@@ -107,7 +111,7 @@ class _QuotesListPageState extends State<QuotesListPage>
               : operationRecordsModel.last5.length,
           padding: EdgeInsets.all(15),
         ),
-      ),
+      )),
     );
   }
 }

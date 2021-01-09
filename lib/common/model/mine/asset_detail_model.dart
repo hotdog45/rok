@@ -4,7 +4,7 @@ part 'asset_detail_model.g.dart';
 
 
 @JsonSerializable()
-  class assetDetailModel extends Object {
+  class AssetDetailModel extends Object {
 
   @JsonKey(name: 'balance')
   double balance;
@@ -21,11 +21,11 @@ part 'asset_detail_model.g.dart';
   @JsonKey(name: 'totalAsset')
   double totalAsset;
 
-  assetDetailModel(this.balance,this.btcAsset,this.deposit,this.profitLoss,this.totalAsset,);
+  AssetDetailModel(this.balance,this.btcAsset,this.deposit,this.profitLoss,this.totalAsset,);
 
-  factory assetDetailModel.fromJson(Map<String, dynamic> srcJson) => _$assetDetailModelFromJson(srcJson);
+  factory AssetDetailModel.fromJson(Map<String, dynamic> srcJson) => _$AssetDetailModelFromJson(srcJson);
 
-  Map<String, dynamic> toJson() => _$assetDetailModelToJson(this);
+  Map<String, dynamic> toJson() => _$AssetDetailModelToJson(this);
 
 }
 

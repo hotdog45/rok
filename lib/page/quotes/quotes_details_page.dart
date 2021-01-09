@@ -1,41 +1,27 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:orientation/orientation.dart';
-import 'package:rok/common/model/socket_base_model.dart';
-import 'package:rok/common/net/address.dart';
-import 'package:rok/common/net/web_socket_utils.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/my_drawer.dart';
 import 'package:rok/widget/common/my_super_widget.dart';
 import 'package:rok/widget/common/my_tab_bar.dart';
-import 'package:rok/widget/common/roundUnderlineTabIndicator.dart';
 import 'package:rok/widget/common/yp_app_bar.dart';
-import 'package:rok/widget/kline/kchart/entity/depth_entity.dart';
-import 'package:rok/widget/kline/kchart/entity/k_line_entity.dart';
-import 'package:rok/widget/kline/kchart/state_enum.dart';
-import 'package:rok/widget/kline/kchart/utils/data_util.dart';
-import 'package:rok/widget/kline/kline_data_controller.dart';
-import 'package:rok/widget/kline/kline_vertical_widget.dart';
-import 'package:rok/widget/kline/network/httptool.dart';
 import 'package:rok/widget/quotes/entrust_widget.dart';
 import 'package:rok/widget/quotes/instructions_widget.dart';
 import 'package:rok/widget/quotes/make_a_bargain_widget.dart';
-import 'dart:convert';
-
-import 'package:rok/widget/transaction/transaction_widget.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'quotes_details_h_page.dart';
 import 'quotes_details_widget.dart';
 
 class QuotesDetailsPage extends StatefulWidget {
+  final String name;
+
+  const QuotesDetailsPage({Key key, this.name = "ethusdt"}) : super(key: key);
+
   @override
   _QuotesDetailsPageState createState() => _QuotesDetailsPageState();
 }
@@ -112,10 +98,6 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
                     icon: Icon(Icons.fullscreen, size: 30),
                     onPressed: () {
                       NavigatorUtils.navigatorRouter(context, QuotesDetailsHPage());
-
-//                      NavigatorUtils.showToast("全屏");
-//                       OrientationPlugin.forceOrientation(
-//                           DeviceOrientation.landscapeLeft);
                     }),
                 IconButton(
                     highlightColor: Colors.transparent,
@@ -182,7 +164,7 @@ class _QuotesDetailsPageState extends State<QuotesDetailsPage>
                   ],
                 ),
               ),
-              QuotesDetailsWidget(height: 450,),
+              QuotesDetailsWidget(height: 450,name: widget.name),
               MyTabBar(mController: mController, tabTitles: tabTitles),
               Container(
                   width: double.infinity, height: 800, child: _tabBarView())

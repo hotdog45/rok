@@ -4,16 +4,12 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:rok/common/model/mine/asset_detail_model.dart';
 import 'package:rok/common/net/rok_dao.dart';
-import 'package:rok/common/style/iconfont.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/i18n_utils.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/page/assets_page.dart';
-import 'package:rok/page/quotes/quotes_details_page.dart';
 import 'package:rok/page/recharge_online_page.dart';
-import 'package:rok/page/recharge_page.dart';
 import 'package:rok/page/withdrawal_online_page.dart';
-import 'package:rok/page/withdrawal_page.dart';
 
 class AssetsWidget extends StatefulWidget {
   @override
@@ -22,7 +18,7 @@ class AssetsWidget extends StatefulWidget {
 
 
 class _AssetsWidgetState extends State<AssetsWidget> {
-  assetDetailModel detailModel;
+  AssetDetailModel detailModel;
   @override
   void initState() {
     // TODO: implement initState
@@ -163,17 +159,10 @@ class _AssetsWidgetState extends State<AssetsWidget> {
 
 //资产详情
   void totalAssetDetail() async {
-
-
-  var data   = await assetDetail() ;
-   detailModel = assetDetailModel.fromJson(data);
-
+   detailModel = await assetDetail() ;
    setState(() {
 
    });
-
-    return;
-
   }
 
 }

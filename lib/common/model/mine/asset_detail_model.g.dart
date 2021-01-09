@@ -6,8 +6,8 @@ part of 'asset_detail_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-assetDetailModel _$assetDetailModelFromJson(Map<String, dynamic> json) {
-  return assetDetailModel(
+AssetDetailModel _$AssetDetailModelFromJson(Map<String, dynamic> json) {
+  return AssetDetailModel(
     (json['balance'] as num)?.toDouble(),
     (json['btcAsset'] as num)?.toDouble(),
     (json['deposit'] as num)?.toDouble(),
@@ -16,7 +16,7 @@ assetDetailModel _$assetDetailModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$assetDetailModelToJson(assetDetailModel instance) =>
+Map<String, dynamic> _$AssetDetailModelToJson(AssetDetailModel instance) =>
     <String, dynamic>{
       'balance': instance.balance,
       'btcAsset': instance.btcAsset,

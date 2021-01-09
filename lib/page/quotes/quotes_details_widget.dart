@@ -34,8 +34,10 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 class QuotesDetailsWidget extends StatefulWidget {
   final double height;
+  final String name;
 
-  const QuotesDetailsWidget({Key key, this.height}) : super(key: key);
+  const QuotesDetailsWidget({Key key, this.height, this.name = "ethusdt"}) : super(key: key);
+
   @override
   _QuotesDetailsWidgetState createState() => _QuotesDetailsWidgetState();
 }
@@ -59,7 +61,7 @@ class _QuotesDetailsWidgetState extends State<QuotesDetailsWidget> {
       messageData = message;
       var model = SocketBaseModel.fromJson(jsonDecode(message));
       print("111111111111");
-      if (model != null && model.ch !=null && model.ch.startsWith("market.ethusdt.kline")) {
+      if (model != null && model.ch !=null && model.ch.startsWith("market.${widget.name}.kline")) {
         if (model.tick is Map){
           print("333333333333333333");
           var data = KLineEntity.fromJson(model.tick);
@@ -83,12 +85,13 @@ class _QuotesDetailsWidgetState extends State<QuotesDetailsWidget> {
     getData("1min");
   }
 
+
   void getData(String period) async {
     channel.sink.add(
-        '{"event":"request","topic":"market.request","body":{ "type":1, "content":{ "ch":"market.ethusdt.kline.${period ?? "1min"}"}}} ');
+        '{"event":"request","topic":"market.request","body":{ "type":1, "content":{ "ch":"market.${widget.name}.kline.${period ?? "1min"}"}}} ');
     if (period.startsWith("1min")){
       channel.sink.add(
-          '{"event":"addTopic","topic":"market.ethusdt.kline.${period ?? "1min"}"} ');
+          '{"event":"addTopic","topic":"market.${widget.name}.kline.${period ?? "1min"}"} ');
     }
   }
 

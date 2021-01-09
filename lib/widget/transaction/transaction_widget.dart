@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:rok/common/model/contract/entrust_model.dart';
+import 'package:rok/common/model/home/operation_records_model.dart';
+import 'package:rok/common/net/rok_dao.dart';
 import 'package:rok/common/style/style.dart';
 import 'package:rok/common/unils/navigator_utils.dart';
 import 'package:rok/widget/common/custom_action_sheet.dart';
@@ -28,7 +31,7 @@ class TransactionWidget extends StatefulWidget {
 class _TransactionWidgetState extends State<TransactionWidget>
     with SingleTickerProviderStateMixin {
   var priceType = 0;
-
+  List<EntrustModel> list;
   final priceTypeMap = {
     0: "限价",
     1: "市价",
@@ -43,7 +46,15 @@ class _TransactionWidgetState extends State<TransactionWidget>
       length: tabTitles.length,
       vsync: this,
     );
+
+    getEntrustList();
   }
+
+  getEntrustList() async{
+     list = await reqEntrustList("BTCUSDT");
+
+  }
+
 
   @override
   void dispose() {
@@ -205,6 +216,9 @@ class _TransactionWidgetState extends State<TransactionWidget>
             margin: EdgeInsets.only(top: 10),
             onTap: () {
               NavigatorUtils.showToast("开多");
+              daoTradeOpen("BTCUSDT", 1, 100, 38000, 10000, 1, 0);
+              
+              
             },
           ),
           MySuperWidget(
@@ -215,8 +229,10 @@ class _TransactionWidgetState extends State<TransactionWidget>
             bgColor: kRedColor,
             radius: 4,
             margin: EdgeInsets.only(top: 10),
-            onTap: () {
-              NavigatorUtils.showToast("开空");
+            onTap: () async{
+              list=await reqEntrustList("BTCUSDT");
+              NavigatorUtils.showToast("开空"+list[0].toJson().toString());
+
             },
           ),
         ],
@@ -296,7 +312,7 @@ class _TransactionWidgetState extends State<TransactionWidget>
       children: tabTitles.asMap().keys.map((index) {
         switch (index) {
           case 0:
-            return PositionListWidget();
+            return  PositionListWidget(list: list,);
           case 1:
             return PositionListWidget();
           default:
