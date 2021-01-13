@@ -4,7 +4,7 @@ part 'user_info.g.dart';
 
 
 @JsonSerializable()
-  class userInfo extends Object {
+  class UserInfo extends Object {
 
   @JsonKey(name: 'channelNo')
   String channelNo;
@@ -30,11 +30,11 @@ part 'user_info.g.dart';
   @JsonKey(name: 'verifyStatus')
   int verifyStatus;
 
-  userInfo(this.channelNo,this.id,this.kycStatus,this.phone,this.status,this.tradeStatus,this.userName,this.verifyStatus,);
+  UserInfo(this.channelNo,this.id,this.kycStatus,this.phone,this.status,this.tradeStatus,this.userName,this.verifyStatus,);
 
-  factory userInfo.fromJson(Map<String, dynamic> srcJson) => _$userInfoFromJson(srcJson);
+  factory UserInfo.fromJson(Map<String, dynamic> srcJson) => _$UserInfoFromJson(srcJson);
 
-  Map<String, dynamic> toJson() => _$userInfoToJson(this);
+  Map<String, dynamic> toJson() => _$UserInfoToJson(this);
 
 }
 

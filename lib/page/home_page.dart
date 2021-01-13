@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage>
       setState(() {});
     });
 
-    reGetCountdown();
+    // reGetCountdown();
 
     getHomeData();
   }

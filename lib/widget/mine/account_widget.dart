@@ -17,7 +17,7 @@ class AccountWidget extends StatefulWidget {
 }
 
 class _AccountWidgetState extends State<AccountWidget> {
-  userInfo userInformation;
+  UserInfo userInformation;
   String userName;
   @override
   void initState() {
@@ -84,14 +84,13 @@ class _AccountWidgetState extends State<AccountWidget> {
   //资产详情
   void reqUserInformation() async {
     var data = await reqUserInfo();
-    userInformation = userInfo.fromJson(data);
+    userInformation = UserInfo.fromJson(data);
     String token = await LocalStorage.get(AppConstant.USER_TOKEN) ?? "";
-    if(token.isNotEmpty){
+    if (token.isNotEmpty) {
       userName = await LocalStorage.get(AppConstant.USER_MOBILE);
-      userName = userName.substring(0,4)+"****"+ userName.substring(8,11);
-      setState(() {
-      });
-    }else{
+      userName = userName.substring(0, 4) + "****" + userName.substring(8, 11);
+      setState(() {});
+    } else {
       userName = "请登录";
     }
 
