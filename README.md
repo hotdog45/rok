@@ -1,4 +1,12 @@
 
+##高仿某合约APP 
+###功能点:
+1.K线图
+2.撮合交易
+3.国际化
+4.长链接 websocket
+5.实时行情数据浏览
+6. ...
 
 flutter pub run flutter_l10n:build
 
